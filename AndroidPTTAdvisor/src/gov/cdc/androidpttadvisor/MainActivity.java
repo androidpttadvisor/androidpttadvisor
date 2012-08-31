@@ -1,4 +1,4 @@
-package gove.cdc.androidpttadvisor;
+package gov.cdc.androidpttadvisor;
 
 import android.os.Bundle;
 import android.app.Activity;
