@@ -1,10 +1,12 @@
-package us.paulbrown;
+package gov.cdc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import gov.cdc.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

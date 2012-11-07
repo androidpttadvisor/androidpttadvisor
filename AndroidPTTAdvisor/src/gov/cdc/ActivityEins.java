@@ -1,5 +1,6 @@
-package us.paulbrown;
+package gov.cdc;
 
+import gov.cdc.R;
 import android.app.Activity;
 import android.os.Bundle;
 
