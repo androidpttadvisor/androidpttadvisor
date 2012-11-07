@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+	
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#000"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/helpButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@+id/infoButton"
+            android:text="@string/helpButtonText"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="PTT Advisor"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="26dp" />
+
+        <Button
+            android:id="@+id/footnotesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/footnotesButtonText"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/infoButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textSize="12dp"
+            android:text="@string/infoButtonText" />
+
+    </RelativeLayout>
+        
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="380dp"
+        android:layout_below="@+id/titleBar"
+        android:background="#fff">
+
+    	<LinearLayout
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentLeft="true"
+    	    android:layout_marginTop="14dp"
+    	    android:orientation="vertical" >
+
+    	    <TextView
+    	        android:id="@+id/questionTextView"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:layout_marginBottom="100dp"
+    	        android:background="#fff"
+    	        android:text="TextView"
+    	        android:textSize="30px"
+    	        android:textColor="#000" />
+
+    	    <Button
+    	        android:id="@+id/answerButton0"
+    	        android:layout_width="fill_parent"
+    	        android:layout_height="wrap_content"
+    	        android:layout_marginLeft="100dip"
+				android:layout_marginRight="100dip"
+    	        android:text="Button" />
+
+    	    <Button
+    	        android:id="@+id/answerButton1"
+    	        android:layout_width="fill_parent"
+    	        android:layout_height="wrap_content"
+    	        android:layout_marginLeft="100dip"
+				android:layout_marginRight="100dip"
+    	        android:text="Button" />
+
+    	    <ImageView
+    	        android:id="@+id/imageview1"
+    	        android:layout_width="fill_parent"
+    	        android:layout_height="100dp"
+    	        android:contentDescription="@string/imageview_contentDescription"
+    	        android:src="@drawable/obnoxious1" />
+
+    	</LinearLayout>
+        
+    </RelativeLayout>
+    
+    <RelativeLayout
+                android:id="@+id/InnerRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+            android:background="#0f0">
+
+
+            <ImageButton
+                    android:id="@+id/tabBarButton1"
+                    android:layout_toLeftOf="@+id/tabBarButton2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/arrowwest"
+                    android:contentDescription="@string/contentDescription_previous_button"
+                    />
+            <ImageButton
+                    android:id="@+id/tabBarButton2"
+                    android:layout_toLeftOf="@+id/tabBarButton3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/arroweast"
+                    android:contentDescription="@string/contentDescription_next_button"
+                    />
+            <ImageButton
+                    android:id="@+id/tabBarButton3"
+                    android:layout_centerInParent="true"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/back_to_last"
+                    android:contentDescription="@string/contentDescription_farthest_button"
+                    />
+            <ImageButton
+                    android:id="@+id/tabBarButton4"
+                    android:layout_toRightOf="@+id/tabBarButton3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/redo"
+                    android:contentDescription="@string/contentDescription_restart_button"
+                    android:onClick="restart"
+                    />
+            <ImageButton
+                    android:id="@+id/tabBarButton5"
+                    android:layout_toRightOf="@+id/tabBarButton4"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/list"
+                    android:contentDescription="@string/contentDescription_summary_button"
+                    />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
