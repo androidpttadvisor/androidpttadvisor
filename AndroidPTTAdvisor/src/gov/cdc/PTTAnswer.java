@@ -1,4 +1,4 @@
-package us.paulbrown;
+package gov.cdc;
 
 public class PTTAnswer {
 	

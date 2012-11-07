@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="us.paulbrown"
+          package="gov.cdc"
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="14"/>
@@ -17,6 +17,6 @@
         </activity>
         <activity android:name=".ActivityEins" android:label="activity_eins"/>
         <activity android:name=".RestartDialog" android:label="restartdialog"/>
-        <activity android:name="InfoScreen" android:label="About" />
+        <activity android:name="gov.cdc.InfoScreen" android:label="About" />
     </application>
 </manifest>
