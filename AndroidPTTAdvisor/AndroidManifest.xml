@@ -1,25 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="gov.cdc.androidpttadvisor"
-    android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
-
-    <application
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+          package="us.paulbrown"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="14"/>
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+        <activity android:name="MyActivity"
+                  android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ActivityEins" android:label="activity_eins"/>
+        <activity android:name=".RestartDialog" android:label="restartdialog"/>
+        <activity android:name="InfoScreen" android:label="About" />
     </application>
-
 </manifest>
