@@ -11,17 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#000"
+        android:background="@drawable/title_bar_gradient_selector"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
-        <Button
+        
+        <ImageButton
+            android:id="@+id/infoButton"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textSize="12dp"
+            android:text="@string/infoButtonText"
+            android:src="@drawable/info_icon_18x18"
+            android:background="@null" />
+        
+        
+        
+        <ImageButton
             android:id="@+id/helpButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_toRightOf="@+id/infoButton"
             android:text="@string/helpButtonText"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:src="@drawable/help_icon_18x18"
+            android:background="@null" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -42,14 +58,7 @@
             android:text="@string/footnotesButtonText"
             android:textSize="12dp" />
 
-        <Button
-            android:id="@+id/infoButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:textSize="12dp"
-            android:text="@string/infoButtonText" />
+        
 
     </RelativeLayout>
         
@@ -114,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-            android:background="#0f0">
+            android:background="#000">
 
 
             <ImageButton
