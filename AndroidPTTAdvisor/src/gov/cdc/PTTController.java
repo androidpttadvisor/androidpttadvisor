@@ -21,6 +21,7 @@ public class PTTController {
 
         //Node 0
         String node0Question = "Does the patient have prolonged PTT and normal PT?";
+        String node0HeaderImage = "to_begin_header";
 
 		PTTAnswer node0answer0 = new PTTAnswer(1, "YAY");
 		PTTAnswer node0answer1 = new PTTAnswer(2, "NAY");
@@ -32,7 +33,8 @@ public class PTTController {
 
 		//Node 1
         String node1Question = "Is the patient older than 6 months?";
-
+        String node1HeaderImage = "eval_guide_header";
+        
 		PTTAnswer node1answer0 = new PTTAnswer(3, "Yes");
 		PTTAnswer node1answer1 = new PTTAnswer(4, "No");
 		
@@ -43,6 +45,7 @@ public class PTTController {
 
         //Node 2
         String node2Question = "There is currently no algorithm for a patient meeting this criteria.";
+        String node2HeaderImage = "recommendation_header";
 
         //TODO: Account for empty answers (i.e. dead ends on the node tree) in the PTTNode contructor
         ArrayList<PTTAnswer> answers2 = new ArrayList<PTTAnswer>();
@@ -54,9 +57,9 @@ public class PTTController {
 		ArrayList<String> footnotes = new ArrayList<String>();
 		footnotes.add("none");
 		
-		PTTNode node0 = new PTTNode(0,node0Question,answers0,footnotes);
-		PTTNode node1 = new PTTNode(1,node1Question,answers1,footnotes);
-        PTTNode node2 = new PTTNode(2,node2Question,answers2,footnotes);
+		PTTNode node0 = new PTTNode(0,node0Question,answers0,node0HeaderImage,footnotes);
+		PTTNode node1 = new PTTNode(1,node1Question,answers1,node1HeaderImage,footnotes);
+        PTTNode node2 = new PTTNode(2,node2Question,answers2,node2HeaderImage,footnotes);
 		
 		//end filler code to create nodes
 		
@@ -79,6 +82,12 @@ public class PTTController {
 	public String getQuestionForNodeNumber(int nodeNumber) {
 		PTTNode n = this.nodes.get(nodeNumber);
 		return n.getQuestion();
+	}
+	
+	//returns the header image for a node
+	public String getHeaderImageForNodeNumber(int nodeNumber) {
+		PTTNode n = this.nodes.get(nodeNumber);
+		return n.getPathToHeaderImage();
 	}
 	
 	

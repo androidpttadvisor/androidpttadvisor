@@ -26,6 +26,7 @@ import android.view.Window;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 
 public class MyActivity extends Activity {
@@ -46,12 +47,17 @@ public class MyActivity extends Activity {
             R.drawable.obnoxious4,
             R.drawable.obnoxious5,
     };
+    
 
 
     int position = 0;
     int farthestPositionReached = 0;
 
     final PTTController controller = new PTTController();
+    
+    private String headerImage = controller.getHeaderImageForNodeNumber(0);
+    
+    
 
     CharSequence[] items = { "Google","Apple","Microsoft" };
     boolean[] itemsChecked = new boolean [items.length];
@@ -109,10 +115,24 @@ public class MyActivity extends Activity {
 
         setContentView(R.layout.main);
         
+        PTTNode currentNode = controller.currentNode;
+        
+        
+        //Get image path and put image into node header image
+        ImageView headerImageView = new ImageView(this);
+        headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
+        String headerImagePath = controller.getHeaderImageForNodeNumber(currentNode.getId());
+        Log.d("IMAGE", headerImagePath);
+        String imageString = "drawable/" + currentNode.getPathToHeaderImage();
+        Log.d("IMAGESTRING", imageString);
+        int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
+        Drawable image = getResources().getDrawable(imageResource);
+        headerImageView.setImageDrawable(image);
+        
+        
         //Get question text and put it on the screen
         TextView tv = new TextView(this);
     	tv = (TextView)findViewById(R.id.questionTextView);
-    	PTTNode currentNode = controller.currentNode;
     	tv.setText(currentNode.getQuestion());
     	
     	//Get answers and put them on the buttons.
@@ -132,7 +152,6 @@ public class MyActivity extends Activity {
 					b0.setText(s0);
                     final int answer0Node = answers.get(0).nodeId;
                     b0.setOnClickListener(new View.OnClickListener() {
-                        @Override
                         public void onClick(View view) {
                             Log.d("GOTO Node:",Integer.toString(answer0Node));
                             controller.setCurrentNode(answer0Node);
@@ -146,7 +165,6 @@ public class MyActivity extends Activity {
                     b1.setText(s1);
                     final int answer1Node = answers.get(1).nodeId;
                     b1.setOnClickListener(new View.OnClickListener() {
-                        @Override
                         public void onClick(View view) {
                             Log.d("GOTO Node:",Integer.toString(answer1Node));
                             controller.setCurrentNode(answer1Node);
@@ -172,7 +190,6 @@ public class MyActivity extends Activity {
 
 
         button1.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 navigateToAnotherImage("previous");
@@ -180,7 +197,6 @@ public class MyActivity extends Activity {
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 navigateToAnotherImage("next");
@@ -189,7 +205,6 @@ public class MyActivity extends Activity {
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 navigateToAnotherImage("farthest");
@@ -197,7 +212,6 @@ public class MyActivity extends Activity {
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 iv.setImageResource(R.drawable.laptopvsurface);
@@ -207,7 +221,6 @@ public class MyActivity extends Activity {
         final Context context = this;
         Button infoButton = (Button) findViewById(R.id.infoButton);
         infoButton.setOnClickListener(new OnClickListener() {
-        	@Override
         	public void onClick(View arg0) {
         		Intent intent = new Intent(context, InfoScreen.class);
         		startActivity(intent);
@@ -246,9 +259,21 @@ public class MyActivity extends Activity {
 
 
     public void navigateToAnotherNode(int nodeId) {
+    	Log.d("CALLING navigateToAnotherNode","navigateToAnotherNode");
         //Get question text and put it on the screen
         TextView tv = (TextView)findViewById(R.id.questionTextView);
         tv.setText(controller.currentNode.getQuestion());
+        
+      //Get image path and put image into node header image
+        ImageView headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
+        
+        String headerImagePath = controller.getHeaderImageForNodeNumber(nodeId);
+        Log.d("IMAGE", headerImagePath);
+        String imageString = "drawable/" + controller.currentNode.getPathToHeaderImage();
+        Log.d("IMAGESTRING", imageString);
+        int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
+        Drawable image = getResources().getDrawable(imageResource);
+        headerImageView.setImageDrawable(image);
         
         
         ArrayList<PTTAnswer> answers = controller.currentNode.getAnswers();
@@ -265,7 +290,6 @@ public class MyActivity extends Activity {
 					b0.setText(s0);
                     final int answer0Node = answers.get(0).nodeId;
                     b0.setOnClickListener(new View.OnClickListener() {
-                        @Override
                         public void onClick(View view) {
                             Log.d("GOTO Node:",Integer.toString(answer0Node));
                             controller.setCurrentNode(answer0Node);
@@ -279,7 +303,6 @@ public class MyActivity extends Activity {
                     b1.setText(s1);
                     final int answer1Node = answers.get(1).nodeId;
                     b1.setOnClickListener(new View.OnClickListener() {
-                        @Override
                         public void onClick(View view) {
                             Log.d("GOTO Node:",Integer.toString(answer1Node));
                             controller.setCurrentNode(answer1Node);
@@ -325,7 +348,6 @@ public class MyActivity extends Activity {
         builder.setTitle("Do you really want to restart?");
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton("Yes, restart", new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getBaseContext(),
                         "Restarting", Toast.LENGTH_SHORT).show();
@@ -339,7 +361,6 @@ public class MyActivity extends Activity {
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
@@ -356,49 +377,5 @@ public class MyActivity extends Activity {
 
 
 
-    /*
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case 0:
-                return new AlertDialog.Builder(this)
-                        .setIcon(R.drawable.ic_launcher)
-                        .setTitle("Do you really want to restart?")
-                        .setPositiveButton("Restart",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton)
-                                    {
-                                        Toast.makeText(getBaseContext(),
-                                                "Restarting", Toast.LENGTH_SHORT).show();
-                                        position=0;
-                                        farthestPositionReached = 0;
-                                        final ImageView iv = (ImageView)findViewById(R.id.imageview1);
-                                        iv.setImageResource(imagesArray[position]);
-                                    }
-                                }
-                        )
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton)
-                                    {
-                                        Toast.makeText(getBaseContext(),
-                                                "Cancelled dialog", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                        ).create();
-                        .setMultiChoiceItems(items, itemsChecked,
-                                new DialogInterface.OnMultiChoiceClickListener() {
-                                    public void onClick(DialogInterface dialog,
-                                                        int which, boolean isChecked) {
-                                        Toast.makeText(getBaseContext(),
-                                                items[which] + (isChecked ? " checked:":" unchecked:"),
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                        ).create();
-        }
-        return null;
-    }
-    */
 
 }
