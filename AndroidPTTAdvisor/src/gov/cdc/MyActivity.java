@@ -219,7 +219,7 @@ public class MyActivity extends Activity {
         });
 
         final Context context = this;
-        Button infoButton = (Button) findViewById(R.id.infoButton);
+        ImageButton infoButton = (ImageButton) findViewById(R.id.infoButton);
         infoButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg0) {
         		Intent intent = new Intent(context, InfoScreen.class);
