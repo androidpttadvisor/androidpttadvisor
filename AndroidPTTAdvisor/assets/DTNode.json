@@ -1,0 +1,109 @@
+{
+	"nodes": [
+		{
+			"id": "0",
+			"question": "Does the patient have prolonged PTT and normal PT?",
+			"answers": [
+				{
+					"nodeId": "1",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "2",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+				"Footnote 0 for Node0",
+				"Footnote 1 for Node0"
+			],
+			"image": "to_begin_header"
+		},
+		{
+			"id": "1",
+			"question": "Is patient older than 6 months?",
+			"answers": [
+				{
+					"nodeId": "2",
+					"answer": "Yes"
+				}
+			],
+			"footnotes": [
+				"Footnote 0 for Node1"
+			],
+			"image": "eval_guide_header"
+		},
+		{
+			"id": "2",
+			"question": "Rule out presence of heparin and LMWH-- by history, by performing a PTT after treating plasma with a heparin-degrading enzyme, or by performing a thrombin time (LMWH may not prolong thrombin time).",
+			"answers": [
+				{
+					"nodeId": "3",
+					"answer": "Continue"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "3",
+			"question": "Is there a complete or near complete correction in an incubated PTT mixing study?",
+			"answers": [
+				{
+					"nodeId": "4",
+					"answer": "Yes"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "4",
+			"question": "Is there recent onset or recently diagnosed bleeding?",
+			"answers": [
+				{
+					"nodeId": "5",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "8",
+					"answer": "Yes"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "5",
+			"question": "Do the levels of factors VII, IX, or XI reflect a deficiency?",
+			"answers": [
+				{
+					"nodeId": "6",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "7",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "6",
+			"question": "The PTT is most likely explained by an intrinsic factor deficiency.  Factors VIII and IX deficiencies are X-linked but female carriers may present with bleeding.  Factor XI deficiency is not X-linked.  If factor VIII is low in a female, consider von Willebrand Disease (VWD)-- order tests for VWD [see footnotes]",
+			"answers": [
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "7",
+			"question": "The bleeding is most likely unrelated to the prolonged PTT.  Consider causes such as thrombocytopenia, platelet function defect, scurvy, Ehlers-Danlos syndrome, etc.",
+			"answers": [
+			],
+			"footnotes": [
+			]
+		}
+	]
+}
