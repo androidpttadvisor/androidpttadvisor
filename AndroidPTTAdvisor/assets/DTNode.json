@@ -104,6 +104,162 @@
 			],
 			"footnotes": [
 			]
+		},
+		{
+			"id": "8",
+			"question": "Does the level of factor XII reflect a deficiency?",
+			"answers": [
+				{
+					"nodeId": "9",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "10",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "9",
+			"question": "The PTT is most likely explained by factor XII deficiency.",
+			"answers": [
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "10",
+			"question": "Is there interest in identifying rare factor deficiencies?",
+			"answers": [
+				{
+					"nodeId": "11",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "12",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "11",
+			"question": "Check activity levels of prekallikrein or HMWK.  [see footnotes]",
+			"answers": [
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "12",
+			"question": "Further testing is required to determine if the prolonged PTT is due to rare factor deficiencies.",
+			"answers": [
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "13",
+			"question": "Is there recent onset or recently diagnosed bleeding?",
+			"answers": [
+				{
+					"nodeId": "14",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "17",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "14",
+			"question": "Does the level of factor VIII reflect a deficiency?",
+			"answers": [
+				{
+					"nodeId": "15",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "17",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "15",
+			"question": "The prolonged PTT is most likely explained by an acquired factor VIII deficiency due to an inhibitor.  [see footnotes]",
+			"answers": [
+				{
+					"nodeId": "16",
+					"answer": "Continue"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "16",
+			"question": "Determine the Bethesda titer of the factor VIII inhibitor to establish a semi-quantitative antifactor VIII concentration.",
+			"answers": [
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "17",
+			"question": "Are the tests for lupus anti-coagulant (LA) positive?",
+			"answers": [
+				{
+					"nodeId": "18",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "19",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "18",
+			"question": "The prolonged PTT is most likely due to a LA.",
+			"answers": [
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "19",
+			"question": "Are repeat tests for LA positive?",
+			"answers": [
+				{
+					"nodeId": "18",
+					"answer": "Yes"
+				},
+				{
+					"nodeId": "20",
+					"answer": "No"
+				}
+			],
+			"footnotes": [
+			]
+		},
+		{
+			"id": "20",
+			"question": "Causes of false negative tests for LA include a weak antibody, high factor VIII, or platelet count greater than 10,000/microliter in a frozen plasma specimen because platelet phospholipids may neutralize LA.  If there is strong clinical suspicion, repeat LA testing at a later date.",
+			"answers": [
+			],
+			"footnotes": [
+			]
 		}
 	]
 }
