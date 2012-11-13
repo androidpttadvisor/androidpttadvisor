@@ -84,8 +84,14 @@ public class PTTController {
 		this.currentNode = nodes.get(0);
 	}
 	
-	
+	/**
+	 * Read in the local DTNode.json file, parse it into PTTNode objects, and return them all in a HashMap.
+	 * @return a HashMap of the PTTNodes defined in the /assets/DTNode.json
+	 */
     private HashMap<Integer, PTTNode> parseJson() {
+    	/**
+    	 * Read in the local JSON file from assets/DTNode.json and convert it to a string.
+    	 */
     	String jsonString = "";
         InputStream file;
         try {
@@ -98,12 +104,12 @@ public class PTTController {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         } 
+        
     	HashMap<Integer, PTTNode> pttnodes = new HashMap<Integer, PTTNode>();
     	try {
     		JSONObject jsonObj = new JSONObject(jsonString);
     		JSONArray nodes = jsonObj.getJSONArray("nodes");
     		for (int i = 0; i < nodes.length(); i++) {
-    		
     			// extract node i from the array of nodes
     			JSONObject node = nodes.getJSONObject(i);
     		
