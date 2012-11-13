@@ -44,10 +44,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:text="PTT Advisor"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="26dp" />
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/footnotesButton"
