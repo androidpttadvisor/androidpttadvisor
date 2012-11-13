@@ -3,19 +3,28 @@ package gov.cdc;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.util.Log;
+import android.content.Context;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class PTTController {
 	
 	HashMap<Integer, PTTNode> nodes;
 	PTTNode currentNode;
 	int historyPosition;
-	
+	private Context context;
 
-	public PTTController() {
+	public PTTController(Context c) {
 		super();
 		this.historyPosition = 0;
-
+		this.context = c;
+	/*	
 		//filler code that creates some nodes.
 		//TODO: abstract this out into another init method.
 
@@ -62,20 +71,79 @@ public class PTTController {
         PTTNode node2 = new PTTNode(2,node2Question,answers2,node2HeaderImage,footnotes);
 		
 		//end filler code to create nodes
-		
+
 		
 		//creating the map to hold nodes
 		this.nodes = new HashMap<Integer, PTTNode>();
 		this.nodes.put(node0.getId(),node0);
 		this.nodes.put(node1.getId(),node1);
         this.nodes.put(node2.getId(),node2);
+*/		
+		this.nodes = parseJson();
 		
-		
-		this.currentNode = node0;
+		this.currentNode = nodes.get(0);
 	}
 	
 	
-	
+    private HashMap<Integer, PTTNode> parseJson() {
+    	String jsonString = "";
+        InputStream file;
+        try {
+            file = this.context.getAssets().open("DTNode.json");
+            byte[] data = new byte[file.available()];
+            file.read(data);
+            file.close();
+            jsonString = new String(data);
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } 
+    	HashMap<Integer, PTTNode> pttnodes = new HashMap<Integer, PTTNode>();
+    	try {
+    		JSONObject jsonObj = new JSONObject(jsonString);
+    		JSONArray nodes = jsonObj.getJSONArray("nodes");
+    		for (int i = 0; i < nodes.length(); i++) {
+    		
+    			// extract node i from the array of nodes
+    			JSONObject node = nodes.getJSONObject(i);
+    		
+    			// Pull out the strings
+    			int id = node.getInt("id");
+    			String question = node.getString("question");
+    			String image = node.getString("image");
+    		
+    			//  Pull out the array of answers
+    			JSONArray answers = node.getJSONArray("answers");
+
+    			// for each answer, get the string/id pair and create an ArrayList of answers
+    			ArrayList<PTTAnswer> pttAnswers = new ArrayList<PTTAnswer>();
+    			for (int j = 0; j < answers.length(); j++) {
+    				JSONObject answer = answers.getJSONObject(j);
+    				int nodeId = answer.getInt("nodeId");
+    				String answerStr = answer.getString("answer");
+    			
+    				// create a new pttAnswer and add it to the list
+    				PTTAnswer pttAnswer = new PTTAnswer(nodeId, answerStr);
+    				pttAnswers.add(pttAnswer);
+    			}
+    		
+    			// Ditto for the footnotes
+    			JSONArray fnJson = node.getJSONArray("footnotes");
+    			ArrayList<String> footnotes = new ArrayList<String>();
+    			for (int j = 0; j < fnJson.length(); j++) {
+    				footnotes.add(fnJson.getString(j));
+    			}
+    		
+    			// create the PTTNode and add it to the ArrayList of them
+    			PTTNode pttNode = new PTTNode(id, question, pttAnswers, image, footnotes);
+    			pttnodes.put(id, pttNode);
+    		} // done with nodes loop
+    	} catch (JSONException e) {
+    		Log.d("JSON error: ", e.getMessage());
+    	}
+    	Log.d("JSON", "Finished parsing");
+    	return pttnodes;
+    }
 	
 
 	//this method returns the question for a particular node
@@ -98,9 +166,13 @@ public class PTTController {
 		//TODO: iterate through all answers
 		
 		PTTNode n = this.nodes.get(nodeNumber);
-		answers.add(n.answers.get(0));
-		answers.add(n.answers.get(1));
-		
+		for (int i = 0; i < n.answers.size(); i++) {
+			answers.add(n.answers.get(i));
+/*
+			answers.add(n.answers.get(0));
+			answers.add(n.answers.get(1));
+			*/
+		}
 		
 		return answers;
 	}

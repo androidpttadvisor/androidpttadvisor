@@ -53,9 +53,10 @@ public class MyActivity extends Activity {
     int position = 0;
     int farthestPositionReached = 0;
 
-    final PTTController controller = new PTTController();
+    //final PTTController controller = new PTTController(this.getApplicationContext());
+    PTTController controller;
     
-    private String headerImage = controller.getHeaderImageForNodeNumber(0);
+    private String headerImage;
     
     
 
@@ -65,8 +66,8 @@ public class MyActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        
+        controller = new PTTController(this.getApplicationContext());
+        headerImage = controller.getHeaderImageForNodeNumber(0);
         //Set up PTTController instance
         //---------------------------------------------------------
         //-------------NOTE: THIS SETS UP EVERYTHING---------------
@@ -96,8 +97,8 @@ public class MyActivity extends Activity {
         ArrayList<PTTAnswer> answers1 = controller.getAnswersForNodeNumber(1);
         Log.d("NODE1 ANSWER0 TEXT",answers1.get(0).getAnswer());
         Log.d("NODE1 ANSWER0 TARGET",Integer.toString(answers1.get(0).getNodeId()));
-        Log.d("NODE1 ANSWER1 TEXT",answers1.get(1).getAnswer());
-        Log.d("NODE1 ANSWER1 TARGET",Integer.toString(answers1.get(1).getNodeId()));
+        //Log.d("NODE1 ANSWER1 TEXT",answers1.get(1).getAnswer());
+        //Log.d("NODE1 ANSWER1 TARGET",Integer.toString(answers1.get(1).getNodeId()));
         
         
     	
@@ -136,45 +137,7 @@ public class MyActivity extends Activity {
     	tv.setText(currentNode.getQuestion());
     	
     	//Get answers and put them on the buttons.
-    	//Right now we're assuming only 2 answers
-    	
-    	ArrayList<PTTAnswer> answers = currentNode.getAnswers();
-    	Button b0;
-    	Button b1;
-    	switch (answers.size()) {
-    		case 0: break;
-    		case 1: b0 = (Button)findViewById(R.id.answerButton0);
-    				String s = answers.get(0).answer;
-    				b0.setText(s);
-
-    		case 2: b0 = (Button)findViewById(R.id.answerButton0);
-					String s0 = answers.get(0).answer;
-					b0.setText(s0);
-                    final int answer0Node = answers.get(0).nodeId;
-                    b0.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                            Log.d("GOTO Node:",Integer.toString(answer0Node));
-                            controller.setCurrentNode(answer0Node);
-                            navigateToAnotherNode(answer0Node);
-
-                        }
-                    });
-
-                    b1 = (Button)findViewById(R.id.answerButton1);
-                    String s1 = answers.get(1).answer;
-                    b1.setText(s1);
-                    final int answer1Node = answers.get(1).nodeId;
-                    b1.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                            Log.d("GOTO Node:",Integer.toString(answer1Node));
-                            controller.setCurrentNode(answer1Node);
-                            navigateToAnotherNode(answer1Node);
-
-                    }
-                });
-    	}
-
-
+    	updateButtons();
 
         final ImageView iv = (ImageView)findViewById(R.id.imageview1);
 
@@ -274,52 +237,8 @@ public class MyActivity extends Activity {
         int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
         Drawable image = getResources().getDrawable(imageResource);
         headerImageView.setImageDrawable(image);
-        
-        
-        ArrayList<PTTAnswer> answers = controller.currentNode.getAnswers();
-    	Button b0;
-    	Button b1;
-    	switch (answers.size()) {
-    		case 0: break;
-    		case 1: b0 = (Button)findViewById(R.id.answerButton0);
-    				String s = answers.get(0).answer;
-    				b0.setText(s);
 
-    		case 2: b0 = (Button)findViewById(R.id.answerButton0);
-					String s0 = answers.get(0).answer;
-					b0.setText(s0);
-                    final int answer0Node = answers.get(0).nodeId;
-                    b0.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                            Log.d("GOTO Node:",Integer.toString(answer0Node));
-                            controller.setCurrentNode(answer0Node);
-                            navigateToAnotherNode(answer0Node);
-
-                        }
-                    });
-
-                    b1 = (Button)findViewById(R.id.answerButton1);
-                    String s1 = answers.get(1).answer;
-                    b1.setText(s1);
-                    final int answer1Node = answers.get(1).nodeId;
-                    b1.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                            Log.d("GOTO Node:",Integer.toString(answer1Node));
-                            controller.setCurrentNode(answer1Node);
-                            navigateToAnotherNode(answer1Node);
-
-                    }
-                });
-    	}
-        
-        /*
-        Button button0 = (Button)findViewById(R.id.answerButton0);
-        button0.setText(controller.currentNode.getAnswers().get(0).getAnswer());
-
-        Button button1 = (Button)findViewById(R.id.answerButton1);
-        button1.setText(controller.currentNode.getAnswers().get(1).getAnswer());
-        */
-      //TODO: Pull data about the answers and assign an onClickListener to each button
+        updateButtons();
     }
 
 
@@ -374,8 +293,57 @@ public class MyActivity extends Activity {
         //showDialog(0);
     }
 
-
-
+    /**
+     * Update the number, strings, and actions of the buttons to those
+     * specified by the current node.
+     */
+    private void updateButtons() {
+        ArrayList<PTTAnswer> answers = controller.currentNode.getAnswers();
+    	Button b0 = (Button)findViewById(R.id.answerButton0);
+    	Button b1 = (Button)findViewById(R.id.answerButton1);
+    	Log.d("DEBUG", "About to make buttons");
+    	Log.d("DEBUG", "Answers size is " + answers.size());
+    	switch (answers.size()) {
+    	case 0:
+    		b0.setVisibility(View.GONE);
+    		b1.setVisibility(View.GONE);
+    		break;
+    	case 1:
+    		b0.setVisibility(View.VISIBLE);
+    		b1.setVisibility(View.GONE);
+    		break;
+    	default:
+    		b0.setVisibility(View.VISIBLE);
+    		b1.setVisibility(View.VISIBLE);
+    	}
+    	
+    	if (answers.size() > 0) {
+    		String s = answers.get(0).answer;
+    		b0.setText(s);
+			final int answer0Node = answers.get(0).nodeId;
+			Log.d("Making button", "b0, '" + s + "', points to node " + answer0Node + ".  Current node is " + controller.currentNode.getId());
+			b0.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View view) {
+                    Log.d("GOTO Node:",Integer.toString(answer0Node));
+                    controller.setCurrentNode(answer0Node);
+                    navigateToAnotherNode(answer0Node);
+                   }
+            });
+    	} 
+    	if (answers.size() == 2) {
+            String s1 = answers.get(1).answer;
+            b1.setText(s1);
+            final int answer1Node = answers.get(1).nodeId;
+            Log.d("Making button", "b1, " + s1 + ", points to node " + answer1Node + ".  Current node is " + controller.currentNode.getId());
+            b1.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Log.d("GOTO Node:",Integer.toString(answer1Node));
+                    controller.setCurrentNode(answer1Node);
+                    navigateToAnotherNode(answer1Node);
+                }
+            });
+    	}
+    }
 
 
 }
