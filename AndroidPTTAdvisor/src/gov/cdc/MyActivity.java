@@ -193,6 +193,7 @@ public class MyActivity extends Activity {
 
 
     public void navigateToAnotherImage(String whatImage) {
+    	Log.d("navigateToAnotherImage", "whatImage: " + whatImage + "position: " + position);
         if ((whatImage.equals("next")) && position<4) {
             position++;
             final ImageView iv = (ImageView)findViewById(R.id.imageview1);

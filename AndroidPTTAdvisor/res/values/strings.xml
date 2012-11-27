@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TabBarExperiment</string>
+    <string name="app_name">PTT Advisor</string>
     <string name="imageview_contentDescription">center image</string>
     <string name="contentDescription_previous_button">contentDescription_previous_button</string>
     <string name="contentDescription_next_button">contentDescription_next_button</string>
