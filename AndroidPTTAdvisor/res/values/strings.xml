@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">PTT Advisor</string>
     <string name="imageview_contentDescription">center image</string>
     <string name="contentDescription_previous_button">contentDescription_previous_button</string>
@@ -11,5 +12,9 @@
     <string name="infoButtonText">i</string>
     <string name="footnotesButtonText">Footnotes</string>
     <string name="eula">Eula: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, est in pulvinar varius, nulla metus suscipit enim, eu volutpat sem magna sed lacus. Donec tempor libero eget dui euismod eget luctus libero tempor. Quisque felis mauris, malesuada accumsan vulputate quis, sodales et nibh. Mauris tellus neque, interdum quis blandit sagittis, tincidunt at urna. Cras luctus feugiat metus, in sollicitudin felis laoreet sed. Mauris posuere mattis felis. Morbi enim odio, accumsan ac tincidunt pharetra, mattis sit amet turpis. Vivamus lobortis aliquet ante nec aliquet. Suspendisse potenti. Praesent rutrum condimentum ante et congue. In faucibus posuere arcu, ut congue sem dictum ac. Cras ante libero, pellentesque et fermentum ut, congue nec mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed euismod malesuada sapien ut eleifend. </string>
-	<string name="updates">Upates in this version: Donec sollicitudin sodales turpis eget congue. Nulla facilisi. Proin facilisis eros vel mauris mollis tempus. </string>
+    <string name="updates">Upates in this version: Donec sollicitudin sodales turpis eget congue. Nulla facilisi. Proin facilisis eros vel mauris mollis tempus. </string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_history_view">HistoryView</string>
+
 </resources>
