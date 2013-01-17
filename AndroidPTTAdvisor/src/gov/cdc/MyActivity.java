@@ -67,6 +67,10 @@ public class MyActivity extends Activity {
     	
         super.onCreate(savedInstanceState);
         
+        /**
+         * Display the EULA.  Eula.show() will only show the EULA if
+         * the user has not previously agreed to the current version's EULA.
+         */
         new Eula(this).show();
         
         controller = new PTTController(this.getApplicationContext());
