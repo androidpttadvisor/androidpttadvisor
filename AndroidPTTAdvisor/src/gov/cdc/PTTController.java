@@ -18,6 +18,7 @@ public class PTTController {
 	HashMap<Integer, PTTNode> nodes;
 	PTTNode currentNode;
 	int historyPosition;
+	ArrayList<PTTHistoryItem> history;
 	private Context context;
 
 	public PTTController(Context c) {
@@ -181,6 +182,14 @@ public class PTTController {
 		}
 		
 		return answers;
+	}
+	
+	
+	
+	public void storeHistoryItem(PTTNode node, PTTAnswer answerChosen) {
+		PTTHistoryItem historyItem = new PTTHistoryItem(node,answerChosen);
+		history.add(historyItem);
+		Log.d("HISTORY", "Added a history item");
 	}
 	
 	
