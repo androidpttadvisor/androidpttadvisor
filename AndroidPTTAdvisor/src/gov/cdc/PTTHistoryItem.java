@@ -12,6 +12,22 @@ public class PTTHistoryItem {
 		this.node = node;
 		this.answerChosen = answerChosen;
 	}
+
+
+
+	public PTTNode getNode() {
+		return node;
+	}
+
+
+
+	public PTTAnswer getAnswerChosen() {
+		return answerChosen;
+	}
+	
+	
+	
+	
 	
 	
 

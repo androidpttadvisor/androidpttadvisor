@@ -25,6 +25,7 @@ public class PTTController {
 		super();
 		this.historyPosition = 0;
 		this.context = c;
+		history = new ArrayList<PTTHistoryItem>();
 	/*	
 		//filler code that creates some nodes.
 		//TODO: abstract this out into another init method.
@@ -185,11 +186,22 @@ public class PTTController {
 	}
 	
 	
-	
+	// Stores a history item after an answer is selected.
+	// history is an array of PTTHistoryItem's
 	public void storeHistoryItem(PTTNode node, PTTAnswer answerChosen) {
 		PTTHistoryItem historyItem = new PTTHistoryItem(node,answerChosen);
 		history.add(historyItem);
-		Log.d("HISTORY", "Added a history item");
+		Log.d("HISTORY", "YAY, new history item! Node:" + history.get(history.size()-1).getAnswerChosen().getNodeId() + "Answer: " + history.get(history.size()-1).getAnswerChosen().answer);
+	}
+	
+	
+	public void logHistoryItems() {
+		for (int i=0; i < history.size(); i++) {
+			Log.d("HISTORY_ITEM", "---");
+			Log.d("HISTORY_ITEM", "Question " + (i+1) + ": " + history.get(i).getNode().getQuestion());
+			Log.d("HISTORY_ITEM", "User Answered: " + history.get(i).getAnswerChosen().answer);
+			Log.d("HISTORY_ITEM", "---");
+		}
 	}
 	
 	

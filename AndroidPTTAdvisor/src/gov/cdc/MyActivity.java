@@ -184,7 +184,7 @@ public class MyActivity extends Activity {
         button5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
-                iv.setImageResource(R.drawable.laptopvsurface);
+                controller.logHistoryItems();
             }
         });
 
@@ -333,6 +333,11 @@ public class MyActivity extends Activity {
 			b0.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
                     Log.d("GOTO Node:",Integer.toString(answer0Node));
+                    
+                    //get the current node and store the history item based on it
+                    Log.d("HISTLOG", "About to Log something");
+                    PTTNode n = controller.getCurrentNode();
+                    controller.storeHistoryItem(n, n.getAnswers().get(0));
                     controller.setCurrentNode(answer0Node);
                     navigateToAnotherNode(answer0Node);
                    }
@@ -346,6 +351,11 @@ public class MyActivity extends Activity {
             b1.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Log.d("GOTO Node:",Integer.toString(answer1Node));
+                    
+                    //get the current node and store the history item based on it
+                    Log.d("HISTLOG", "About to Log something");
+                    PTTNode n = controller.getCurrentNode();
+                    controller.storeHistoryItem(n, n.getAnswers().get(1));
                     controller.setCurrentNode(answer1Node);
                     navigateToAnotherNode(answer1Node);
                 }
