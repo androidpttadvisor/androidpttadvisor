@@ -30,14 +30,8 @@
             android:name="gov.cdc.InfoScreen"
             android:label="About" />
         <activity
-            android:name=".HistoryView"
-            android:label="@string/title_activity_history_view" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name="gov.cdc.HistoryView"
+            android:label="History" />
     </application>
 
 </manifest>
