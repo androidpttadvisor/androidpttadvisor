@@ -181,14 +181,19 @@ public class MyActivity extends Activity {
             }
         });
 
+        
+        final Context context = this;
         button5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 controller.logHistoryItems();
+                Intent historyViewIntent = new Intent(context, HistoryView.class);
+        		startActivity(historyViewIntent);
             }
         });
 
-        final Context context = this;
+        // Paul moved this line up a few lines
+        //final Context context = this;
         ImageButton infoButton = (ImageButton) findViewById(R.id.infoButton);
         infoButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg0) {
