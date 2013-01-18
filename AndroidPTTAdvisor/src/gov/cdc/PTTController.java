@@ -20,6 +20,7 @@ public class PTTController {
 	int historyPosition;
 	ArrayList<PTTHistoryItem> history;
 	private Context context;
+	
 
 	public PTTController(Context c) {
 		super();
