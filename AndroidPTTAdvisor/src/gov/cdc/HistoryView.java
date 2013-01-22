@@ -1,6 +1,7 @@
 package gov.cdc;
 
-// Author: Paul B.
+// Author: Paul Brown
+// I hate eclipse.
 
 import android.os.Bundle;
 import android.app.Activity;
