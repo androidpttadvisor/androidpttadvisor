@@ -1,6 +1,6 @@
 package gov.cdc;
 
-// Author: Paul Brown
+// Author: Paul B.
 
 import android.os.Bundle;
 import android.app.Activity;
