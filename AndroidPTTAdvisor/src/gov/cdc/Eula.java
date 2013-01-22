@@ -14,6 +14,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 
+
+/**
+ *  TODO:  javadoc
+ * @author wm122
+ *
+ */
 public class Eula {
 	private Activity mActivity;
 	
