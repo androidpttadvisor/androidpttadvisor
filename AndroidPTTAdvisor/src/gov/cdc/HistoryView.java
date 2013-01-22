@@ -1,5 +1,7 @@
 package gov.cdc;
 
+// Author: Paul Brown
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
