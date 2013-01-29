@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.Window;
+import android.widget.ListView;
 
 public class HistoryView extends Activity {
 
@@ -19,6 +20,16 @@ public class HistoryView extends Activity {
         
         
         setContentView(R.layout.activity_history_view);
+        
+        final ListView myListView = (ListView)findViewById(R.id.my_list_view);
+        
+        // Create the adapter
+        final HistoryItemAdapter historyItemAdapter = new HistoryItemAdapter(this);
+        
+        //bind adapter to the AdapterView
+        myListView.setAdapter(historyItemAdapter);
+        
+        
     }
 
     @Override

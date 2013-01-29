@@ -1,5 +1,6 @@
 package gov.cdc;
 
+
 public class PTTHistoryItem {
 	
 	PTTNode node;
@@ -12,6 +13,8 @@ public class PTTHistoryItem {
 		this.node = node;
 		this.answerChosen = answerChosen;
 	}
+	
+	
 
 
 
