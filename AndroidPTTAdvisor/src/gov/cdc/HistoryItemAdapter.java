@@ -1,6 +1,12 @@
 package gov.cdc;
 
+//Author: Paul Brown
+//Originally created on 2013-01-29
+
+import java.util.ArrayList;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,19 +15,26 @@ import android.widget.TextView;
 public class HistoryItemAdapter extends BaseAdapter {
 	
 	private Context mContext;
-	PTTController controller;
+	public static ArrayList<PTTHistoryItem> mHistory;
+	
 	
 	public HistoryItemAdapter(Context context) {
 		this.mContext = context;
 		// TODO Auto-generated constructor stub
 		
+		mHistory = MyActivity.mHistory;
+		
 	}
+	
+	
+	
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
+		Log.d("Adapter mHistory Size: ", Integer.toString(mHistory.size()));
+		return mHistory.size();
 		
-		return 3;
 	}
 
 	@Override
@@ -51,7 +64,7 @@ public class HistoryItemAdapter extends BaseAdapter {
 			
 		}
 		
-		view.setText("  Row "+ position);
+		view.setText("Q: " + mHistory.get(position).getNode().getQuestion() + "\nA: " + mHistory.get(position).getAnswerChosen().answer);
 		
 		return view;
 	}

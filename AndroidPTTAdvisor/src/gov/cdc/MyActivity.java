@@ -52,8 +52,10 @@ public class MyActivity extends Activity {
     int position = 0;
     int farthestPositionReached = 0;
 
-    //final PTTController controller = new PTTController(this.getApplicationContext());
     PTTController controller;
+    
+    //Make a public static variable for the controller.history
+    public static ArrayList<PTTHistoryItem> mHistory;
     
     private String headerImage;
     
@@ -74,6 +76,11 @@ public class MyActivity extends Activity {
         new Eula(this).show();
         
         controller = new PTTController(this.getApplicationContext());
+        
+        //Make a new member variable for the history. We'll use this to update it. Or maybe not needed.
+        mHistory = controller.history;
+        
+        
         headerImage = controller.getHeaderImageForNodeNumber(0);
         //Set up PTTController instance
         //---------------------------------------------------------
