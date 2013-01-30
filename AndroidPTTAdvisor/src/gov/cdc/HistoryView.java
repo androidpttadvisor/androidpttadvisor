@@ -27,18 +27,19 @@ public class HistoryView extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         
         //mHistory = MyActivity.mHistory;
+        
+        setContentView(R.layout.activity_history_view);
+
         final Button doneButton = (Button)findViewById(R.id.doneButton);
         
-        /*
+        
         doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
-                Log.d("TEST","TEST");
+            	Log.d("TEST","TEST");
+            	finish();
             }
         });
-        */
-        
-        setContentView(R.layout.activity_history_view);
         
         final ListView myListView = (ListView)findViewById(R.id.my_list_view);
         
