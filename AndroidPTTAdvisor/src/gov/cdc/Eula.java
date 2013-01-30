@@ -16,19 +16,32 @@ import android.preference.PreferenceManager;
 
 
 /**
- *  TODO:  javadoc
- * @author wm122
+ *  A class to display a EULA dialog if 1) it's never been agreed to before or 2) the app's version
+ *  number was updated
+ * @author Will
  *
  */
 public class Eula {
 	private Activity mActivity;
 	
+	/**
+	 * Create the Eula object, with the app's context.
+	 * @param context
+	 */
 	public Eula(Activity context) {
 		mActivity = context;
 	}
 	
+	/**
+	 * just a string prepended to variables to denote them as used by the Eula class
+	 */
 	private String EULA_PREFIX = "eula_";
 	
+	/**
+	 * Retrieve and return the PackageInfo of this app; this contains, among other things,
+	 * the version number.
+	 * @return
+	 */
 	private PackageInfo getPackageInfo() {
         PackageInfo pi = null;
         try {
@@ -39,6 +52,10 @@ public class Eula {
         return pi;
     }
 	
+	/**
+	 * Main method.  Decides whether or not to display the EULA dialog; if so, display it.  If the 
+	 * user agrees, close the dialog and continue the app.  If the user cancels, kill the app. 
+	 */
     public void show() {
         PackageInfo versionInfo = getPackageInfo();
 
