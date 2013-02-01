@@ -60,10 +60,6 @@ public class MyActivity extends Activity {
     private String headerImage;
     
     
-
-    CharSequence[] items = { "Google","Apple","Microsoft" };
-    boolean[] itemsChecked = new boolean [items.length];
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
@@ -82,15 +78,7 @@ public class MyActivity extends Activity {
         
         
         headerImage = controller.getHeaderImageForNodeNumber(0);
-        //Set up PTTController instance
-        //---------------------------------------------------------
-        //-------------NOTE: THIS SETS UP EVERYTHING---------------
-        //---------------------------------------------------------
-        //PTTController controller = new PTTController();
-        //---------------------------------------------------------
-        //---------------------------------------------------------
-        
-        
+
         
         //Let's Log out the text of the first node's question, and it's answers' text and node targets
         
@@ -114,19 +102,15 @@ public class MyActivity extends Activity {
         //Log.d("NODE1 ANSWER1 TEXT",answers1.get(1).getAnswer());
         //Log.d("NODE1 ANSWER1 TARGET",Integer.toString(answers1.get(1).getNodeId()));
         
-        
+
     	
-    	//addListenerOnLastButton();
-    	
-    	
-        // Make the application Full-Screen
+        // Hide the title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        //These two lines make it full screen. Having the status bar is kinda nice though
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        // These two lines make it full screen. As in, it even hides the top status bar
+        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         //        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //end Full-Screen snippet
+        // end Full-Screen snippet
 
         setContentView(R.layout.main);
         
@@ -190,6 +174,7 @@ public class MyActivity extends Activity {
 
         
         final Context context = this;
+        
         button5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
@@ -199,8 +184,7 @@ public class MyActivity extends Activity {
             }
         });
 
-        // Paul moved this line up a few lines
-        //final Context context = this;
+
         ImageButton infoButton = (ImageButton) findViewById(R.id.infoButton);
         infoButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg0) {
@@ -262,24 +246,9 @@ public class MyActivity extends Activity {
     }
 
 
-    public void addListenerOnLastButton() {
-        //Log.d("PAULBROWN","MESSAGE");
 
-        //Button lastButton = (Button)findViewById(R.id.tabBarButton5);
-        /*
-        lastButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://paulbrown.us"));
-                startActivity(intent);
-            }
-        });
-        */
-    }
 
     public void restart(View view) {
-        //Intent intent = new Intent(MyActivity.this,RestartDialog.class);
-        //startActivity(intent);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -306,13 +275,9 @@ public class MyActivity extends Activity {
         });
         AlertDialog alert = builder.create();
         alert.show();
-
-
-
-
-        //showDialog(0);
     }
 
+    
     /**
      * Update the number, strings, and actions of the buttons to those
      * specified by the current node.
