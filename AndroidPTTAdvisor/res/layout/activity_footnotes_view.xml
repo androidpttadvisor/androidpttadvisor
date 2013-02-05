@@ -1,12 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-	
-    
-    <RelativeLayout
+
+        <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/titleBar"
+        android:id="@+id/footnotesTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Evaluation Review"
+            android:text="Footnotes"
             android:shadowColor="#7F000000"
         	android:shadowDx="2"
         	android:shadowDy="2"
@@ -46,10 +46,10 @@
 		</RelativeLayout>
 
     <ListView
-        android:id="@+id/my_list_view"
+        android:id="@+id/footnotes_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleBar"
+        android:layout_below="@+id/footnotesTitleBar"
         android:layout_centerHorizontal="true"
         android:textSize="20dp" >
     </ListView>

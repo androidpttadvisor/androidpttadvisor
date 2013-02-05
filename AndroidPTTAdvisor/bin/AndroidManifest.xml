@@ -28,13 +28,17 @@
             android:label="restartdialog" />
         <activity
             android:name="gov.cdc.InfoView"
-            android:label="About" />
+            android:label="@string/title_activity_info_view" />
         <activity
             android:name="gov.cdc.HistoryView"
             android:label="History" />
         <activity
             android:name="gov.cdc.HelpView"
             android:label="@string/title_activity_help_view" >
+        </activity>
+        <activity
+            android:name="gov.cdc.FootnotesView"
+            android:label="@string/title_activity_footnotes_view" >
         </activity>
     </application>
 

@@ -52,7 +52,7 @@ public class MainView extends Activity {
     int position = 0;
     int farthestPositionReached = 0;
 
-    PTTController controller;
+    public static PTTController controller;
     
     //Make a public static variable for the controller.history
     public static ArrayList<PTTHistoryItem> mHistory;
@@ -180,6 +180,13 @@ public class MainView extends Activity {
             }
         });
 
+        Button footnotesButton = (Button) findViewById(R.id.footnotesButton);
+        footnotesButton.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View view) {
+        		Intent intent = new Intent(context, FootnotesView.class);
+        		startActivity(intent);
+        	}
+        });
 
         /**
          * Assign an action to the infoButton to display the info page
@@ -349,6 +356,10 @@ public class MainView extends Activity {
                 }
             });
     	}
+    }
+    
+    public PTTController getController() {
+    	return controller;
     }
 
 

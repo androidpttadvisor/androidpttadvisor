@@ -36,6 +36,10 @@
             android:name="gov.cdc.HelpView"
             android:label="@string/title_activity_help_view" >
         </activity>
+        <activity
+            android:name="gov.cdc.FootnotesView"
+            android:label="@string/title_activity_footnotes_view" >
+        </activity>
     </application>
 
 </manifest>
