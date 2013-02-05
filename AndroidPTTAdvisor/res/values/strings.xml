@@ -25,5 +25,7 @@ Chicken capicola prosciutto tongue turducken frankfurter t-bone fatback drumstic
     <string name="menu_settings">Settings</string>
     <string name="title_activity_history_view">HistoryView</string>
     <string name="title_activity_help_view">Help</string>
+    <string name="title_activity_info_view">About</string>
+    
 
 </resources>

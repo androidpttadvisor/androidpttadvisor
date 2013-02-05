@@ -152,14 +152,12 @@ public class MainView extends Activity {
 
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 navigateToAnotherImage("previous");
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 navigateToAnotherImage("next");
                 
             }
@@ -167,7 +165,6 @@ public class MainView extends Activity {
 
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 navigateToAnotherImage("farthest");
             }
         });
@@ -177,7 +174,6 @@ public class MainView extends Activity {
         
         button5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //startActivity(new Intent(MyActivity.this,ActivityEins.class));
                 controller.logHistoryItems();
                 Intent historyViewIntent = new Intent(context, HistoryView.class);
         		startActivity(historyViewIntent);

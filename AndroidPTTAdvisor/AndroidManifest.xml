@@ -28,7 +28,7 @@
             android:label="restartdialog" />
         <activity
             android:name="gov.cdc.InfoView"
-            android:label="About" />
+            android:label="@string/title_activity_info_view" />
         <activity
             android:name="gov.cdc.HistoryView"
             android:label="History" />

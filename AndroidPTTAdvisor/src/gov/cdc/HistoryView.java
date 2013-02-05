@@ -26,8 +26,6 @@ public class HistoryView extends Activity {
      // Make the application Full-Screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         
-        //mHistory = MyActivity.mHistory;
-        
         setContentView(R.layout.activity_history_view);
 
         final Button doneButton = (Button)findViewById(R.id.doneButton);
