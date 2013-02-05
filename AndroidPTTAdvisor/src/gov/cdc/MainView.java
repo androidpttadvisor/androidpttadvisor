@@ -29,7 +29,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 
-public class MyActivity extends Activity {
+public class MainView extends Activity {
 	
     /**
      * Called when the activity is first created.
@@ -185,13 +185,28 @@ public class MyActivity extends Activity {
         });
 
 
+        /**
+         * Assign an action to the infoButton to display the info page
+         */
         ImageButton infoButton = (ImageButton) findViewById(R.id.infoButton);
         infoButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg0) {
-        		Intent intent = new Intent(context, InfoScreen.class);
+        		Intent intent = new Intent(context, InfoView.class);
         		startActivity(intent);
         	}
         });
+        
+        /**
+         * Assign an action to the helpButton to display the help page
+         */
+        ImageButton helpButton = (ImageButton) findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View arg0) {
+        		Intent intent = new Intent(context, HelpView.class);
+        		startActivity(intent);
+        	}
+        });
+        
     }
 
 

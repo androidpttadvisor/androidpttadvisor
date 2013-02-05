@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name="MyActivity"
+            android:name="gov.cdc.MainView"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,17 +21,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityEins"
+            android:name="gov.cdc.ActivityEins"
             android:label="activity_eins" />
         <activity
-            android:name=".RestartDialog"
+            android:name="gov.cdc.RestartDialog"
             android:label="restartdialog" />
         <activity
-            android:name="gov.cdc.InfoScreen"
+            android:name="gov.cdc.InfoView"
             android:label="About" />
         <activity
             android:name="gov.cdc.HistoryView"
             android:label="History" />
+        <activity
+            android:name="gov.cdc.HelpView"
+            android:label="@string/title_activity_help_view" >
+        </activity>
     </application>
 
 </manifest>

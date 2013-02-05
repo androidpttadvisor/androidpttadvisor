@@ -22,7 +22,7 @@ public class HistoryItemAdapter extends BaseAdapter {
 		this.mContext = context;
 		// TODO Auto-generated constructor stub
 		
-		mHistory = MyActivity.mHistory;
+		mHistory = MainView.mHistory;
 		
 	}
 	
