@@ -147,35 +147,25 @@ public class MainView extends Activity {
 
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-<<<<<<< HEAD
-                navigateToAnotherImage("previous");
-=======
                 // TODO: Call appropriate methods here
             	Log.d("NAV","button1");
->>>>>>> New nav button images, a little bit of cleanup
+
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-<<<<<<< HEAD
-                navigateToAnotherImage("next");
-                
-=======
             	// TODO: Call appropriate methods here
             	Log.d("NAV","button2");
->>>>>>> New nav button images, a little bit of cleanup
+
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-<<<<<<< HEAD
-                navigateToAnotherImage("farthest");
-=======
             	// TODO: Call appropriate methods here
             	Log.d("NAV","button3");
->>>>>>> New nav button images, a little bit of cleanup
+
             }
         });
 
@@ -184,10 +174,8 @@ public class MainView extends Activity {
         
         button5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-<<<<<<< HEAD
-=======
+
             	Log.d("NAV","button5");
->>>>>>> New nav button images, a little bit of cleanup
                 controller.logHistoryItems();
                 Intent historyViewIntent = new Intent(context, HistoryView.class);
         		startActivity(historyViewIntent);
