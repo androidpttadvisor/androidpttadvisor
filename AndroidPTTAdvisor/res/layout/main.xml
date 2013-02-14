@@ -116,8 +116,7 @@
     	        android:id="@+id/imageview1"
     	        android:layout_width="fill_parent"
     	        android:layout_height="100dp"
-    	        android:contentDescription="@string/imageview_contentDescription"
-    	        android:src="@drawable/obnoxious1" />
+    	        android:contentDescription="@string/imageview_contentDescription" />
 
     	</LinearLayout>
         
@@ -136,7 +135,7 @@
                     android:layout_toLeftOf="@+id/tabBarButton2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/arrowwest"
+                    android:src="@drawable/nav_button_back"
                     android:contentDescription="@string/contentDescription_previous_button"
                     />
             <ImageButton
@@ -144,7 +143,7 @@
                     android:layout_toLeftOf="@+id/tabBarButton3"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/arroweast"
+                    android:src="@drawable/nav_button_next"
                     android:contentDescription="@string/contentDescription_next_button"
                     />
             <ImageButton
@@ -152,7 +151,7 @@
                     android:layout_centerInParent="true"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/back_to_last"
+                    android:src="@drawable/nav_button_back_to_last"
                     android:contentDescription="@string/contentDescription_farthest_button"
                     />
             <ImageButton
@@ -160,7 +159,7 @@
                     android:layout_toRightOf="@+id/tabBarButton3"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/redo"
+                    android:src="@drawable/nav_button_restart"
                     android:contentDescription="@string/contentDescription_restart_button"
                     android:onClick="restart"
                     />
@@ -169,7 +168,7 @@
                     android:layout_toRightOf="@+id/tabBarButton4"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/list"
+                    android:src="@drawable/nav_button_review"
                     android:contentDescription="@string/contentDescription_summary_button"
                     />
 

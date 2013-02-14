@@ -38,14 +38,7 @@ public class MainView extends Activity {
 	
 	
 
-    // Set up some variables
-    private int[] imagesArray = {
-            R.drawable.obnoxious1,
-            R.drawable.obnoxious2,
-            R.drawable.obnoxious3,
-            R.drawable.obnoxious4,
-            R.drawable.obnoxious5,
-    };
+
     
 
 
@@ -58,6 +51,11 @@ public class MainView extends Activity {
     public static ArrayList<PTTHistoryItem> mHistory;
     
     private String headerImage;
+    private ImageButton button1; 
+    private ImageButton button2; 
+    private ImageButton button3; 
+    private ImageButton button4; 
+    private ImageButton button5;
     
     
     @Override
@@ -137,35 +135,47 @@ public class MainView extends Activity {
     	//Get answers and put them on the buttons.
     	updateButtons();
 
-        final ImageView iv = (ImageView)findViewById(R.id.imageview1);
 
-
-
-        ImageButton button1 = (ImageButton)findViewById(R.id.tabBarButton1);
-        ImageButton button2 = (ImageButton)findViewById(R.id.tabBarButton2);
-        ImageButton button3 = (ImageButton)findViewById(R.id.tabBarButton3);
-        ImageButton button4 = (ImageButton)findViewById(R.id.tabBarButton4);
-        ImageButton button5 = (ImageButton)findViewById(R.id.tabBarButton5);
+        button1 = (ImageButton)findViewById(R.id.tabBarButton1);
+        button2 = (ImageButton)findViewById(R.id.tabBarButton2);
+        button3 = (ImageButton)findViewById(R.id.tabBarButton3);
+        button4 = (ImageButton)findViewById(R.id.tabBarButton4);
+        button5 = (ImageButton)findViewById(R.id.tabBarButton5);
 
 
 
 
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+<<<<<<< HEAD
                 navigateToAnotherImage("previous");
+=======
+                // TODO: Call appropriate methods here
+            	Log.d("NAV","button1");
+>>>>>>> New nav button images, a little bit of cleanup
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+<<<<<<< HEAD
                 navigateToAnotherImage("next");
                 
+=======
+            	// TODO: Call appropriate methods here
+            	Log.d("NAV","button2");
+>>>>>>> New nav button images, a little bit of cleanup
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+<<<<<<< HEAD
                 navigateToAnotherImage("farthest");
+=======
+            	// TODO: Call appropriate methods here
+            	Log.d("NAV","button3");
+>>>>>>> New nav button images, a little bit of cleanup
             }
         });
 
@@ -174,11 +184,17 @@ public class MainView extends Activity {
         
         button5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+<<<<<<< HEAD
+=======
+            	Log.d("NAV","button5");
+>>>>>>> New nav button images, a little bit of cleanup
                 controller.logHistoryItems();
                 Intent historyViewIntent = new Intent(context, HistoryView.class);
         		startActivity(historyViewIntent);
             }
         });
+        
+        disableAllNavButtons();
 
         Button footnotesButton = (Button) findViewById(R.id.footnotesButton);
         footnotesButton.setOnClickListener(new View.OnClickListener() {
@@ -213,36 +229,6 @@ public class MainView extends Activity {
     }
 
 
-    public void navigateToAnotherImage(String whatImage) {
-    	Log.d("navigateToAnotherImage", "whatImage: " + whatImage + "position: " + position);
-        if ((whatImage.equals("next")) && position<4) {
-            position++;
-            final ImageView iv = (ImageView)findViewById(R.id.imageview1);
-            iv.setImageResource(imagesArray[position]);
-        }
-        else if ((whatImage.equals("previous")) && position>0) {
-            position--;
-            final ImageView iv = (ImageView)findViewById(R.id.imageview1);
-            iv.setImageResource(imagesArray[position]);
-        }
-        else if (whatImage.equals("restart")) {
-            position=0;
-            farthestPositionReached = 0;
-            final ImageView iv = (ImageView)findViewById(R.id.imageview1);
-            iv.setImageResource(imagesArray[position]);
-        }
-        else if (whatImage.equals("farthest")) {
-            position=farthestPositionReached;
-            final ImageView iv = (ImageView)findViewById(R.id.imageview1);
-            iv.setImageResource(imagesArray[position]);
-        }
-
-        if (farthestPositionReached < position) {
-            farthestPositionReached = position;
-        }
-    }
-
-
     public void navigateToAnotherNode(int nodeId) {
     	Log.d("CALLING navigateToAnotherNode","navigateToAnotherNode");
         //Get question text and put it on the screen
@@ -261,10 +247,35 @@ public class MainView extends Activity {
         headerImageView.setImageDrawable(image);
 
         updateButtons();
+        enableAllNavButtons();
     }
 
 
-
+    public void disableAllNavButtons() {
+    	button1.setEnabled(false);
+    	button1.setImageResource(R.drawable.nav_button_back_disabled);
+    	button2.setEnabled(false);
+    	button2.setImageResource(R.drawable.nav_button_next_disabled);
+    	button3.setEnabled(false);
+    	button3.setImageResource(R.drawable.nav_button_back_to_last_disabled);
+    	button4.setEnabled(false);
+    	button4.setImageResource(R.drawable.nav_button_restart_disabled);
+    	button5.setEnabled(false);
+    	button5.setImageResource(R.drawable.nav_button_review_disabled);
+    }
+    
+    public void enableAllNavButtons() {
+    	button1.setEnabled(true);
+    	button1.setImageResource(R.drawable.nav_button_back);
+    	button2.setEnabled(true);
+    	button2.setImageResource(R.drawable.nav_button_next);
+    	button3.setEnabled(true);
+    	button3.setImageResource(R.drawable.nav_button_back_to_last);
+    	button4.setEnabled(true);
+    	button4.setImageResource(R.drawable.nav_button_restart);
+    	button5.setEnabled(true);
+    	button5.setImageResource(R.drawable.nav_button_review);
+    }
 
     public void restart(View view) {
 
@@ -279,10 +290,9 @@ public class MainView extends Activity {
                         "Restarting", Toast.LENGTH_SHORT).show();
                 position=0;
                 farthestPositionReached = 0;
-                final ImageView iv = (ImageView)findViewById(R.id.imageview1);
-                iv.setImageResource(imagesArray[position]);
                 controller.setCurrentNode(0);
                 navigateToAnotherNode(0);
+                disableAllNavButtons();
 
             }
         });
