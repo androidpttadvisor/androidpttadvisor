@@ -149,6 +149,7 @@ public class MainView extends Activity {
             public void onClick(View view) {
                 // TODO: Call appropriate methods here
             	Log.d("NAV","button1");
+            	navigateBackToPreviousNode();
 
             }
         });
@@ -157,7 +158,7 @@ public class MainView extends Activity {
             public void onClick(View view) {
             	// TODO: Call appropriate methods here
             	Log.d("NAV","button2");
-
+            	navigateForwardToNode();
             }
         });
 
@@ -218,7 +219,16 @@ public class MainView extends Activity {
 
 
     public void navigateToAnotherNode(int nodeId) {
-    	Log.d("CALLING navigateToAnotherNode","navigateToAnotherNode");
+    	Log.d("CALLING navigateToAnotherNode: ",Integer.toString(nodeId));
+ 
+    	
+    	
+    	// update position and farthestPositionReached
+    	position = nodeId;
+    	if (nodeId > farthestPositionReached) {
+    		farthestPositionReached = nodeId;
+    	}
+    	
         //Get question text and put it on the screen
         TextView tv = (TextView)findViewById(R.id.questionTextView);
         tv.setText(controller.currentNode.getQuestion());
@@ -235,7 +245,8 @@ public class MainView extends Activity {
         headerImageView.setImageDrawable(image);
 
         updateButtons();
-        enableAllNavButtons();
+        //enableAllNavButtons();
+        updateNavButtons();
     }
 
 
@@ -264,6 +275,66 @@ public class MainView extends Activity {
     	button5.setEnabled(true);
     	button5.setImageResource(R.drawable.nav_button_review);
     }
+    
+    
+    public void updateNavButtons() {
+    	Log.d("updateNavButtons","position: " + position + ", farthest: " + farthestPositionReached);
+    	
+    	if (position > 0) {
+    		//activate the "prev" button
+    		button1.setEnabled(true);
+    		button1.setImageResource(R.drawable.nav_button_back);
+    		button4.setEnabled(true);
+        	button4.setImageResource(R.drawable.nav_button_restart);
+        	button5.setEnabled(true);
+        	button5.setImageResource(R.drawable.nav_button_review);
+    	}
+    	
+    	//this is wrong. what if user goes all the way back to beginning? still need active buttons
+    	if (farthestPositionReached > 0) {
+    		button5.setEnabled(true);
+        	button5.setImageResource(R.drawable.nav_button_review);
+    	}
+    	
+    	
+    	
+    	if (position < farthestPositionReached) {
+    		//activate the forward buttons
+    		button2.setEnabled(true);
+        	button2.setImageResource(R.drawable.nav_button_next);
+    		button3.setEnabled(true);
+        	button3.setImageResource(R.drawable.nav_button_back_to_last);
+    	} else if (position == farthestPositionReached) {
+    		button2.setEnabled(false);
+        	button2.setImageResource(R.drawable.nav_button_next_disabled);
+        	button3.setEnabled(false);
+        	button3.setImageResource(R.drawable.nav_button_back_to_last_disabled);
+    	}
+    }
+    
+    
+    
+    public void navigateBackToPreviousNode() {
+    	Log.d("position",Integer.toString(position));
+    	Log.d("mHistory size:",Integer.toString(mHistory.size()));
+    	Log.d("navigateBackToPreviousNode",mHistory.get(position-1).getNode().getQuestion());
+    	Log.d("navigating to node",Integer.toString(mHistory.get(position-1).getNode().getId()));
+    	controller.currentNode = mHistory.get(position-1).getNode();
+    	navigateToAnotherNode(mHistory.get(position-1).getNode().getId());
+    	position--;
+    }
+    
+    
+    public void navigateForwardToNode() {
+    	Log.d("position",Integer.toString(position));
+    	Log.d("mHistory size:",Integer.toString(mHistory.size()));
+    	Log.d("navigateForwardToNode",mHistory.get(position+1).getNode().getQuestion());
+    	Log.d("navigating to node",Integer.toString(mHistory.get(position+1).getNode().getId()));
+    	//controller.currentNode = mHistory.get(position+1).getNode();
+    	//navigateToAnotherNode(mHistory.get(position+1).getNode().getId());
+    	position++;
+    }
+    
 
     public void restart(View view) {
 
@@ -279,6 +350,7 @@ public class MainView extends Activity {
                 position=0;
                 farthestPositionReached = 0;
                 controller.setCurrentNode(0);
+                mHistory = null;
                 navigateToAnotherNode(0);
                 disableAllNavButtons();
 
