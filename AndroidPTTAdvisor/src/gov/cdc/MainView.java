@@ -82,7 +82,7 @@ public class MainView extends Activity {
         
         Log.d("QUESTION0",controller.getQuestionForNodeNumber(0));
         
-        
+        /*
         //Test for answers in nodes
         ArrayList<PTTAnswer> answers0 = controller.getAnswersForNodeNumber(0);
         Log.d("NODE0 ANSWER0 TEXT",answers0.get(0).getAnswer());
@@ -99,7 +99,7 @@ public class MainView extends Activity {
         Log.d("NODE1 ANSWER0 TARGET",Integer.toString(answers1.get(0).getNodeId()));
         //Log.d("NODE1 ANSWER1 TEXT",answers1.get(1).getAnswer());
         //Log.d("NODE1 ANSWER1 TARGET",Integer.toString(answers1.get(1).getNodeId()));
-        
+        */
 
     	
         // Hide the title bar
@@ -115,13 +115,14 @@ public class MainView extends Activity {
         PTTNode currentNode = controller.currentNode;
         
         
+        
         //Get image path and put image into node header image
         ImageView headerImageView = new ImageView(this);
         headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
         String headerImagePath = controller.getHeaderImageForNodeNumber(currentNode.getId());
-        Log.d("IMAGE", headerImagePath);
+        //Log.d("IMAGE", headerImagePath);
         String imageString = "drawable/" + currentNode.getPathToHeaderImage();
-        Log.d("IMAGESTRING", imageString);
+        //Log.d("IMAGESTRING", imageString);
         int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
         Drawable image = getResources().getDrawable(imageResource);
         headerImageView.setImageDrawable(image);
@@ -219,14 +220,13 @@ public class MainView extends Activity {
 
 
     public void navigateToAnotherNode(int nodeId) {
-    	Log.d("CALLING navigateToAnotherNode: ",Integer.toString(nodeId));
+    	Log.d("navigateToAnotherNode: ",Integer.toString(nodeId));
+    	Log.d("Now the position is:",Integer.toString(position));
  
+    	// update farthestPositionReached
     	
-    	
-    	// update position and farthestPositionReached
-    	position = nodeId;
-    	if (nodeId > farthestPositionReached) {
-    		farthestPositionReached = nodeId;
+    	if (position > farthestPositionReached) {
+    		farthestPositionReached = position;
     	}
     	
         //Get question text and put it on the screen
@@ -237,9 +237,9 @@ public class MainView extends Activity {
         ImageView headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
         
         String headerImagePath = controller.getHeaderImageForNodeNumber(nodeId);
-        Log.d("IMAGE", headerImagePath);
+        //Log.d("IMAGE", headerImagePath);
         String imageString = "drawable/" + controller.currentNode.getPathToHeaderImage();
-        Log.d("IMAGESTRING", imageString);
+        //Log.d("IMAGESTRING", imageString);
         int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
         Drawable image = getResources().getDrawable(imageResource);
         headerImageView.setImageDrawable(image);
@@ -310,29 +310,44 @@ public class MainView extends Activity {
         	button3.setEnabled(false);
         	button3.setImageResource(R.drawable.nav_button_back_to_last_disabled);
     	}
+    	
+    	if (position == 0) {
+    		button1.setEnabled(false);
+        	button1.setImageResource(R.drawable.nav_button_back_disabled);
+    	}
     }
     
     
     
     public void navigateBackToPreviousNode() {
-    	Log.d("position",Integer.toString(position));
-    	Log.d("mHistory size:",Integer.toString(mHistory.size()));
-    	Log.d("navigateBackToPreviousNode",mHistory.get(position-1).getNode().getQuestion());
-    	Log.d("navigating to node",Integer.toString(mHistory.get(position-1).getNode().getId()));
-    	controller.currentNode = mHistory.get(position-1).getNode();
-    	navigateToAnotherNode(mHistory.get(position-1).getNode().getId());
+    	Log.d("Position before going back",Integer.toString(position));
+    	//Log.d("mHistory size:",Integer.toString(mHistory.size()));
+    	Log.d("Question for prev question",mHistory.get(position-1).getNode().getQuestion());
+    	Log.d("Node id for prev question",Integer.toString(mHistory.get(position-1).getNode().getId()));
+    	
+    	
     	position--;
+    	controller.currentNode = mHistory.get(position).getNode();
+    	
+    	navigateToAnotherNode(mHistory.get(position).getNode().getId());
+    	
+    	//updateNavButtons();
     }
     
     
     public void navigateForwardToNode() {
     	Log.d("position",Integer.toString(position));
     	Log.d("mHistory size:",Integer.toString(mHistory.size()));
-    	Log.d("navigateForwardToNode",mHistory.get(position+1).getNode().getQuestion());
-    	Log.d("navigating to node",Integer.toString(mHistory.get(position+1).getNode().getId()));
-    	//controller.currentNode = mHistory.get(position+1).getNode();
-    	//navigateToAnotherNode(mHistory.get(position+1).getNode().getId());
+    	
+    	int nextNodeId = mHistory.get(position).getAnswerChosen().getNodeId();
+    	Log.d("Question for next question",controller.getQuestionForNodeNumber(nextNodeId));
+    	Log.d("navigateForwardToNode",Integer.toString(mHistory.get(position).getAnswerChosen().getNodeId()));
+    	
+    	
     	position++;
+    	controller.setCurrentNode(nextNodeId);
+    	navigateToAnotherNode(nextNodeId);
+    	
     }
     
 
@@ -374,8 +389,8 @@ public class MainView extends Activity {
         ArrayList<PTTAnswer> answers = controller.currentNode.getAnswers();
     	Button b0 = (Button)findViewById(R.id.answerButton0);
     	Button b1 = (Button)findViewById(R.id.answerButton1);
-    	Log.d("DEBUG", "About to make buttons");
-    	Log.d("DEBUG", "Answers size is " + answers.size());
+    	//Log.d("DEBUG", "About to make buttons");
+    	//Log.d("DEBUG", "Answers size is " + answers.size());
     	switch (answers.size()) {
     	case 0:
     		b0.setVisibility(View.GONE);
@@ -394,16 +409,17 @@ public class MainView extends Activity {
     		String s = answers.get(0).answer;
     		b0.setText(s);
 			final int answer0Node = answers.get(0).nodeId;
-			Log.d("Making button", "b0, '" + s + "', points to node " + answer0Node + ".  Current node is " + controller.currentNode.getId());
+			//Log.d("Making button", "b0, '" + s + "', points to node " + answer0Node + ".  Current node is " + controller.currentNode.getId());
 			b0.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
-                    Log.d("GOTO Node:",Integer.toString(answer0Node));
+                    //Log.d("GOTO Node:",Integer.toString(answer0Node));
                     
                     //get the current node and store the history item based on it
-                    Log.d("HISTLOG", "About to Log something");
+                    //Log.d("HISTLOG", "About to Log something");
                     PTTNode n = controller.getCurrentNode();
                     controller.storeHistoryItem(n, n.getAnswers().get(0));
                     controller.setCurrentNode(answer0Node);
+                    position++;
                     navigateToAnotherNode(answer0Node);
                    }
             });
@@ -412,16 +428,17 @@ public class MainView extends Activity {
             String s1 = answers.get(1).answer;
             b1.setText(s1);
             final int answer1Node = answers.get(1).nodeId;
-            Log.d("Making button", "b1, " + s1 + ", points to node " + answer1Node + ".  Current node is " + controller.currentNode.getId());
+            //Log.d("Making button", "b1, " + s1 + ", points to node " + answer1Node + ".  Current node is " + controller.currentNode.getId());
             b1.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    Log.d("GOTO Node:",Integer.toString(answer1Node));
+                    //Log.d("GOTO Node:",Integer.toString(answer1Node));
                     
                     //get the current node and store the history item based on it
-                    Log.d("HISTLOG", "About to Log something");
+                    //Log.d("HISTLOG", "About to Log something");
                     PTTNode n = controller.getCurrentNode();
                     controller.storeHistoryItem(n, n.getAnswers().get(1));
                     controller.setCurrentNode(answer1Node);
+                    position++;
                     navigateToAnotherNode(answer1Node);
                 }
             });

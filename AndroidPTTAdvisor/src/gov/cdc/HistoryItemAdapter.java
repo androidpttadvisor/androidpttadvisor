@@ -32,7 +32,7 @@ public class HistoryItemAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		Log.d("Adapter mHistory Size: ", Integer.toString(mHistory.size()));
+		//Log.d("Adapter mHistory Size: ", Integer.toString(mHistory.size()));
 		return mHistory.size();
 		
 	}
