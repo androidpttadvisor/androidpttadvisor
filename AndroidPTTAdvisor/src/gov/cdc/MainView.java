@@ -59,6 +59,9 @@ public class MainView extends Activity {
     
     private Button footnotesButton;
     
+    private String answerChosenNodeId;
+    Drawable buttonOriginalBackground;
+    
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,7 @@ public class MainView extends Activity {
         headerImage = controller.getHeaderImageForNodeNumber(0);
 
         
+        
         // Hide the title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -89,6 +93,10 @@ public class MainView extends Activity {
         // end Full-Screen snippet
 
         setContentView(R.layout.main);
+        
+        Button b = (Button)findViewById(R.id.answerButton0);
+        buttonOriginalBackground = b.getBackground();
+        
         
         PTTNode currentNode = controller.currentNode;
         
@@ -393,8 +401,14 @@ public class MainView extends Activity {
     		b1.setVisibility(View.VISIBLE);
     	}
     	
+    	
+    	
     	if (answers.size() > 0) {
     		String s = answers.get(0).answer;
+    		
+    		
+    		
+    		
     		b0.setText(s);
 			final int answer0Node = answers.get(0).nodeId;
 			//Log.d("Making button", "b0, '" + s + "', points to node " + answer0Node + ".  Current node is " + controller.currentNode.getId());
@@ -414,6 +428,9 @@ public class MainView extends Activity {
     	} 
     	if (answers.size() == 2) {
             String s1 = answers.get(1).answer;
+            
+            
+            
             b1.setText(s1);
             final int answer1Node = answers.get(1).nodeId;
             //Log.d("Making button", "b1, " + s1 + ", points to node " + answer1Node + ".  Current node is " + controller.currentNode.getId());
@@ -441,7 +458,49 @@ public class MainView extends Activity {
     	}
     	
     	
+    	adjustButtonColorsBasedOnHistory(answers);
     }
+    
+    
+    public void adjustButtonColorsBasedOnHistory(ArrayList<PTTAnswer> answers) {
+    	// set buttons appearance if it has been selected
+    	Button b0 = (Button)findViewById(R.id.answerButton0);
+    	Button b1 = (Button)findViewById(R.id.answerButton1);
+    	
+    	
+    	if (position < farthestPositionReached) {
+    		Log.d("BUTTON DECOR","we should decorate a button");
+    		Log.d("answer of button to decorate:",mHistory.get(position).getAnswerChosen().getAnswer());
+    		answerChosenNodeId = Integer.toString(mHistory.get(position).getAnswerChosen().getNodeId());
+    		switch (answers.size()) {
+        	case 0:
+        		break;
+        	case 1:
+        		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
+    				b0.setText(b0.getText()+ "  --  The Chosen One!");
+    			} else {
+    				//b0.setBackgroundColor(android.graphics.Color.LTGRAY);
+    				
+    			}
+        		break;
+        	default:
+        		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
+        			b0.setText(b0.getText()+ "  --  The Chosen One!");
+    			} else {
+    				
+    			}
+        		if (answers.get(1).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
+        			b1.setText(b1.getText()+ "  --  The Chosen One!");
+    			}
+        		break;
+        	}
+    	}
+    	
+    	
+    }
+    
+    
+    
     
     public PTTController getController() {
     	return controller;
