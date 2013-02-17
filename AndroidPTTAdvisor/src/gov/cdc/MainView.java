@@ -78,30 +78,6 @@ public class MainView extends Activity {
         headerImage = controller.getHeaderImageForNodeNumber(0);
 
         
-        //Let's Log out the text of the first node's question, and it's answers' text and node targets
-        
-        Log.d("QUESTION0",controller.getQuestionForNodeNumber(0));
-        
-        /*
-        //Test for answers in nodes
-        ArrayList<PTTAnswer> answers0 = controller.getAnswersForNodeNumber(0);
-        Log.d("NODE0 ANSWER0 TEXT",answers0.get(0).getAnswer());
-        Log.d("NODE0 ANSWER0 TARGET",Integer.toString(answers0.get(0).getNodeId()));
-        Log.d("NODE0 ANSWER1 TEXT",answers0.get(1).getAnswer());
-        Log.d("NODE0 ANSWER1 TARGET",Integer.toString(answers0.get(1).getNodeId()));
-        
-        //and let's do the same for the second node
-        Log.d("QUESTION1",controller.getQuestionForNodeNumber(1));
-        
-        
-        ArrayList<PTTAnswer> answers1 = controller.getAnswersForNodeNumber(1);
-        Log.d("NODE1 ANSWER0 TEXT",answers1.get(0).getAnswer());
-        Log.d("NODE1 ANSWER0 TARGET",Integer.toString(answers1.get(0).getNodeId()));
-        //Log.d("NODE1 ANSWER1 TEXT",answers1.get(1).getAnswer());
-        //Log.d("NODE1 ANSWER1 TARGET",Integer.toString(answers1.get(1).getNodeId()));
-        */
-
-    	
         // Hide the title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -167,7 +143,15 @@ public class MainView extends Activity {
             public void onClick(View view) {
             	// TODO: Call appropriate methods here
             	Log.d("NAV","button3");
-
+            	//I'm putting the logic all right here. I don't see (yet) any reason to put it in function
+            	
+            	int farthestNodeId = mHistory.get(mHistory.size()-1).getAnswerChosen().getNodeId();
+            	Log.d("farthestNodeId",Integer.toString(farthestNodeId));
+            	
+            	position = farthestPositionReached;
+            	controller.setCurrentNode(farthestNodeId);
+            	navigateToAnotherNode(farthestNodeId);
+            	
             }
         });
 
@@ -321,17 +305,17 @@ public class MainView extends Activity {
     
     public void navigateBackToPreviousNode() {
     	Log.d("Position before going back",Integer.toString(position));
-    	//Log.d("mHistory size:",Integer.toString(mHistory.size()));
-    	Log.d("Question for prev question",mHistory.get(position-1).getNode().getQuestion());
-    	Log.d("Node id for prev question",Integer.toString(mHistory.get(position-1).getNode().getId()));
+    	Log.d("mHistory size:",Integer.toString(mHistory.size()));
+    	
+    	int prevNodeId = mHistory.get(position-1).getNode().getId();
+ 
+    	Log.d("Question for prev question:",controller.getQuestionForNodeNumber(prevNodeId));
+    	Log.d("Navigating back to node:",Integer.toString(prevNodeId));
     	
     	
     	position--;
-    	controller.currentNode = mHistory.get(position).getNode();
-    	
-    	navigateToAnotherNode(mHistory.get(position).getNode().getId());
-    	
-    	//updateNavButtons();
+    	controller.setCurrentNode(prevNodeId);
+    	navigateToAnotherNode(prevNodeId);
     }
     
     
@@ -340,8 +324,9 @@ public class MainView extends Activity {
     	Log.d("mHistory size:",Integer.toString(mHistory.size()));
     	
     	int nextNodeId = mHistory.get(position).getAnswerChosen().getNodeId();
-    	Log.d("Question for next question",controller.getQuestionForNodeNumber(nextNodeId));
-    	Log.d("navigateForwardToNode",Integer.toString(mHistory.get(position).getAnswerChosen().getNodeId()));
+    	
+    	Log.d("Question for next question:",controller.getQuestionForNodeNumber(nextNodeId));
+    	Log.d("Navigating forward to node:",Integer.toString(mHistory.get(position).getAnswerChosen().getNodeId()));
     	
     	
     	position++;
