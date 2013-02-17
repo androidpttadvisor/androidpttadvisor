@@ -57,6 +57,8 @@ public class MainView extends Activity {
     private ImageButton button4; 
     private ImageButton button5;
     
+    private Button footnotesButton;
+    
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -233,10 +235,11 @@ public class MainView extends Activity {
         updateNavButtons();
     }
 
+    
 
     public void disableAllNavButtons() {
     	button1.setEnabled(false);
-    	button1.setImageResource(R.drawable.nav_button_back_disabled);
+    	button1.setImageResource(R.drawable.nav_button_back);
     	button2.setEnabled(false);
     	button2.setImageResource(R.drawable.nav_button_next_disabled);
     	button3.setEnabled(false);
@@ -428,6 +431,16 @@ public class MainView extends Activity {
                 }
             });
     	}
+    	
+    	
+    	footnotesButton = (Button)findViewById(R.id.footnotesButton);;
+    	if (controller.currentNode.getFootnotes().size() > 0) {
+    		footnotesButton.setEnabled(true);
+    	} else {
+    		footnotesButton.setEnabled(false);
+    	}
+    	
+    	
     }
     
     public PTTController getController() {
