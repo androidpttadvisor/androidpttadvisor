@@ -30,3 +30,4 @@ proguard/
 *.iws
 .idea/
 /project.properties
+.settings/
