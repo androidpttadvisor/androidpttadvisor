@@ -27,6 +27,7 @@ import android.widget.Toast;
 import android.view.View.OnClickListener;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.method.ScrollingMovementMethod;
 
 
 public class MainView extends Activity {
@@ -117,6 +118,8 @@ public class MainView extends Activity {
         //Get question text and put it on the screen
         TextView tv = new TextView(this);
     	tv = (TextView)findViewById(R.id.questionTextView);
+    	// set the TextView as scrollable, just in case it's too big to fit
+    	tv.setMovementMethod(new ScrollingMovementMethod()); 
     	tv.setText(currentNode.getQuestion());
     	
     	//Get answers and put them on the buttons.
