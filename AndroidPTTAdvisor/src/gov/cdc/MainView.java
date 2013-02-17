@@ -350,7 +350,7 @@ public class MainView extends Activity {
                 position=0;
                 farthestPositionReached = 0;
                 controller.setCurrentNode(0);
-                mHistory = null;
+                mHistory.clear();
                 navigateToAnotherNode(0);
                 disableAllNavButtons();
 
