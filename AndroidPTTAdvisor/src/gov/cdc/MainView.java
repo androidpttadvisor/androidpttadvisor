@@ -355,7 +355,7 @@ public class MainView extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        builder.setIcon(R.drawable.redo);
+        builder.setIcon(R.drawable.nav_button_restart);
         builder.setTitle("Do you really want to restart?");
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton("Yes, restart", new DialogInterface.OnClickListener() {
