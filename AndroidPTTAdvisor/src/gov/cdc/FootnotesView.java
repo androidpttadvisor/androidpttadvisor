@@ -1,5 +1,6 @@
 package gov.cdc;
 
+import gov.cdc.R;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.view.Menu;
@@ -15,9 +16,10 @@ public class FootnotesView extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_footnotes_view);
 		ArrayList<String> footnotes = MainView.controller.currentNode.getFootnotes();
 		String [] footnotes_array = footnotes.toArray(new String[footnotes.size()]);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, footnotes_array);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.footnote_item, footnotes_array);
 		setListAdapter(adapter);
 		// setContentView(R.layout.activity_footnotes_view);
 	}

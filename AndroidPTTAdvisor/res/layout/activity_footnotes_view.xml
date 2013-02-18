@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#ffffff">
 
         <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,9 +14,6 @@
         android:background="@drawable/title_bar_gradient_selector"
         android:gravity="center_vertical"
         android:orientation="vertical" >
-
-        
-        
 
         <TextView
             android:id="@+id/titleTextView"
@@ -41,17 +39,18 @@
             android:text="Done"
             android:textSize="12dp" />
 
-        
-
 		</RelativeLayout>
 
     <ListView
-        android:id="@+id/footnotes_list_view"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/footnotesTitleBar"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp" >
+        android:layout_marginLeft="15dp"
+	    android:layout_marginRight="15dp"
+	    android:layout_marginTop="15dp"
+        android:background="#ffffff" >
     </ListView>
 
 </RelativeLayout>
