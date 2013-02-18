@@ -182,6 +182,7 @@ public class MainView extends Activity {
         });
         
         disableAllNavButtons();
+        updateNavButtons();
 
         Button footnotesButton = (Button) findViewById(R.id.footnotesButton);
         footnotesButton.setOnClickListener(new View.OnClickListener() {
@@ -279,7 +280,6 @@ public class MainView extends Activity {
     	Log.d("updateNavButtons","position: " + position + ", farthest: " + farthestPositionReached);
     	
     	if (position > 0) {
-    		//activate the "prev" button
     		button1.setEnabled(true);
     		button1.setImageResource(R.drawable.nav_button_back);
     		button4.setEnabled(true);
@@ -312,6 +312,7 @@ public class MainView extends Activity {
     	if (position == 0) {
     		button1.setEnabled(false);
         	button1.setImageResource(R.drawable.nav_button_back_disabled);
+        	
     	}
     }
     
