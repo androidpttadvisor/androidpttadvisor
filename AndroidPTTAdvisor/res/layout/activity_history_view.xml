@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#ffffff" >
 	
     
     <RelativeLayout
@@ -13,9 +14,6 @@
         android:background="@drawable/title_bar_gradient_selector"
         android:gravity="center_vertical"
         android:orientation="vertical" >
-
-        
-        
 
         <TextView
             android:id="@+id/titleTextView"
@@ -51,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleBar"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp" >
+        android:textSize="20dp" 
+        android:background="#ffffff">
     </ListView>
 
 </RelativeLayout>

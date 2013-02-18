@@ -64,7 +64,9 @@ public class HistoryItemAdapter extends BaseAdapter {
 			
 		}
 		
+		
 		view.setText("Q: " + mHistory.get(position).getNode().getQuestion() + "\nA: " + mHistory.get(position).getAnswerChosen().answer);
+		view.setTextAppearance(mContext, R.style.blackMedium);
 		
 		return view;
 	}
