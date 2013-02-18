@@ -35,7 +35,7 @@ public class RestartDialog extends Activity {
         switch (id) {
             case 0:
                 return new AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_launcher)
+                .setIcon(R.drawable.nav_button_restart)
                 .setTitle("This is a dialog with some simple text...")
                 .setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
