@@ -29,8 +29,6 @@ public class HistoryView extends Activity {
         setContentView(R.layout.activity_history_view);
 
         final Button doneButton = (Button)findViewById(R.id.doneButton);
-        
-        
         doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
