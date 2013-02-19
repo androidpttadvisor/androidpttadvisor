@@ -466,6 +466,8 @@ public class MainView extends Activity {
     	// set buttons appearance if it has been selected
     	Button b0 = (Button)findViewById(R.id.answerButton0);
     	Button b1 = (Button)findViewById(R.id.answerButton1);
+    	b0.setBackgroundResource(R.drawable.button_regular);
+    	b1.setBackgroundResource(R.drawable.button_regular);
     	
     	
     	if (position < farthestPositionReached) {
@@ -477,20 +479,20 @@ public class MainView extends Activity {
         		break;
         	case 1:
         		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
-    				b0.setText(b0.getText()+ "  --  The Chosen One!");
+    				//b0.setText(b0.getText()+ "  --  The Chosen One!");
+    				b0.setBackgroundResource(R.drawable.button_down);
     			} else {
     				//b0.setBackgroundColor(android.graphics.Color.LTGRAY);
-    				
+    				b0.setBackgroundResource(R.drawable.button_regular);
     			}
         		break;
         	default:
         		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
-        			b0.setText(b0.getText()+ "  --  The Chosen One!");
-    			} else {
-    				
-    			}
-        		if (answers.get(1).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
-        			b1.setText(b1.getText()+ "  --  The Chosen One!");
+        			//b0.setText(b0.getText()+ "  --  The Chosen One!");
+        			b0.setBackgroundResource(R.drawable.button_down);
+    			} else if (answers.get(1).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
+        			//b1.setText(b1.getText()+ "  --  The Chosen One!");
+        			b1.setBackgroundResource(R.drawable.button_down);
     			}
         		break;
         	}

@@ -102,19 +102,21 @@
     	        android:id="@+id/answerButton0"
     	        android:layout_width="fill_parent"
     	        android:layout_height="wrap_content"
-    	        android:layout_marginLeft="100dp"
-				android:layout_marginRight="100dp"
+    	        android:layout_marginLeft="90dp"
+				android:layout_marginRight="90dp"
+				android:layout_marginBottom="6dp"
 				android:layout_above="@+id/answerButton1"
-				style="@style/blackMedium" />
+				style="@style/blackMediumButton" />
     	
     		<Button
     	        android:id="@+id/answerButton1"
     	        android:layout_width="fill_parent"
     	        android:layout_height="wrap_content"
-    	        android:layout_marginLeft="100dp"
-				android:layout_marginRight="100dp"
+    	        android:layout_marginLeft="90dp"
+				android:layout_marginRight="90dp"
+				android:layout_marginBottom="6dp"
     	        android:layout_alignParentBottom="true"
-    	        style="@style/blackMedium" />
+    	        style="@style/blackMediumButton" />
     	
     </RelativeLayout>
     
