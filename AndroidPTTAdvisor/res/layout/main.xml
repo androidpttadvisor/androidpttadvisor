@@ -125,13 +125,17 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-		android:background="#000">
+		android:background="@drawable/navigation_bar_gradient_selector">
 
             <ImageButton
                     android:id="@+id/tabBarButton1"
                     android:layout_toLeftOf="@+id/tabBarButton2"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:src="@drawable/nav_button_back"
                     android:contentDescription="@string/contentDescription_previous_button"
                     />
@@ -139,7 +143,11 @@
                     android:id="@+id/tabBarButton2"
                     android:layout_toLeftOf="@+id/tabBarButton3"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:src="@drawable/nav_button_next"
                     android:contentDescription="@string/contentDescription_next_button"
                     />
@@ -147,7 +155,11 @@
                     android:id="@+id/tabBarButton3"
                     android:layout_centerInParent="true"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:src="@drawable/nav_button_back_to_last"
                     android:contentDescription="@string/contentDescription_farthest_button"
                     />
@@ -155,7 +167,9 @@
                     android:id="@+id/tabBarButton4"
                     android:layout_toRightOf="@+id/tabBarButton3"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:src="@drawable/nav_button_restart"
                     android:contentDescription="@string/contentDescription_restart_button"
                     android:onClick="restart"
@@ -164,7 +178,9 @@
                     android:id="@+id/tabBarButton5"
                     android:layout_toRightOf="@+id/tabBarButton4"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:src="@drawable/nav_button_review"
                     android:contentDescription="@string/contentDescription_summary_button"
                     />
