@@ -389,12 +389,12 @@ public class MainView extends Activity {
     	//Log.d("DEBUG", "Answers size is " + answers.size());
     	switch (answers.size()) {
     	case 0:
-    		b0.setVisibility(View.GONE);
-    		b1.setVisibility(View.GONE);
+    		b0.setVisibility(View.INVISIBLE);
+    		b1.setVisibility(View.INVISIBLE);
     		break;
     	case 1:
     		b0.setVisibility(View.VISIBLE);
-    		b1.setVisibility(View.GONE);
+    		b1.setVisibility(View.INVISIBLE);
     		break;
     	default:
     		b0.setVisibility(View.VISIBLE);
