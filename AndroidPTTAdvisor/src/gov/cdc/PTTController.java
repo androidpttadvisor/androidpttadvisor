@@ -180,7 +180,13 @@ public class PTTController {
 
 
 	public void setCurrentNode(int n) {
-		this.currentNode = this.nodes.get(n);;
+		Log.d("SETCURRNODE","setting current node to: " + Integer.toString(n));
+		this.currentNode = this.nodes.get(n);
+		Log.d("SETCURRNODE","curent node just set to: " + Integer.toString(this.currentNode.getId()));
+	}
+	
+	public void logCurrentNodeNumber() {
+		Log.d("LOGCURRENTNODENUMBER",Integer.toString(this.currentNode.getId()));
 	}
 
 	

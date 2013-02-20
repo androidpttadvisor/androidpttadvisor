@@ -32,32 +32,23 @@ import android.text.method.ScrollingMovementMethod;
 
 public class MainView extends Activity {
 	
-    /**
-     * Called when the activity is first created.
-     */
-
-    
-
 
     int position = 0;
     int farthestPositionReached = 0;
-
     public static PTTController controller;
     
     //Make a public static variable for the controller.history
     public static ArrayList<PTTHistoryItem> mHistory;
     
+    private String headerImagePath;
     private String headerImage;
     private ImageButton button1; 
     private ImageButton button2; 
     private ImageButton button3; 
     private ImageButton button4; 
     private ImageButton button5;
-    
     private Button footnotesButton;
-    
     private String answerChosenNodeId;
-    Drawable buttonOriginalBackground;
     
     
     @Override
@@ -71,6 +62,7 @@ public class MainView extends Activity {
          */
         new Eula(this).show();
         
+        // TODO: Answer me this: Are we creating an entirely new controller here? Or wait, is this our only controller?
         controller = new PTTController(this.getApplicationContext());
         
         //Make a new member variable for the history. We'll use this to update it. Or maybe not needed.
@@ -84,25 +76,14 @@ public class MainView extends Activity {
         // Hide the title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        // These two lines make it full screen. As in, it even hides the top status bar
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        //        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // end Full-Screen snippet
-
         setContentView(R.layout.main);
-        
-        Button b = (Button)findViewById(R.id.answerButton0);
-        buttonOriginalBackground = b.getBackground();
-        
-        
+                
         PTTNode currentNode = controller.currentNode;
-        
-        
         
         //Get image path and put image into node header image
         ImageView headerImageView = new ImageView(this);
         headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
-        String headerImagePath = controller.getHeaderImageForNodeNumber(currentNode.getId());
+        headerImagePath = controller.getHeaderImageForNodeNumber(currentNode.getId());
         //Log.d("IMAGE", headerImagePath);
         String imageString = "drawable/" + currentNode.getPathToHeaderImage();
         //Log.d("IMAGESTRING", imageString);
@@ -133,7 +114,6 @@ public class MainView extends Activity {
 
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                // TODO: Call appropriate methods here
             	Log.d("NAV","button1");
             	navigateBackToPreviousNode();
 
@@ -142,7 +122,6 @@ public class MainView extends Activity {
 
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	// TODO: Call appropriate methods here
             	Log.d("NAV","button2");
             	navigateForwardToNode();
             }
@@ -150,7 +129,6 @@ public class MainView extends Activity {
 
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	// TODO: Call appropriate methods here
             	Log.d("NAV","button3");
             	//I'm putting the logic all right here. I don't see (yet) any reason to put it in function
             	
@@ -174,9 +152,11 @@ public class MainView extends Activity {
                 controller.logHistoryItems();
                 Intent historyViewIntent = new Intent(context, HistoryView.class);
         		startActivity(historyViewIntent);
+                //startActivityForResult(historyViewIntent,1);
             }
         });
         
+        // TODO: maybe turn this into an intializeNavButtons() method??
         disableAllNavButtons();
         updateNavButtons();
 
@@ -214,14 +194,12 @@ public class MainView extends Activity {
 
 
     public void navigateToAnotherNode(int nodeId) {
-    	Log.d("navigateToAnotherNode: ",Integer.toString(nodeId));
-    	Log.d("Now the position is:",Integer.toString(position));
- 
-    	// update farthestPositionReached
     	
     	if (position > farthestPositionReached) {
     		farthestPositionReached = position;
     	}
+    	
+    	
     	
         //Get question text and put it on the screen
         TextView tv = (TextView)findViewById(R.id.questionTextView);
@@ -230,7 +208,7 @@ public class MainView extends Activity {
       //Get image path and put image into node header image
         ImageView headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
         
-        String headerImagePath = controller.getHeaderImageForNodeNumber(nodeId);
+        headerImagePath = controller.getHeaderImageForNodeNumber(nodeId);
         //Log.d("IMAGE", headerImagePath);
         String imageString = "drawable/" + controller.currentNode.getPathToHeaderImage();
         //Log.d("IMAGESTRING", imageString);
@@ -241,6 +219,10 @@ public class MainView extends Activity {
         updateButtons();
         //enableAllNavButtons();
         updateNavButtons();
+        
+        
+        Log.d("navToNutherNode,CurrNodeId",Integer.toString(controller.currentNode.getId()));
+        
     }
 
     
@@ -502,11 +484,23 @@ public class MainView extends Activity {
     }
     
     
-    
-    
     public PTTController getController() {
     	return controller;
     }
 
-
+    
+    /*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	Log.d("CheckStartActivity","onActivityResult and resultCode = "+resultCode);
+    	// TODO Auto-generated method stub
+    	super.onActivityResult(requestCode, resultCode, data);
+    	if(resultCode==1){
+    		Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
+    	}
+    	else{
+    		Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
+    	}
+    }
+*/
 }
