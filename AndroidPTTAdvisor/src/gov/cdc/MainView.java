@@ -151,7 +151,7 @@ public class MainView extends Activity {
             	Log.d("NAV","button5");
                 controller.logHistoryItems();
                 Intent historyViewIntent = new Intent(context, HistoryView.class);
-        		startActivity(historyViewIntent);
+        		startActivityForResult(historyViewIntent, 1);
                 //startActivityForResult(historyViewIntent,1);
             }
         });
@@ -489,18 +489,25 @@ public class MainView extends Activity {
     }
 
     
-    /*
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	Log.d("CheckStartActivity","onActivityResult and resultCode = "+resultCode);
     	// TODO Auto-generated method stub
     	super.onActivityResult(requestCode, resultCode, data);
     	if(resultCode==1){
-    		Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
+    		int positionToNavigateTo = data.getIntExtra("nodeToNavigateTo",0);
+    		Log.d("RETURNED. GOTO POS: ",Integer.toString(positionToNavigateTo));
+    		Log.d("Quest to goto: ", mHistory.get(positionToNavigateTo).getNode().getQuestion());
+    		int nodeIdToGoTo = mHistory.get(positionToNavigateTo).getNode().getId();
+    		Log.d("nodeIdToGoTo:",Integer.toString(nodeIdToGoTo));
+    		navigateToAnotherNode(nodeIdToGoTo);
+    		
+    		
     	}
     	else{
     		Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
     	}
     }
-*/
+
 }

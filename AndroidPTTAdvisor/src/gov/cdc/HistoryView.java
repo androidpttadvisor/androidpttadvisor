@@ -13,10 +13,15 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.content.Intent;
 
 public class HistoryView extends Activity {
 	
 	private ArrayList<PTTHistoryItem> mHistory;
+	private ArrayAdapter<String> arrayAdapter;
 	
 
     @Override
@@ -32,7 +37,6 @@ public class HistoryView extends Activity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //startActivity(new Intent(MyActivity.this,ActivityEins.class));
-            	Log.d("TEST","TEST");
             	finish();
             }
         });
@@ -42,8 +46,22 @@ public class HistoryView extends Activity {
         // Create the adapter
         final HistoryItemAdapter historyItemAdapter = new HistoryItemAdapter(this);
         
+        //arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, new String[]{"Dave","Satya","Dylan"});
+        
         //bind adapter to the AdapterView
         myListView.setAdapter(historyItemAdapter);
+        //myListView.setAdapter(arrayAdapter);
+        
+        myListView.setOnItemClickListener(new OnItemClickListener() {
+        	
+        	@Override
+        	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        		Intent i = getIntent();
+        		i.putExtra("nodeToNavigateTo", position);
+        		setResult(1,i);
+        		finish();
+        	}
+        });
         
         
     }
