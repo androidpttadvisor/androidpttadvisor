@@ -501,6 +501,9 @@ public class MainView extends Activity {
     		Log.d("Quest to goto: ", mHistory.get(positionToNavigateTo).getNode().getQuestion());
     		int nodeIdToGoTo = mHistory.get(positionToNavigateTo).getNode().getId();
     		Log.d("nodeIdToGoTo:",Integer.toString(nodeIdToGoTo));
+    		
+    		position = positionToNavigateTo;
+        	controller.setCurrentNode(nodeIdToGoTo);
     		navigateToAnotherNode(nodeIdToGoTo);
     		
     		
