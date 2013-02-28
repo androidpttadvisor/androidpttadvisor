@@ -432,7 +432,7 @@ public class MainView extends Activity {
     	}
     	
     	
-    	footnotesButton = (Button)findViewById(R.id.footnotesButton);;
+    	footnotesButton = (Button)findViewById(R.id.footnotesButton);
     	if (controller.currentNode.getFootnotes().size() > 0) {
     		footnotesButton.setEnabled(true);
     	} else {

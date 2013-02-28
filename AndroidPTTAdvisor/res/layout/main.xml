@@ -21,6 +21,7 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
             android:textSize="12dp"
             android:text="@string/infoButtonText"
             android:src="@drawable/info_icon_18x18"
@@ -32,6 +33,7 @@
             android:id="@+id/helpButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginTop="12dp"
             android:layout_toRightOf="@+id/infoButton"
             android:text="@string/helpButtonText"
             android:textSize="12dp"
@@ -60,6 +62,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:text="@string/footnotesButtonText"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/upper_right_button_style"
             android:textSize="12dp" />
 
         
