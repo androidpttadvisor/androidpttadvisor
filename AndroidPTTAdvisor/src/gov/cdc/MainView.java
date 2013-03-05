@@ -29,7 +29,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.method.ScrollingMovementMethod;
 
-
 public class MainView extends Activity {
 	
 

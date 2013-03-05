@@ -5,7 +5,6 @@
               android:layout_height="fill_parent" >
 	
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,11 +67,10 @@
             android:background="@drawable/upper_right_button_style"
             android:textSize="12dp" />
 
-        
 
     </RelativeLayout>
         
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="fill_parent"
@@ -83,6 +81,10 @@
     		    android:id="@+id/nodeHeaderImage"
     		    android:layout_width="wrap_content"
     		    android:layout_height="wrap_content"
+    		    android:layout_marginLeft="26dp"
+    	        android:layout_marginRight="26dp"
+    	        android:layout_marginTop="10dp"
+    	        android:layout_marginBottom="6dp"
     		    android:gravity="center_vertical" />
 
    	   	<TextView

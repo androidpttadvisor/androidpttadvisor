@@ -9,7 +9,7 @@
 					"answer": "Yes"
 				},
 				{
-					"nodeId": "2",
+					"nodeId": "21",
 					"answer": "No"
 				}
 			],
@@ -44,7 +44,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "eval_guide_header"
 		},
 		{
 			"id": "3",
@@ -61,7 +61,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "describe_pt_header"
 		},
 		{
 			"id": "4",
@@ -78,7 +78,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "describe_pt_header"
 		},
 		{
 			"id": "5",
@@ -95,7 +95,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "describe_pt_header"
 		},
 		{
 			"id": "6",
@@ -104,7 +104,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "recommendation_header"
 		},
 		{
 			"id": "7",
@@ -113,7 +113,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "recommendation_header"
 		},
 		{
 			"id": "8",
@@ -130,7 +130,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "describe_pt_header"
 		},
 		{
 			"id": "9",
@@ -156,7 +156,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "describe_pt_header"
 		},
 		{
 			"id": "11",
@@ -165,7 +165,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "recommendation_header"
 		},
 		{
 			"id": "12",
@@ -174,7 +174,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "recommendation_header"
 		},
 		{
 			"id": "13",
@@ -191,7 +191,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "describe_pt_header"
 		},
 		{
 			"id": "14",
@@ -208,7 +208,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "describe_pt_header"
 		},
 		{
 			"id": "15",
@@ -221,7 +221,7 @@
 			],
 			"footnotes": [
 			],
-			"image": "to_begin_header"
+			"image": "eval_guide_header"
 		},
 		{
 			"id": "16",
@@ -283,6 +283,15 @@
 			"footnotes": [
 			],
 			"image": "to_begin_header"
+		},
+		{
+			"id": "21",
+			"question": "There is currently no algorithm for a patient meeting this criteria.",
+			"answers": [
+			],
+			"footnotes": [
+			],
+			"image": "recommendation_header"
 		}
 	]
 }
