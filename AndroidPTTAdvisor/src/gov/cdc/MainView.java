@@ -549,7 +549,7 @@ public class MainView extends Activity {
     		
     	}
     	else{
-    		Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
+    		// This means that the user hit the "Done" button, and thus did not select a question to return to.
     	}
     }
 
