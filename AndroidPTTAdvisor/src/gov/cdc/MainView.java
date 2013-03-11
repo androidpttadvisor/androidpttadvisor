@@ -387,49 +387,37 @@ public class MainView extends Activity {
     	if (answers.size() > 0) {
     		String s = answers.get(0).answer;
     		
-    		
-    		
-    		
     		b0.setText(s);
-			final int answer0Node = answers.get(0).nodeId;
+			final int answer0NodeId = answers.get(0).nodeId;
 			//Log.d("Making button", "b0, '" + s + "', points to node " + answer0Node + ".  Current node is " + controller.currentNode.getId());
 			b0.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
-                    //Log.d("GOTO Node:",Integer.toString(answer0Node));
-                    
-                    //get the current node and store the history item based on it
-                    //Log.d("HISTLOG", "About to Log something");
                     PTTNode n = controller.getCurrentNode();
-                    controller.storeHistoryItem(n, n.getAnswers().get(0));
-                    controller.setCurrentNode(answer0Node);
-                    position++;
-                    navigateToAnotherNode(answer0Node);
+                    didSelectAnswer(n,answer0NodeId,0);
+                    //controller.storeHistoryItem(n, n.getAnswers().get(0));
+                    //controller.setCurrentNode(answer0NodeId);
+                    //position++;
+                    //navigateToAnotherNode(answer0NodeId);
                    }
             });
     	} 
     	if (answers.size() == 2) {
             String s1 = answers.get(1).answer;
             
-            
-            
             b1.setText(s1);
-            final int answer1Node = answers.get(1).nodeId;
+            final int answer1NodeId = answers.get(1).nodeId;
             //Log.d("Making button", "b1, " + s1 + ", points to node " + answer1Node + ".  Current node is " + controller.currentNode.getId());
             b1.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    //Log.d("GOTO Node:",Integer.toString(answer1Node));
-                    
-                    //get the current node and store the history item based on it
-                    //Log.d("HISTLOG", "About to Log something");
                     PTTNode n = controller.getCurrentNode();
-                    controller.storeHistoryItem(n, n.getAnswers().get(1));
-                    controller.setCurrentNode(answer1Node);
-                    position++;
-                    navigateToAnotherNode(answer1Node);
+                    didSelectAnswer(n,answer1NodeId,1);
+                    //controller.storeHistoryItem(n, n.getAnswers().get(1));
+                    //controller.setCurrentNode(answer1NodeId);
+                    //position++;
+                    //navigateToAnotherNode(answer1NodeId);
                 }
             });
     	}
-    	
     	
     	footnotesButton = (Button)findViewById(R.id.footnotesButton);
     	if (controller.currentNode.getFootnotes().size() > 0) {
@@ -437,10 +425,63 @@ public class MainView extends Activity {
     	} else {
     		footnotesButton.setEnabled(false);
     	}
-    	
-    	
     	adjustButtonColorsBasedOnHistory(answers);
     }
+    
+    /*
+     * This method will handle all answer actions. This is to help modularize the answer selection process, especially when previously-answered nodes are answered
+     */
+    public void didSelectAnswer(PTTNode currentNode, int answerNodeId, int answerSelected) {
+    	
+    	final PTTNode mCurrentNode = currentNode;
+    	final int mAnswerNodeId = answerNodeId;
+    	final int mAnswerSelected = answerSelected;
+    	
+    	
+    	// If we are selecting an answer that has been answered before
+    	if (position != farthestPositionReached) {
+    		// Display dialog to let user know [s]he's changing history
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.nav_button_restart);
+            builder.setTitle("You are about to change your answer. Are you sure?");
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                	// Remove all items past the question being answered here, and reset the farthest position
+            		controller.truncateHistory(position);
+            		farthestPositionReached = position;
+            		
+
+                	//Store the new answer in the history, advance the current node and position and navigate to the new node
+                	controller.storeHistoryItem(mCurrentNode, mCurrentNode.getAnswers().get(mAnswerSelected));
+                    controller.setCurrentNode(mAnswerNodeId);
+                    position++;
+                    navigateToAnotherNode(mAnswerNodeId);
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+    		
+    		
+    		
+    	}
+    	//No worries about changing previously-answered questions
+    	else {
+        	//Store the new answer in the history, advance the current node and position and navigate to the new node
+        	controller.storeHistoryItem(currentNode, currentNode.getAnswers().get(answerSelected));
+            controller.setCurrentNode(answerNodeId);
+            position++;
+            navigateToAnotherNode(answerNodeId);    		
+    	}
+    	
+    }
+    
     
     
     public void adjustButtonColorsBasedOnHistory(ArrayList<PTTAnswer> answers) {

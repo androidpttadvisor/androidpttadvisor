@@ -142,6 +142,15 @@ public class PTTController {
 		Log.d("HISTORY", "YAY, new history item! Node:" + history.get(history.size()-1).getAnswerChosen().getNodeId() + "Answer: " + history.get(history.size()-1).getAnswerChosen().answer);
 	}
 	
+	public void truncateHistory(int positionToTruncateTo) {
+		Log.d("CLEAR POS",Integer.toString(positionToTruncateTo));
+		Log.d("HIST LENGTH BEF",Integer.toString(history.size()));
+		for (int i = history.size()-1; i >= positionToTruncateTo; i--) {
+			history.remove(i);
+		}
+		Log.d("HIST LENGTH AFT",Integer.toString(history.size()));
+	}
+	
 	
 	public void logHistoryItems() {
 		for (int i=0; i < history.size(); i++) {
