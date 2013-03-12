@@ -92,6 +92,7 @@ public class PTTController {
     		
     			// create the PTTNode and add it to the ArrayList of them
     			PTTNode pttNode = new PTTNode(id, question, pttAnswers, image, footnotes);
+    			Log.d("JSON Parser", "Made node: " + id);
     			pttnodes.put(id, pttNode);
     		} // done with nodes loop
     	} catch (JSONException e) {
