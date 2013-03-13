@@ -66,6 +66,9 @@ public class PTTController {
     			// Pull out the strings
     			int id = node.getInt("id");
     			String question = node.getString("question");
+    			// Add the node id to the question string for editing/debugging purposes
+    			// REMOVE THIS LATER
+    			question = "Node " + Integer.toString(id) + ":\n\n" + question;
     			String image = node.getString("image");
     		
     			//  Pull out the array of answers
