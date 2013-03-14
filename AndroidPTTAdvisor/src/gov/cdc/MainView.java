@@ -521,8 +521,10 @@ public class MainView extends Activity {
     	// set buttons appearance if it has been selected
     	Button b0 = (Button)findViewById(R.id.answerButton0);
     	Button b1 = (Button)findViewById(R.id.answerButton1);
-    	//b0.setBackgroundResource(R.drawable.button_regular);
-    	//b1.setBackgroundResource(R.drawable.button_regular);
+    	b0.setBackgroundResource(R.drawable.button_regular);
+    	b1.setBackgroundResource(R.drawable.button_regular);
+    	//b0.setSelected(false);
+		//b1.setSelected(false);
     	
     	
     	if (position < farthestPositionReached) {
@@ -545,13 +547,24 @@ public class MainView extends Activity {
         		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
         			b0.setBackgroundResource(R.drawable.button_down);
         			b1.setBackgroundResource(R.drawable.button_regular);
+        			Log.d("SET","setting b0 selected true");
         			//b0.setSelected(true);
+        			//b1.setSelected(false);
     			} else if (answers.get(1).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
     				b0.setBackgroundResource(R.drawable.button_regular);
         			b1.setBackgroundResource(R.drawable.button_down);
+    				//b0.setSelected(false);
+        			//b1.setSelected(true);
     			}
         		break;
         	}
+    	}
+    	else if ( (position == farthestPositionReached) && (position == 0)) {
+    		//Account for when the reset button was pressed
+    		//b0.setBackgroundResource(R.drawable.button_regular);
+    		//b1.setBackgroundResource(R.drawable.button_regular);
+    		//b0.setSelected(false);
+			//b1.setSelected(false);
     	}
     	
     	
