@@ -155,7 +155,7 @@
             "footnotes":[
                 "Patients with factor XII deficiency do not require transfusion to prevent bleeding, even if surgery is anticipated. Transient factor XII deficiency may be seen in patients awaiting tonsillectomy."
             ],
-            "image":"to_begin_header"
+            "image":"recommendation_header"
         },
         {
             "id":"10",
@@ -256,7 +256,7 @@
             "footnotes":[
                 
             ],
-            "image":"to_begin_header"
+            "image":"recommendation_header"
         },
         {
             "id":"17",
@@ -275,7 +275,7 @@
                 "Laboratories should use at least two screening assays for LA due to the heterogeneity of this antibody. A prolonged result in one or both screening assays should be followed by a mixing study and confirmatory tests.",
                 "Lupus anticoagulant (LA) is an antibody that binds to a plasma protein (Beta2 glycoprotein 1). In vitro, it prolongs clot-based tests such as the PTT; in vivo, on the other hand, the LA is strongly thrombophilic. LA may be transiently present or may indicate antiphospholipid syndrome, the most common acquired cause of hypercoagulability. The diagnosis of antiphospholipid syndrome requires two positive tests for an antiphospholipid antibody (such as LA) at least 12 weeks apart, in the setting of thrombosis or recurrent fetal loss (J Thromb Haemost. 2009 Oct;7(10):1737-40). When the LA test is positive, it may cause falsely low coagulation factor activities, which may lead to the incorrect diagnosis of factor deficiency(ies)."
             ],
-            "image":"to_begin_header"
+            "image":"describe_pt_header"
         },
         {
             "id":"18",
@@ -286,7 +286,7 @@
             "footnotes":[
                 
             ],
-            "image":"to_begin_header"
+            "image":"recommendation_header"
         },
         {
             "id":"19",
@@ -341,7 +341,7 @@
                 "If available, order an anti-Xa assay to detect and quantitate heparin or low molecular heparin (LMWH).",
 		"Low molecular weight heparins (LMWH) do not consistently prolong the PTT.  The effect is variable even using the same PTT reagent."
             ],
-            "image":"describe_pt_header"
+            "image":"eval_guide_header"
         },
         {
             "id":"23",
@@ -394,7 +394,7 @@
                 "Since Von Willebrand factor (vWF) carries factor VIII in the circulation, low factor VIII may be seen in von Willebrand disease (vWD) as well. vWD may be difficult to diagnose in young children due to higher expected level of vWF compared with that of adults (see footnote 4) and Am J Clin Pathol. 2005 Jun;123 Suppl:S119-24. vWD may be due to a quantitative deficiency (types 1 and 3) or qualitative abnormalities in the vWF molecule (type 2 which has multiple subtypes). vWD is diagnosed with assays for von Willebrand factor (vWF) antigen and activity, and factor VIII. A rare type of vWD, 2N, is caused by a mutation in vWF which leads to decreased binding and increased proteolysis of factor VIII in the circulation. The National Institutes of Health has recently published a comprehensive review of the diagnosis and management of patients with vWD (Am J Hematol. 2009 Jun;84(6):366-70).",
 		"Acquired hemophilia in the mother may decrease the factor VIII in the child through passive transfer of the factor VIII antibody."
             ],
-            "image":"describe_pt_header"
+            "image":"eval_guide_header"
         },
         {
             "id":"26",
