@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">PTT Advisor</string>
-    <string name="imageview_contentDescription">center image</string>
+    <string name="imageview_contentDescription">center image</string><string name="contentDescription_done_button">Done Button</string>
     <string name="contentDescription_previous_button">contentDescription_previous_button</string>
     <string name="contentDescription_next_button">contentDescription_next_button</string>
     <string name="contentDescription_farthest_button">contentDescription_farthest_button</string>
@@ -17,5 +17,6 @@
     <string name="title_activity_help_view">Help</string>
     <string name="title_activity_info_view">About</string>
     <string name="title_activity_footnotes_view">FootnotesView</string>
+    
 
 </resources>

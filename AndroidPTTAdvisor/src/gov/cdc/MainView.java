@@ -356,6 +356,35 @@ public class MainView extends Activity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+    
+    
+    public void restartDone(View view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Patient Evaluation Complete");
+        builder.setMessage("Would you like to begin a new patient evaluation?");
+        builder.setInverseBackgroundForced(true);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                position=0;
+                farthestPositionReached = 0;
+                controller.setCurrentNode(0);
+                mHistory.clear();
+                navigateToAnotherNode(0);
+                disableAllNavButtons();
+
+            }
+        });
+        
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     
     /**
@@ -364,20 +393,24 @@ public class MainView extends Activity {
      */
     private void updateButtons() {
         ArrayList<PTTAnswer> answers = controller.currentNode.getAnswers();
+        ImageButton doneButton = (ImageButton)findViewById(R.id.doneButton);
     	Button b0 = (Button)findViewById(R.id.answerButton0);
     	Button b1 = (Button)findViewById(R.id.answerButton1);
     	//Log.d("DEBUG", "About to make buttons");
     	//Log.d("DEBUG", "Answers size is " + answers.size());
     	switch (answers.size()) {
     	case 0:
+    		doneButton.setVisibility(View.VISIBLE);
     		b0.setVisibility(View.INVISIBLE);
     		b1.setVisibility(View.INVISIBLE);
     		break;
     	case 1:
+    		doneButton.setVisibility(View.GONE);
     		b0.setVisibility(View.VISIBLE);
     		b1.setVisibility(View.INVISIBLE);
     		break;
     	default:
+    		doneButton.setVisibility(View.GONE);
     		b0.setVisibility(View.VISIBLE);
     		b1.setVisibility(View.VISIBLE);
     	}

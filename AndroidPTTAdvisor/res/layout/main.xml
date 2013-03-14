@@ -106,6 +106,18 @@
    	   	    android:layout_height="wrap_content"
  	   	    android:layout_alignParentBottom="true"
  	   	    android:layout_marginBottom="80dp">	    
+ 	   	    
+   	   	    <ImageButton
+    	        android:id="@+id/doneButton"
+    	        android:layout_centerHorizontal="true"
+    	        android:layout_width="91dp"
+    	        android:layout_height="130dp"
+				android:layout_above="@+id/answerButton0"
+				android:src="@drawable/done_icon"
+				android:onClick="restartDone"
+                android:contentDescription="@string/contentDescription_done_button" />
+    	
+   	   	    
     		<Button
     	        android:id="@+id/answerButton0"
     	        android:layout_width="fill_parent"
