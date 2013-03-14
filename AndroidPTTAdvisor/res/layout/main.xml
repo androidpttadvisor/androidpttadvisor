@@ -110,6 +110,7 @@
    	   	    <ImageButton
     	        android:id="@+id/doneButton"
     	        android:layout_centerHorizontal="true"
+    	        android:layout_alignParentBottom="true"
     	        android:layout_width="91dp"
     	        android:layout_height="130dp"
 				android:layout_above="@+id/answerButton0"
