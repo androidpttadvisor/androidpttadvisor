@@ -39,7 +39,7 @@
         },
         {
             "id":"2",
-            "question":"Rule out presence of heparin and LMWH-- by history, by performing a PTT after treating plasma with a heparin-degrading enzyme, or by performing a thrombin time (LMWH may not prolong thrombin time).",
+            "question":"Rule out presence of heparin and LMWH-- by history, by performing a PTT after treating plasma with a heparin degrading enzyme, or by performing a thrombin time (LMWH may not prolong thrombin time).",
             "answers":[
                 {
                     "nodeId":"3",
@@ -53,7 +53,7 @@
         },
         {
             "id":"3",
-            "question":"Is there a complete or near complete correction in an incubated PTT mixing study?",
+            "question":"Is there a complete or near complete correction in an incubated PTT mixing study?  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"4",
@@ -71,7 +71,7 @@
         },
         {
             "id":"4",
-            "question":"Is there recent onset or recently diagnosed bleeding?",
+            "question":"Is there recent onset or recently diagnosed bleeding?  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"5",
@@ -89,7 +89,7 @@
         },
         {
             "id":"5",
-            "question":"Do the levels of factors VII, IX, or XI reflect a deficiency?",
+            "question":"Do the levels of factors VIII, IX, or XI reflect a deficiency?  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"6",
@@ -107,7 +107,7 @@
         },
         {
             "id":"6",
-            "question":"The PTT is most likely explained by an intrinsic factor deficiency.  Factors VIII and IX deficiencies are X-linked but female carriers may present with bleeding.  Factor XI deficiency is not X-linked.  If factor VIII is low in a female, consider von Willebrand Disease (VWD)-- order tests for VWD [see footnotes]",
+            "question":"The PTT is most likely explained by an intrinsic factor deficiency.  Factors VIII and IX deficiencies are X-linked but female carriers may present with bleeding.  Factor XI deficiency is not X-linked.  If factor VIII is low in a female, consider von Willebrand Disease (VWD)-- order tests for VWD.  [see footnotes]",
             "answers":[
                 
             ],
@@ -129,7 +129,7 @@
         },
         {
             "id":"8",
-            "question":"Does the level of factor XII reflect a deficiency?",
+            "question":"Does the level of factor XII reflect a deficiency?  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"9",
@@ -147,7 +147,7 @@
         },
         {
             "id":"9",
-            "question":"The PTT is most likely explained by factor XII deficiency.",
+            "question":"The PTT is most likely explained by factor XII deficiency.  [see footnotes]",
             "answers":[
                 
             ],
@@ -198,7 +198,7 @@
         },
         {
             "id":"13",
-            "question":"Is there recent onset or recently diagnosed bleeding?",
+            "question":"Is there recent onset or recently diagnosed bleeding?  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"14",
@@ -259,7 +259,7 @@
         },
         {
             "id":"17",
-            "question":"Are the tests for lupus anti-coagulant (LA) positive?",
+            "question":"Are the tests for lupus anticoagulant (LA) positive?  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"18",
@@ -378,7 +378,7 @@
         },
         {
             "id":"25",
-            "question":"The bleeding severity in factors VIII (hemophilia A) or factor IX (hemophilia B) deficiency is directly related to the factor level (severe <1%, moderate 1-5%, mild > 5%).  [see footnotes]",
+            "question":"The bleeding severity in factors VIII (hemophilia A) or factor IX (hemophilia B) deficiency is directly related to the factor level (severe < 1%, moderate 1-5%, mild > 5%).  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"26",
@@ -392,7 +392,7 @@
         },
         {
             "id":"26",
-            "question":"Approximately 30% of hemophiliacs have spontaneous new mutations, with negative family histories.  Consier the possibility of von Willebrand diseas (VWD) by ordering specific tests for this condition.",
+            "question":"Approximately 30% of hemophiliacs have spontaneous new mutations, with negative family histories.  Consider the possibility of von Willebrand diseas (VWD) by ordering specific tests for this condition.",
             "answers":[
                 
             ],
@@ -519,7 +519,7 @@
         },
         {
             "id":"35",
-            "question":"Do the levels of factors VII or XII reflect a deficiency?  [see footnotes]",
+            "question":"Do the levels of factors VIII or XII reflect a deficiency?  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"36",
@@ -566,7 +566,7 @@
         },
         {
             "id":"38",
-            "question":"The PTT is most likely explained by factor IX (hemophilia B) carrier state",
+            "question":"The PTT is most likely explained by factor IX (hemophilia B) carrier state.",
             "answers":[
                 
             ],
