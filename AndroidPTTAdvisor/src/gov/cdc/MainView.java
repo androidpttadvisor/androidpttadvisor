@@ -228,7 +228,7 @@ public class MainView extends Activity {
 
     public void disableAllNavButtons() {
     	button1.setEnabled(false);
-    	button1.setImageResource(R.drawable.nav_button_back);
+    	button1.setImageResource(R.drawable.nav_button_back_disabled);
     	button2.setEnabled(false);
     	button2.setImageResource(R.drawable.nav_button_next_disabled);
     	button3.setEnabled(false);
@@ -521,8 +521,8 @@ public class MainView extends Activity {
     	// set buttons appearance if it has been selected
     	Button b0 = (Button)findViewById(R.id.answerButton0);
     	Button b1 = (Button)findViewById(R.id.answerButton1);
-    	b0.setBackgroundResource(R.drawable.button_regular);
-    	b1.setBackgroundResource(R.drawable.button_regular);
+    	//b0.setBackgroundResource(R.drawable.button_regular);
+    	//b1.setBackgroundResource(R.drawable.button_regular);
     	
     	
     	if (position < farthestPositionReached) {
@@ -543,10 +543,11 @@ public class MainView extends Activity {
         		break;
         	default:
         		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
-        			//b0.setText(b0.getText()+ "  --  The Chosen One!");
         			b0.setBackgroundResource(R.drawable.button_down);
+        			b1.setBackgroundResource(R.drawable.button_regular);
+        			//b0.setSelected(true);
     			} else if (answers.get(1).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
-        			//b1.setText(b1.getText()+ "  --  The Chosen One!");
+    				b0.setBackgroundResource(R.drawable.button_regular);
         			b1.setBackgroundResource(R.drawable.button_down);
     			}
         		break;
