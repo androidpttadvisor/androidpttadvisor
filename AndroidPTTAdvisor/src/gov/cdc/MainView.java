@@ -472,9 +472,26 @@ public class MainView extends Activity {
     	final int mAnswerNodeId = answerNodeId;
     	final int mAnswerSelected = answerSelected;
     	
+    	// Set default option for b
+    	Button b = (Button)findViewById(R.id.answerButton0);
+    	boolean buttonIsSelected = false;
+    	
+    	// Figure out which button was selected
+    	if (answerSelected == 0) {
+    		b = (Button)findViewById(R.id.answerButton0);
+    	}
+    	else if (answerSelected == 1) {
+    		b = (Button)findViewById(R.id.answerButton1);
+    		
+    	}
+    	
+    	// Get that button's state (selected or not)
+    	buttonIsSelected = b.isSelected();
+    	
+    	
     	
     	// If we are selecting an answer that has been answered before
-    	if (position != farthestPositionReached) {
+    	if ( (position != farthestPositionReached) && !buttonIsSelected) {
     		// Display dialog to let user know [s]he's changing history
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
@@ -508,8 +525,11 @@ public class MainView extends Activity {
     	}
     	//No worries about changing previously-answered questions
     	else {
-        	//Store the new answer in the history, advance the current node and position and navigate to the new node
-        	controller.storeHistoryItem(currentNode, currentNode.getAnswers().get(answerSelected));
+        	// Store the new answer in the history, advance the current node and position and navigate to the new node
+        	// If the button was not the selected one, then we need to store the answer in the history 
+    		if (!buttonIsSelected) {
+        		controller.storeHistoryItem(currentNode, currentNode.getAnswers().get(answerSelected));        		
+        	}
             controller.setCurrentNode(answerNodeId);
             position++;
             navigateToAnotherNode(answerNodeId);    		
