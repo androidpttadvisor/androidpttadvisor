@@ -11,4 +11,16 @@
     <style name="blackMediumButton" parent="blackMedium">
         <item name="android:background">@drawable/button_regular</item>
     </style>
+    
+    <style name="whiteSmall" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    
+    <style name="graySmall" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#888888</item>
+    </style>
 </resources>

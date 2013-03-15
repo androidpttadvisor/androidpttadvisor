@@ -6,7 +6,6 @@
     android:background="#ffffff">
 
         <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/footnotesTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,20 +40,40 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/upper_right_button_style"
             android:text="Done"
-            android:textSize="12dp" />
-
+            style="@style/whiteSmall" />
 		</RelativeLayout>
 
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+	<RelativeLayout
+		android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/footnotesTitleBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15dp"
-	    android:layout_marginRight="15dp"
-	    android:layout_marginTop="15dp"
-        android:background="#ffffff" >
-    </ListView>
+        android:background="#FFFFFF" >
+
+	    <ImageView
+	        android:id="@+id/footnotesHeaderImage"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="6dp"
+	        android:layout_marginLeft="26dp"
+	        android:layout_marginRight="26dp"
+	        android:layout_marginTop="10dp"
+	        android:gravity="center_vertical"
+	        android:src="@drawable/footnotes_header" />
+
+    	<ListView
+        	android:id="@android:id/list"
+			android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+        	android:layout_below="@+id/footnotesHeaderImage"
+			android:layout_centerHorizontal="true"
+        	android:layout_marginLeft="15dp"
+	    	android:layout_marginRight="15dp"
+	    	android:layout_marginBottom="15dp"
+	    	android:layout_marginTop="0dp"
+	    	android:cacheColorHint="#ffffff"
+        	android:background="#ffffff" >
+    	</ListView>
+	</RelativeLayout>
 
 </RelativeLayout>

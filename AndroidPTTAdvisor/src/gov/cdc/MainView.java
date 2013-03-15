@@ -455,8 +455,10 @@ public class MainView extends Activity {
     	footnotesButton = (Button)findViewById(R.id.footnotesButton);
     	if (controller.currentNode.getFootnotes().size() > 0) {
     		footnotesButton.setEnabled(true);
+    		footnotesButton.setTextAppearance(this, R.style.whiteSmall);
     	} else {
     		footnotesButton.setEnabled(false);
+    		footnotesButton.setTextAppearance(this, R.style.graySmall);
     	}
     	adjustButtonColorsBasedOnHistory(answers);
     }
