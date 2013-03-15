@@ -54,11 +54,11 @@
 	        android:id="@+id/footnotesHeaderImage"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="6dp"
 	        android:layout_marginLeft="26dp"
 	        android:layout_marginRight="26dp"
 	        android:layout_marginTop="10dp"
 	        android:gravity="center_vertical"
+	        android:layout_centerHorizontal="true"
 	        android:src="@drawable/footnotes_header" />
 
     	<ListView
@@ -71,8 +71,8 @@
 	    	android:layout_marginRight="15dp"
 	    	android:layout_marginBottom="15dp"
 	    	android:layout_marginTop="0dp"
-	    	android:cacheColorHint="#ffffff"
-        	android:background="#ffffff" >
+	    	android:cacheColorHint="#dfdfdf"
+        	android:background="#dfdfdf" >
     	</ListView>
 	</RelativeLayout>
 
