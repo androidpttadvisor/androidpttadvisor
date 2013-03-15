@@ -523,10 +523,10 @@ public class MainView extends Activity {
     	// set buttons appearance if it has been selected
     	Button b0 = (Button)findViewById(R.id.answerButton0);
     	Button b1 = (Button)findViewById(R.id.answerButton1);
-    	b0.setBackgroundResource(R.drawable.button_regular);
-    	b1.setBackgroundResource(R.drawable.button_regular);
-    	//b0.setSelected(false);
-		//b1.setSelected(false);
+    	b0.setBackgroundResource(R.drawable.button_style);
+    	b1.setBackgroundResource(R.drawable.button_style);
+    	b0.setSelected(false);
+    	b1.setSelected(false);
     	
     	
     	if (position < farthestPositionReached) {
@@ -539,24 +539,25 @@ public class MainView extends Activity {
         	case 1:
         		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
     				//b0.setText(b0.getText()+ "  --  The Chosen One!");
-    				b0.setBackgroundResource(R.drawable.button_down);
+    				//b0.setBackgroundResource(R.drawable.button_down);
+    				b0.setSelected(true);
     			} else {
     				//b0.setBackgroundColor(android.graphics.Color.LTGRAY);
-    				b0.setBackgroundResource(R.drawable.button_regular);
+    				//b0.setBackgroundResource(R.drawable.button_regular);
+    				b0.setSelected(false);
     			}
         		break;
         	default:
         		if (answers.get(0).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
-        			b0.setBackgroundResource(R.drawable.button_down);
-        			b1.setBackgroundResource(R.drawable.button_regular);
-        			Log.d("SET","setting b0 selected true");
-        			//b0.setSelected(true);
-        			//b1.setSelected(false);
+        			//b0.setBackgroundResource(R.drawable.button_down);
+        			//b1.setBackgroundResource(R.drawable.button_regular);
+        			b0.setSelected(true);
+        			b1.setSelected(false);
     			} else if (answers.get(1).getNodeId() == mHistory.get(position).getAnswerChosen().getNodeId()) {
-    				b0.setBackgroundResource(R.drawable.button_regular);
-        			b1.setBackgroundResource(R.drawable.button_down);
-    				//b0.setSelected(false);
-        			//b1.setSelected(true);
+    				//b0.setBackgroundResource(R.drawable.button_regular);
+        			//b1.setBackgroundResource(R.drawable.button_down);
+    				b0.setSelected(false);
+        			b1.setSelected(true);
     			}
         		break;
         	}
