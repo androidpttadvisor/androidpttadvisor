@@ -38,7 +38,7 @@
         },
         {
             "id":"2",
-            "question":"Rule out presence of heparin and LMWH-- by history, by performing a PTT after treating plasma with a heparin degrading enzyme, or by performing a thrombin time (LMWH may not prolong thrombin time).",
+            "question":"Rule out presence of heparin and LMWH-- by history, by performing a PTT after treating plasma with a heparin degrading enzyme, or by performing a thrombin time (LMWH may not prolong thrombin time).  [see footnotes]",
             "answers":[
                 {
                     "nodeId":"3",
