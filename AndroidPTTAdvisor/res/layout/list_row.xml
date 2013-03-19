@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/history_list_selector"
+    android:background="@drawable/history_row_selector_rounded_top"
     android:orientation="horizontal"
     android:padding="5dip" >
  
@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:padding="3dip"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/icon"
         android:layout_marginRight="5dip">
  
         <ImageView
             android:id="@+id/list_image"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:paddingRight="6dp"
+            android:paddingLeft="4dp"
             android:src="@drawable/history_question_icon"/>
  
     </LinearLayout>

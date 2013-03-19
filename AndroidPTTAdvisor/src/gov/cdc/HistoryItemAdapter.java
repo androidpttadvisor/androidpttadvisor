@@ -75,6 +75,14 @@ public class HistoryItemAdapter extends BaseAdapter {
 		answer.setText(mHistory.get(position).getAnswerChosen().answer);
 		//view.setTextAppearance(mContext, R.style.blackMedium);
 		
+		if (position == 0) {
+			vi.setBackgroundResource(R.drawable.history_row_selector_rounded_top);
+		} else if (position == getCount() - 1) {
+			vi.setBackgroundResource(R.drawable.history_row_selector_rounded_bottom);
+		} else {
+			vi.setBackgroundResource(R.drawable.history_row_selector_middle);
+		}
+		
 		return vi;
 	}
 

@@ -2,11 +2,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="#ffffff" >
+    android:background="@drawable/history_background" >
 	
     
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,16 +45,36 @@
         
 
 		</RelativeLayout>
+		
+    <TextView
+            android:id="@+id/completedStepsTextView"
+            android:layout_below="@+id/titleBar"
+            android:paddingLeft="10dp"
+            android:paddingTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Completed Steps"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
+            android:textColor="#fff"
+            android:textSize="20dp" />
 
     <ListView
         android:id="@+id/my_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleBar"
-        android:layout_centerHorizontal="true"
-        android:textSize="20dp" 
+        android:layout_below="@+id/completedStepsTextView"
         android:cacheColorHint="#ffffff"
-        android:background="#ffffff">
+        android:paddingTop="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:textSize="20dp" >
+
     </ListView>
 
 </RelativeLayout>
