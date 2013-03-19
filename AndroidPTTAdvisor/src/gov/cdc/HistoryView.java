@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.content.Intent;
 
+
 public class HistoryView extends Activity {
 	
 	private ArrayList<PTTHistoryItem> mHistory;
@@ -27,6 +28,8 @@ public class HistoryView extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        
         
      // Make the application Full-Screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -44,7 +47,7 @@ public class HistoryView extends Activity {
         final ListView myListView = (ListView)findViewById(R.id.my_list_view);
         
         // Create the adapter
-        final HistoryItemAdapter historyItemAdapter = new HistoryItemAdapter(this);
+        final HistoryItemAdapter historyItemAdapter = new HistoryItemAdapter(this, MainView.mHistory);
         
         //arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, new String[]{"Dave","Satya","Dylan"});
         
