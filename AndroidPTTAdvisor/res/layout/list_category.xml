@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/history_row_selector_rounded_top"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+ 
+ 
+    
+    <TextView
+            android:id="@+id/currentStepTextView"
+            android:paddingLeft="10dp"
+            android:paddingTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Current Step"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+ 
+    
+ 
+
+ 
+</RelativeLayout>

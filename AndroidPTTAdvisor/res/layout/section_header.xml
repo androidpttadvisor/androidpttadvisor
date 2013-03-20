@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/completedStepsTextView"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Current Step"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
+            android:textColor="#fff"
+            android:textSize="20dp" />

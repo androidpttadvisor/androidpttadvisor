@@ -606,6 +606,7 @@ public class MainView extends Activity {
     	// TODO Auto-generated method stub
     	super.onActivityResult(requestCode, resultCode, data);
     	if(resultCode==1){
+    		// TODO: there are problems with this if we use this call when tapping the "Current Step/Recommendation" thingie from the History List
     		int positionToNavigateTo = data.getIntExtra("nodeToNavigateTo",0);
     		Log.d("RETURNED. GOTO POS: ",Integer.toString(positionToNavigateTo));
     		Log.d("Quest to goto: ", mHistory.get(positionToNavigateTo).getNode().getQuestion());
@@ -617,6 +618,10 @@ public class MainView extends Activity {
     		navigateToAnotherNode(nodeIdToGoTo);
     		
     		
+    	}
+    	//TODO: probably should implement this for hitting the Curr Step option"
+    	if(resultCode==2) {
+    		Log.d("HIT CURR STEP","the user just hit the Current Step option on the history view");
     	}
     	else{
     		// This means that the user hit the "Done" button, and thus did not select a question to return to.
