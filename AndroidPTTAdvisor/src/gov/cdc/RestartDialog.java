@@ -26,10 +26,6 @@ public class RestartDialog extends Activity {
         setContentView(R.layout.restart_dialog);
     }
 
-    public void onClick(View v) {
-        showDialog(0);
-    }
-
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
