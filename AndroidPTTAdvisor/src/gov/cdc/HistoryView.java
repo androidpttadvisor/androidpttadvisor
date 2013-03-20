@@ -3,11 +3,6 @@ package gov.cdc;
 //Author: Paul Brown
 //Originally created on 2013-01-29
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -17,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,9 +19,6 @@ import android.content.Intent;
 
 
 public class HistoryView extends Activity {
-	
-	private ArrayList<PTTHistoryItem> mHistory;
-	private ArrayAdapter<String> arrayAdapter;
 	
 	SectionedAdapter adapter;
 	
@@ -86,9 +77,7 @@ public class HistoryView extends Activity {
         adapter.addSection(sectionHeaderText, historyItemAdapter2);
         
         //bind adapter to the AdapterView
-        //myListView.setAdapter(historyItemAdapter);
         myListView.setAdapter(adapter);
-        //myListView.setAdapter(arrayAdapter);
         
         myListView.setOnItemClickListener(new OnItemClickListener() {
         	

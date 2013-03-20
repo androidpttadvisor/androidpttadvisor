@@ -18,7 +18,7 @@ import android.webkit.WebView;
 /**
  *  A class to display a EULA dialog if 1) it's never been agreed to before or 2) the app's version
  *  number was updated
- * @author Will
+ *  @author Will
  *
  */
 public class Eula {

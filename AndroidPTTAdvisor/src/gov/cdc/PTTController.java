@@ -1,22 +1,23 @@
 package gov.cdc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.util.Log;
 import android.content.Context;
 import java.io.IOException;
 import java.io.InputStream;
+import android.util.SparseArray;
 
 public class PTTController {
-	
-	HashMap<Integer, PTTNode> nodes;
+
+	// a mapping of nodeIds to PTTNode objects
+	SparseArray<PTTNode> nodes;
+
+	// the current node being displayed 
 	PTTNode currentNode;
+	
 	int historyPosition;
 	ArrayList<PTTHistoryItem> history;
 	private Context context;
@@ -38,7 +39,7 @@ public class PTTController {
 	 * Read in the local DTNode.json file, parse it into PTTNode objects, and return them all in a HashMap.
 	 * @return a HashMap of the PTTNodes defined in the /assets/DTNode.json
 	 */
-    private HashMap<Integer, PTTNode> parseJson() {
+    private SparseArray<PTTNode> parseJson() {
     	/**
     	 * Read in the local JSON file from assets/DTNode.json and convert it to a string.
     	 */
@@ -55,7 +56,7 @@ public class PTTController {
             e1.printStackTrace();
         } 
         
-    	HashMap<Integer, PTTNode> pttnodes = new HashMap<Integer, PTTNode>();
+    	SparseArray<PTTNode> pttnodes = new SparseArray<PTTNode>();
     	try {
     		JSONObject jsonObj = new JSONObject(jsonString);
     		JSONArray nodes = jsonObj.getJSONArray("nodes");
@@ -115,7 +116,7 @@ public class PTTController {
 	//returns the header image for a node
 	public String getHeaderImageForNodeNumber(int nodeNumber) {
 		PTTNode n = this.nodes.get(nodeNumber);
-		return n.getPathToHeaderImage();
+		return n.getHeaderImage();
 	}
 	
 	
@@ -169,7 +170,7 @@ public class PTTController {
 	
 	
 	
-	public HashMap<Integer, PTTNode> getNodes() {
+	public SparseArray<PTTNode> getNodes() {
 		return nodes;
 	}
 

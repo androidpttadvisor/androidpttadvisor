@@ -5,10 +5,7 @@ package gov.cdc;
 // Serious amount of help from this blog post: http://www.androidhive.info/2012/02/android-custom-listview-with-image-and-text/
 
 import java.util.ArrayList;
-import java.util.ResourceBundle.Control;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -19,9 +16,7 @@ import android.app.Activity;
 
 public class HistoryCurrentAdapter extends BaseAdapter {
 	
-	private Context mContext;
 	public static ArrayList<PTTHistoryItem> mHistory;
-	private int mPosition;
 	private Activity activity;
 	private static LayoutInflater inflater=null;
 	public static PTTController controller;
@@ -31,8 +26,6 @@ public class HistoryCurrentAdapter extends BaseAdapter {
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		// TODO Auto-generated constructor stub
-		
-		mPosition = position;
 		
 		// This feels so wrong. It very well might be wrong
 		controller = MainView.controller;
@@ -45,7 +38,6 @@ public class HistoryCurrentAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		//Log.d("Adapter mHistory Size: ", Integer.toString(mHistory.size()));
 		return 1;
 		
 	}
@@ -84,8 +76,6 @@ public class HistoryCurrentAdapter extends BaseAdapter {
 		title.setText(n.getQuestion());
 		
 		int numOfAns = n.getAnswers().size();
-		//view.setTextAppearance(mContext, R.style.blackMedium);
-		
 		
 		vi.setBackgroundResource(R.drawable.history_row_selector_both);
 		

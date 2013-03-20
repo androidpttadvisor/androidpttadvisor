@@ -1,19 +1,11 @@
 package gov.cdc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import gov.cdc.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.WindowManager;
 import android.view.Window;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
@@ -30,7 +21,6 @@ import android.graphics.drawable.Drawable;
 import android.text.method.ScrollingMovementMethod;
 
 public class MainView extends Activity {
-	
 
     int position = 0;
     int farthestPositionReached = 0;
@@ -39,15 +29,12 @@ public class MainView extends Activity {
     //Make a public static variable for the controller.history
     public static ArrayList<PTTHistoryItem> mHistory;
     
-    private String headerImagePath;
-    private String headerImage;
     private ImageButton button1; 
     private ImageButton button2; 
     private ImageButton button3; 
     private ImageButton button4; 
     private ImageButton button5;
     private Button footnotesButton;
-    private String answerChosenNodeId;
     
     
     @Override
@@ -67,11 +54,6 @@ public class MainView extends Activity {
         //Make a new member variable for the history. We'll use this to update it. Or maybe not needed.
         mHistory = controller.history;
         
-        
-        headerImage = controller.getHeaderImageForNodeNumber(0);
-
-        
-        
         // Hide the title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -82,9 +64,7 @@ public class MainView extends Activity {
         //Get image path and put image into node header image
         ImageView headerImageView = new ImageView(this);
         headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
-        headerImagePath = controller.getHeaderImageForNodeNumber(currentNode.getId());
-        //Log.d("IMAGE", headerImagePath);
-        String imageString = "drawable/" + currentNode.getPathToHeaderImage();
+        String imageString = "drawable/" + currentNode.getHeaderImage();
         //Log.d("IMAGESTRING", imageString);
         int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
         Drawable image = getResources().getDrawable(imageResource);
@@ -207,9 +187,7 @@ public class MainView extends Activity {
       //Get image path and put image into node header image
         ImageView headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
         
-        headerImagePath = controller.getHeaderImageForNodeNumber(nodeId);
-        //Log.d("IMAGE", headerImagePath);
-        String imageString = "drawable/" + controller.currentNode.getPathToHeaderImage();
+        String imageString = "drawable/" + controller.currentNode.getHeaderImage();
         //Log.d("IMAGESTRING", imageString);
         int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
         Drawable image = getResources().getDrawable(imageResource);
@@ -552,7 +530,6 @@ public class MainView extends Activity {
     	if (position < farthestPositionReached) {
     		Log.d("BUTTON DECOR","we should decorate a button");
     		Log.d("answer of button to decorate:",mHistory.get(position).getAnswerChosen().getAnswer());
-    		answerChosenNodeId = Integer.toString(mHistory.get(position).getAnswerChosen().getNodeId());
     		switch (answers.size()) {
         	case 0:
         		break;

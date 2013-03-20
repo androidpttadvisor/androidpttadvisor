@@ -18,7 +18,6 @@ import android.app.Activity;
 
 public class HistoryCompletedAdapter extends BaseAdapter {
 	
-	private Context mContext;
 	public static ArrayList<PTTHistoryItem> mHistory;
 	private Activity activity;
 	private static LayoutInflater inflater=null;
@@ -78,7 +77,6 @@ public class HistoryCompletedAdapter extends BaseAdapter {
 		title.setText("Q: " + mHistory.get(position).getNode().getQuestion());
 		answer.setText(mHistory.get(position).getAnswerChosen().answer);
 		int numOfAns = mHistory.get(position).getNode().getAnswers().size();
-		//view.setTextAppearance(mContext, R.style.blackMedium);
 		
 		if ( (position == 0) && (position == getCount() - 1) ) {
 			vi.setBackgroundResource(R.drawable.history_row_selector_both);

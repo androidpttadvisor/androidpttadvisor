@@ -3,17 +3,20 @@ package gov.cdc;
 import gov.cdc.R;
 import android.os.Bundle;
 import android.app.ListActivity;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
+//import android.widget.ImageView;
+//import android.widget.ListView;
 import java.util.ArrayList;
 
+/**
+ * Just a basic view for footnotes.  It uses the built-in ArrayAdapter for the grunt work.
+ * @author Will
+ *
+ */
 public class FootnotesView extends ListActivity {
 	
 	@Override
@@ -22,20 +25,20 @@ public class FootnotesView extends ListActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_footnotes_view);
 		
+		// Registering the "finish" action to the "Done" button
 		final Button doneButton = (Button)findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //startActivity(new Intent(MyActivity.this,ActivityEins.class));
-            	Log.d("TEST","TEST");
             	finish();
             }
         });
-		
+
+        // Get an ArrayList of footnote strings for this node and pass it off to the arrayAdapter
 		ArrayList<String> footnotes = MainView.controller.currentNode.getFootnotes();
 		String [] footnotes_array = footnotes.toArray(new String[footnotes.size()]);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.footnote_item, footnotes_array);
 		setListAdapter(adapter);
-		// setContentView(R.layout.activity_footnotes_view);
+
 	}
 
 	@Override
