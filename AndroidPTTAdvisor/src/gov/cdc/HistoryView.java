@@ -70,15 +70,20 @@ public class HistoryView extends Activity {
         final HistoryCompletedAdapter historyItemAdapter = new HistoryCompletedAdapter(this, MainView.mHistory);
         
         // Create the adapter for the current/recommendation step
-        ArrayList<PTTHistoryItem> tempHistory = new ArrayList<PTTHistoryItem>();
-        PTTHistoryItem phi = MainView.mHistory.get(MainView.mHistory.size()-1);
-        tempHistory.add(phi);
-        
+        // The HistoryCurrentAdapter automatically puts in the info for the current node
         final HistoryCurrentAdapter historyItemAdapter2 = new HistoryCurrentAdapter(this, 0);
         
         
         adapter.addSection("Completed Steps", historyItemAdapter);
-        adapter.addSection("Current Step", historyItemAdapter2);
+        
+        String sectionHeaderText = "";
+        if (MainView.controller.currentNode.getAnswers().size() == 0) {
+        	sectionHeaderText = "Recommendation";
+        }
+        else {
+        	sectionHeaderText = "Current Step";
+        }
+        adapter.addSection(sectionHeaderText, historyItemAdapter2);
         
         //bind adapter to the AdapterView
         //myListView.setAdapter(historyItemAdapter);
@@ -90,10 +95,20 @@ public class HistoryView extends Activity {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         		Intent i = getIntent();
-        		// the -1 is to account for the section header. item formerly at 0 is now 1, and needs to point to 0
-        		i.putExtra("nodeToNavigateTo", position-1);
-        		setResult(1,i);
-        		finish();
+        		Log.d("TOUCH","touched cell at position: "+Integer.toString(position));
+        		Log.d("mHistory.size",Integer.toString(MainView.mHistory.size()));
+        		if (position == MainView.mHistory.size()+2) {
+        			Log.d("finish","finished with a 2");
+        			setResult(2);
+        			finish();
+        		}
+        		else {
+        			Log.d("finish","finished with a 1");
+	        		// the -1 is to account for the section header. item formerly at 0 is now 1, and needs to point to 0
+	        		i.putExtra("nodeToNavigateTo", position-1);
+	        		setResult(1,i);
+	        		finish();
+        		}
         	}
         });
         
