@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.Window;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 import android.content.Context;
@@ -45,8 +44,10 @@ public class MainView extends Activity {
         /**
          * Display the EULA.  Eula.show() will only show the EULA if
          * the user has not previously agreed to the current version's EULA.
+         * the false here indicates not to force it-- only show if the version
+         * has been updated or they haven't already agreed to it.
          */
-        new Eula(this).show();
+        new Eula(this).show(false);
         
         // TODO: Answer me this: Are we creating an entirely new controller here? Or wait, is this our only controller?
         controller = new PTTController(this.getApplicationContext());
@@ -55,7 +56,7 @@ public class MainView extends Activity {
         mHistory = controller.history;
         
         // Hide the title bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.main);
                 

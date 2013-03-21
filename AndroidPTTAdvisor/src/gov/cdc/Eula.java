@@ -14,6 +14,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.webkit.WebView;
+import android.util.Log;
 
 /**
  *  A class to display a EULA dialog if 1) it's never been agreed to before or 2) the app's version
@@ -56,15 +57,16 @@ public class Eula {
 	 * Main method.  Decides whether or not to display the EULA dialog; if so, display it.  If the 
 	 * user agrees, close the dialog and continue the app.  If the user cancels, kill the app. 
 	 */
-    public void show() {
+    public void show(boolean forceShow) {
         PackageInfo versionInfo = getPackageInfo();
 
         // the eulaKey changes every time you increment the version number in the AndroidManifest.xml
         final String eulaKey = EULA_PREFIX + versionInfo.versionCode;
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mActivity);
         boolean hasBeenShown = prefs.getBoolean(eulaKey, false);
-        if(hasBeenShown == false){
-
+Log.d("EULA", "Eula show() called");
+        if(hasBeenShown == false || forceShow){
+        	Log.d("EULA", "showing the dialog!");
         	// create the WebView displaying the EULA html file
             WebView webView = new WebView(mActivity);
             webView.loadUrl("file:///android_asset/html/eula.html");

@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">PTT Advisor</string>
-    <string name="imageview_contentDescription">center image</string><string name="contentDescription_done_button">Done Button</string>
+    <string name="imageview_contentDescription">center image</string>
+    <string name="contentDescription_done_button">Done Button</string>
     <string name="contentDescription_previous_button">contentDescription_previous_button</string>
     <string name="contentDescription_next_button">contentDescription_next_button</string>
     <string name="contentDescription_farthest_button">contentDescription_farthest_button</string>
@@ -17,6 +18,15 @@
     <string name="title_activity_help_view">Help</string>
     <string name="title_activity_info_view">About</string>
     <string name="title_activity_footnotes_view">FootnotesView</string>
-    
+    <string name="infoText">This prototype of PTT Advisor for Android contains a collection of diagnostic algorithms to guide evaluation of patients with prolonged Partial Thromboplastin Time (PTT).\n
+\n
+Algorithm Authors:\n
+Michael Laposata, MD, PhD\n
+Department of Pathology, Vanderbilt University\n
+School of Medicine, Nashville, Tennessee\n
+Marisa B. Marques, MD\n
+Department of Pathology, University of Alabama at Birmingham, Alabama\n
+Oxana Tcherniantchouk, MD\n
+Department of Pathology, Cedars-Sinai Hospital, Los Angeles California</string>
 
 </resources>
