@@ -13,8 +13,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.webkit.WebView;
-import android.util.Log;
+import android.view.View;
 
 /**
  *  A class to display a EULA dialog if 1) it's never been agreed to before or 2) the app's version
@@ -52,7 +53,8 @@ public class Eula {
         }
         return pi;
     }
-	
+
+
 	/**
 	 * Main method.  Decides whether or not to display the EULA dialog; if so, display it.  If the 
 	 * user agrees, close the dialog and continue the app.  If the user cancels, kill the app. 
@@ -64,16 +66,25 @@ public class Eula {
         final String eulaKey = EULA_PREFIX + versionInfo.versionCode;
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mActivity);
         boolean hasBeenShown = prefs.getBoolean(eulaKey, false);
-Log.d("EULA", "Eula show() called");
+
         if(hasBeenShown == false || forceShow){
-        	Log.d("EULA", "showing the dialog!");
-        	// create the WebView displaying the EULA html file
-            WebView webView = new WebView(mActivity);
-            webView.loadUrl("file:///android_asset/html/eula.html");
-            
+
             // build the dialog box, setting the content as the webview above
             AlertDialog.Builder dialog = new AlertDialog.Builder(mActivity);
-            dialog.setView(webView);
+
+            // Inflate the activty_eula_webview.xml view
+            LayoutInflater factory = LayoutInflater.from(mActivity);
+            View view = factory.inflate(R.layout.activity_eula_webview, null);
+
+            // get the child WebView and populate it with the content of assets/eula.html
+            WebView webView = (WebView) view.findViewById(R.id.eulaWebView);
+            webView.loadUrl("file:///android_asset/html/eula.html");
+            
+            // Set the View for this dialog
+            dialog.setView(view);
+            
+            // default behavior-- assumes this is the accept/decline dialog shown when first starting the app
+            if (!forceShow) {
             dialog.setPositiveButton("Accept", new Dialog.OnClickListener() {
 
                 @Override
@@ -94,6 +105,17 @@ Log.d("EULA", "Eula show() called");
         		} 
                     
             });
+            } else {
+            	// if forceShow is true, then only show a "Dismiss" button
+            	dialog.setNeutralButton("Dismiss", new Dialog.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+            }
+
             dialog.show();
         } 
     }
