@@ -3,6 +3,7 @@ package gov.cdc;
 // Author: Paul Brown
 // Originally created on 2013-01-29
 // Serious amount of help from this blog post: http://www.androidhive.info/2012/02/android-custom-listview-with-image-and-text/
+// This List Adapter takes care of the node in the HistoryView that the user is currently at
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -57,35 +58,40 @@ public class HistoryCurrentAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		
-		//TextView view = null;
-		View vi = convertView;
+		View view = convertView;
 		
 		if (convertView == null) {
 			// If it's not recycled, initialize a new view
-			vi = inflater.inflate(R.layout.list_row, null);
+			view = inflater.inflate(R.layout.list_row, null);
 		}
 		
-		TextView title = (TextView)vi.findViewById(R.id.title);
+		// Grab and assign references to the elements from the layout file (list_row.xml)
+		TextView questionAnswered = (TextView)view.findViewById(R.id.questionAnswered);
+		ImageView imageView = (ImageView)view.findViewById(R.id.list_image);
 		
-		ImageView iv = (ImageView)vi.findViewById(R.id.list_image);
+		// Grab the answer view and then make it go away, to avoid having a blank space at the bottom,
+		// because this question hasn't been answered yet
+		TextView answer = (TextView)view.findViewById(R.id.answer);
+		answer.setVisibility(View.GONE);
 		
-		
+		// Grab the current node so we can then get the question the user is currently at
 		PTTNode n = controller.currentNode;
+		questionAnswered.setText(n.getQuestion());
 		
-		title.setText(n.getQuestion());
+		// Grab the number of answers for the particular question (to determine if its a question, info, or recommendation node)
+		int numberOfAnswersForQuestion = n.getAnswers().size();
 		
-		int numOfAns = n.getAnswers().size();
+		// This element always stands alone, so it gets both top and bottom rounded
+		view.setBackgroundResource(R.drawable.history_row_selector_both);
 		
-		vi.setBackgroundResource(R.drawable.history_row_selector_both);
-		
-		if (numOfAns == 1) {
-			iv.setImageResource(R.drawable.history_statement_icon);
-		} else if (numOfAns == 2) {
-			iv.setImageResource(R.drawable.history_question_icon);
+		// Assign the appropriate icon based on what type of question it is
+		if ( (numberOfAnswersForQuestion == 1) || (numberOfAnswersForQuestion == 0) ) {
+			imageView.setImageResource(R.drawable.history_statement_icon);
+		} else if (numberOfAnswersForQuestion == 2) {
+			imageView.setImageResource(R.drawable.history_question_icon);
 		}
 		
-		return vi;
+		return view;
 	}
 
 }
