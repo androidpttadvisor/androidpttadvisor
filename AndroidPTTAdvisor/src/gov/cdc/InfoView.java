@@ -24,6 +24,14 @@ public class InfoView extends Activity {
 		setContentView(R.layout.activity_info_view);
 		mActivity = this;
 		
+		// Registering the "finish" action to the "Done" button
+				final Button doneButton = (Button)findViewById(R.id.doneButton);
+		        doneButton.setOnClickListener(new View.OnClickListener() {
+		            public void onClick(View view) {
+		            	finish();
+		            }
+		        });
+		
 		String version = "Version " + getVersionNumber();
 		TextView tv = (TextView)findViewById(R.id.infoVersionNum);
         tv.setText(version);

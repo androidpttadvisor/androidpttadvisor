@@ -3,7 +3,10 @@ package gov.cdc;
 import gov.cdc.R;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
 import android.webkit.WebView;
+import android.widget.Button;
 
 /**
  * A simple activity to display the help.html page.  All this does is set the webView's content to assets/help.html.
@@ -11,6 +14,7 @@ import android.webkit.WebView;
  *
  */
 public class HelpView extends Activity {
+	
 	
 	private WebView webView;
 	
