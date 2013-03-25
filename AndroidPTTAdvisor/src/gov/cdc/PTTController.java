@@ -6,8 +6,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.util.Log;
 import android.content.Context;
-import java.io.IOException;
-import java.io.InputStream;
 import android.util.SparseArray;
 
 public class PTTController {
@@ -29,84 +27,11 @@ public class PTTController {
 		this.context = c;
 		history = new ArrayList<PTTHistoryItem>();
 		
-		
-		this.nodes = parseJson();
-		
+		JsonHandler jsonHandler = new JsonHandler(context);
+		this.nodes = jsonHandler.getNodesFromJson();
 		this.currentNode = nodes.get(0);
 	}
 	
-	/**
-	 * Read in the local DTNode.json file, parse it into PTTNode objects, and return them all in a HashMap.
-	 * @return a HashMap of the PTTNodes defined in the /assets/DTNode.json
-	 */
-    private SparseArray<PTTNode> parseJson() {
-    	/**
-    	 * Read in the local JSON file from assets/DTNode.json and convert it to a string.
-    	 */
-    	String jsonString = "";
-        InputStream file;
-        try {
-            file = this.context.getAssets().open("DTNode.json");
-            byte[] data = new byte[file.available()];
-            file.read(data);
-            file.close();
-            jsonString = new String(data);
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } 
-        
-    	SparseArray<PTTNode> pttnodes = new SparseArray<PTTNode>();
-    	try {
-    		JSONObject jsonObj = new JSONObject(jsonString);
-    		JSONArray nodes = jsonObj.getJSONArray("nodes");
-    		for (int i = 0; i < nodes.length(); i++) {
-    			// extract node i from the array of nodes
-    			JSONObject node = nodes.getJSONObject(i);
-    		
-    			// Pull out the strings
-    			int id = node.getInt("id");
-    			String question = node.getString("question");
-    			// Add the node id to the question string for editing/debugging purposes
-    			// REMOVE THIS LATER
-    			question = "Node " + Integer.toString(id) + ":\n\n" + question;
-    			String image = node.getString("image");
-    		
-    			//  Pull out the array of answers
-    			JSONArray answers = node.getJSONArray("answers");
-
-    			// for each answer, get the string/id pair and create an ArrayList of answers
-    			ArrayList<PTTAnswer> pttAnswers = new ArrayList<PTTAnswer>();
-    			for (int j = 0; j < answers.length(); j++) {
-    				JSONObject answer = answers.getJSONObject(j);
-    				int nodeId = answer.getInt("nodeId");
-    				String answerStr = answer.getString("answer");
-    			
-    				// create a new pttAnswer and add it to the list
-    				PTTAnswer pttAnswer = new PTTAnswer(nodeId, answerStr);
-    				pttAnswers.add(pttAnswer);
-    			}
-    		
-    			// Ditto for the footnotes
-    			JSONArray fnJson = node.getJSONArray("footnotes");
-    			ArrayList<String> footnotes = new ArrayList<String>();
-    			for (int j = 0; j < fnJson.length(); j++) {
-    				footnotes.add(fnJson.getString(j));
-    			}
-    		
-    			// create the PTTNode and add it to the ArrayList of them
-    			PTTNode pttNode = new PTTNode(id, question, pttAnswers, image, footnotes);
-    			Log.d("JSON Parser", "Made node: " + id);
-    			pttnodes.put(id, pttNode);
-    		} // done with nodes loop
-    	} catch (JSONException e) {
-    		Log.d("JSON error: ", e.getMessage());
-    	}
-    	Log.d("JSON", "Finished parsing");
-    	return pttnodes;
-    }
-	
-
 	//this method returns the question for a particular node
 	public String getQuestionForNodeNumber(int nodeNumber) {
 		PTTNode n = this.nodes.get(nodeNumber);

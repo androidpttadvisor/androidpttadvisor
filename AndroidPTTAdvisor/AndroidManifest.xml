@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="10" />
-
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:icon="@drawable/icon"
         android:theme="@android:style/Theme.NoTitleBar"
@@ -19,9 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="gov.cdc.ActivityEins"
-            android:label="activity_eins" />
         <activity
             android:name="gov.cdc.RestartDialog"
             android:label="restartdialog" />
