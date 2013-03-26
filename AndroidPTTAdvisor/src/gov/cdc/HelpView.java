@@ -26,5 +26,15 @@ public class HelpView extends Activity {
 		webView = (WebView) findViewById(R.id.helpView);
 
 		webView.loadUrl("file:///android_asset/html/help.html");
+		
+		// Registering the "finish" action to the "Done" button
+				final Button doneButton = (Button)findViewById(R.id.doneButton);
+		        doneButton.setOnClickListener(new View.OnClickListener() {
+		            public void onClick(View view) {
+		            	finish();
+		            }
+		        });
 	}
+	
+	
 }
