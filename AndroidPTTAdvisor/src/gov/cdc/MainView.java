@@ -48,7 +48,7 @@ public class MainView extends Activity {
          * has been updated or they haven't already agreed to it.
          */
         new Eula(this).show(false);
-        
+        new JsonUpdaterTask(this).execute();
         // TODO: Answer me this: Are we creating an entirely new controller here? Or wait, is this our only controller?
         controller = new PTTController(this.getApplicationContext());
         

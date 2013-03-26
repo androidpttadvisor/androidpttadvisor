@@ -9,10 +9,14 @@ import java.net.URLConnection;
 import java.io.BufferedInputStream;
 
 import android.os.AsyncTask;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.util.Log;
+import android.widget.Toast;
 import android.content.Context;
 
-public class JsonUpdaterTask extends AsyncTask {
+public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 
 	private String UPDATEURL = "https://raw.github.com/androidpttadvisor/androidpttadvisor/master/AndroidPTTAdvisor/assets/DTNode.json";
 	private Context context;
@@ -22,7 +26,7 @@ public class JsonUpdaterTask extends AsyncTask {
 	}
 	
 	@Override
-	protected Object doInBackground(Object... params) {
+	protected String doInBackground(Void... params) {
 		String webJsonString = null;
 		String localJsonString = null;
 		try {
@@ -47,9 +51,12 @@ public class JsonUpdaterTask extends AsyncTask {
 			 */
 	        webJsonString = fileToString("jsonFromWeb.json");
 			
+	        return webJsonString;
+	        
 	        /**
 	         * ditto for the local, "Active" json file
 	         */
+/**
 	        localJsonString = fileToString("DTNode.json");
 	        
 	        if (webJsonString != null && webJsonString.equals(localJsonString)) {
@@ -57,12 +64,34 @@ public class JsonUpdaterTask extends AsyncTask {
 	        } else {
 	        	Log.d("JSON Updater", "Web version does not match local version!");
 	        	Log.d("JSON Updater", "Replacing local version with version from web!");
-	        	replaceLocalJson("jsonFromWeb.json", "DTNode.json");
+//	        	replaceLocalJson("jsonFromWeb.json", "DTNode.json");
+	        	AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle("Update Available")
+                .setMessage("There is an updated algorithm available.  Would you like to install it and restart PTT Advisor?")
+                .setPositiveButton(android.R.string.ok, new Dialog.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast toast = Toast.makeText(context, "Would replace JSON and restart", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    	Toast toast = Toast.makeText(context, "Would NOT replace JSON", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                });
+        builder.create().show();
 	        }
 			return true;
+			*/
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 	
@@ -94,6 +123,51 @@ public class JsonUpdaterTask extends AsyncTask {
 	        context.deleteFile(target);        
 	    }
 	    sourceFile.renameTo(targetFile);
-		
 	}
+	
+	/**
+	 * This gets called after doInBackground returns the webJsonString from the web
+	 * @param webJsonString JSON string from the web
+	 */
+	@Override
+	protected void onPostExecute(String webJsonString) {
+		Log.d("JSON Updater", "onPostExecute() got called");
+		String localJsonString = fileToString("DTNode.json");
+        if (this.context == null) {
+        	Log.d("JSON Updater", "Context is null!  Aborting!");
+        	return;
+        } else {
+        	Log.d("JSON Updater", "Context is NOT null!");
+        }
+        if (webJsonString != null && webJsonString.equals(localJsonString)) {
+        	Log.d("JSON Updater", "Web version matches local version!");
+        } else {
+        	Log.d("JSON Updater", "Web version does not match local version!");
+        	Log.d("JSON Updater", "Replacing local version with version from web!");
+        	Toast.makeText(context, "About to make a dialog", Toast.LENGTH_SHORT);
+        	AlertDialog.Builder builder = new AlertDialog.Builder(this.context)
+            .setTitle("Update Available")
+            .setMessage("There is an updated algorithm available.  Would you like to install it and restart PTT Advisor?")
+            .setPositiveButton(android.R.string.ok, new Dialog.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast toast = Toast.makeText(context, "Would replace JSON and restart", Toast.LENGTH_SHORT);
+                    toast.show();
+                    //replaceLocalJson("jsonFromWeb.json", "DTNode.json");
+                }
+            })
+            .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                	Toast toast = Toast.makeText(context, "Would NOT replace JSON", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+            });
+            builder.create().show();
+        }
+	}
+
 }

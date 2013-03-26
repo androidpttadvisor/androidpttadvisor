@@ -41,7 +41,7 @@ public class JsonHandler {
 			}
 		}
 		Log.d("JSON HANDLER", "about to run JsonUpdater...");
-		new JsonUpdaterTask(context).execute();
+		//new JsonUpdaterTask(context).execute();
 	}
 	
 	/**
@@ -161,7 +161,7 @@ public class JsonHandler {
     			String question = node.getString("question");
     			// Add the node id to the question string for editing/debugging purposes
     			// REMOVE THIS LATER
-    			question = "Node " + Integer.toString(id) + ":\n\n" + question;
+    			//question = "Node " + Integer.toString(id) + ":\n\n" + question;
     			String image = node.getString("image");
     		
     			//  Pull out the array of answers
