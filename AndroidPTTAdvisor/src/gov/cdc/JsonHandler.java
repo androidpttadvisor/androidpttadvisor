@@ -40,6 +40,7 @@ public class JsonHandler {
 				toast.show();
 			}
 		}
+		Log.d("JSON HANDLER", "about to run JsonUpdater...");
 		new JsonUpdaterTask(context).execute();
 	}
 	
