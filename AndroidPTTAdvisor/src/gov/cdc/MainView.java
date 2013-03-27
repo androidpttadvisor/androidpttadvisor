@@ -312,9 +312,9 @@ public class MainView extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.nav_button_restart);
-        builder.setTitle("Do you really want to restart?");
+        builder.setTitle("Are you sure you want to restart the patient evaluation?");
         builder.setInverseBackgroundForced(true);
-        builder.setPositiveButton("Yes, restart", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getBaseContext(),
                         "Restarting", Toast.LENGTH_SHORT).show();
