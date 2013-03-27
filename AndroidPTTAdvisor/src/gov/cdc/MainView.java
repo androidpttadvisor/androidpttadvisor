@@ -476,9 +476,14 @@ public class MainView extends Activity {
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setIcon(R.drawable.nav_button_restart);
-            builder.setTitle("You are about to change your answer. Are you sure?");
+            builder.setTitle("Change Decision Warning");
+            builder.setMessage("You are about to change your answer to Step X.  " +
+            		"Therefore any previous responses past Step X will be " +
+            		"discarded and you will be presented with new questions and " +
+            		"information at Step Y. Would you like to continue?");
+            		          		
             builder.setInverseBackgroundForced(true);
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                 	// Remove all items past the question being answered here, and reset the farthest position
             		controller.truncateHistory(position);
