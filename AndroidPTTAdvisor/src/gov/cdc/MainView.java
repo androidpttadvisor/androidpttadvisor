@@ -312,7 +312,8 @@ public class MainView extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.nav_button_restart);
-        builder.setTitle("Are you sure you want to restart the patient evaluation?");
+        builder.setTitle("Restart Patient Evaluation");
+        builder.setMessage("Are you sure you want to restart the patient evaluation?");
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
