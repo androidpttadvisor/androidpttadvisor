@@ -28,11 +28,11 @@ public class MainView extends Activity {
     //Make a public static variable for the controller.history
     public static ArrayList<PTTHistoryItem> mHistory;
     
-    private ImageButton button1; 
-    private ImageButton button2; 
-    private ImageButton button3; 
-    private ImageButton button4; 
-    private ImageButton button5;
+    private ImageButton navButtonPrev; 
+    private ImageButton navButtonNext; 
+    private ImageButton navButtonLast; 
+    private ImageButton navButtonRestart; 
+    private ImageButton navButtonHistory;
     private Button footnotesButton;
     
     
@@ -80,37 +80,41 @@ public class MainView extends Activity {
     	tv.setMovementMethod(new ScrollingMovementMethod()); 
     	tv.setText(currentNode.getQuestion());
     	
+        // update the "Step X" line at the bottom of the screen
+        TextView stepNumberLabel = (TextView) findViewById(R.id.stepNumberLabel);
+        stepNumberLabel.setText("Step " + (position + 1));
+    	
     	//Get answers and put them on the buttons.
     	updateButtons();
 
 
-        button1 = (ImageButton)findViewById(R.id.tabBarButton1);
-        button2 = (ImageButton)findViewById(R.id.tabBarButton2);
-        button3 = (ImageButton)findViewById(R.id.tabBarButton3);
-        button4 = (ImageButton)findViewById(R.id.tabBarButton4);
-        button5 = (ImageButton)findViewById(R.id.tabBarButton5);
+        navButtonPrev = (ImageButton)findViewById(R.id.navButtonPrev);
+        navButtonNext = (ImageButton)findViewById(R.id.navButtonNext);
+        navButtonLast = (ImageButton)findViewById(R.id.navButtonLast);
+        navButtonRestart = (ImageButton)findViewById(R.id.navButtonRestart);
+        navButtonHistory = (ImageButton)findViewById(R.id.navButtonHistory);
 
 
 
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        navButtonPrev.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	Log.d("NAV","button1");
+            	Log.d("NAV","navButtonPrev");
             	navigateBackToPreviousNode();
 
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        navButtonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	Log.d("NAV","button2");
+            	Log.d("NAV","navButtonNext");
             	navigateForwardToNode();
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        navButtonLast.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	Log.d("NAV","button3");
+            	Log.d("NAV","navButtonLast");
             	//I'm putting the logic all right here. I don't see (yet) any reason to put it in function
             	
             	int farthestNodeId = mHistory.get(mHistory.size()-1).getAnswerChosen().getNodeId();
@@ -126,10 +130,10 @@ public class MainView extends Activity {
         
         final Context context = this;
         
-        button5.setOnClickListener(new View.OnClickListener() {
+        navButtonHistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-            	Log.d("NAV","button5");
+            	Log.d("NAV","navButtonHistory");
                 controller.logHistoryItems();
                 Intent historyViewIntent = new Intent(context, HistoryView.class);
         		startActivityForResult(historyViewIntent, 1);
@@ -186,7 +190,7 @@ public class MainView extends Activity {
         TextView tv = (TextView)findViewById(R.id.questionTextView);
         tv.setText(controller.currentNode.getQuestion());
         
-      //Get image path and put image into node header image
+        //Get image path and put image into node header image
         ImageView headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
         
         String imageString = "drawable/" + controller.currentNode.getHeaderImage();
@@ -194,6 +198,10 @@ public class MainView extends Activity {
         int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
         Drawable image = getResources().getDrawable(imageResource);
         headerImageView.setImageDrawable(image);
+        
+        // update the "Step X" line at the bottom of the screen
+        TextView stepNumberLabel = (TextView) findViewById(R.id.stepNumberLabel);
+        stepNumberLabel.setText("Step " + (position + 1));
 
         updateButtons();
         //enableAllNavButtons();
@@ -207,29 +215,29 @@ public class MainView extends Activity {
     
 
     public void disableAllNavButtons() {
-    	button1.setEnabled(false);
-    	button1.setImageResource(R.drawable.nav_button_back_disabled);
-    	button2.setEnabled(false);
-    	button2.setImageResource(R.drawable.nav_button_next_disabled);
-    	button3.setEnabled(false);
-    	button3.setImageResource(R.drawable.nav_button_back_to_last_disabled);
-    	button4.setEnabled(false);
-    	button4.setImageResource(R.drawable.nav_button_restart_disabled);
-    	button5.setEnabled(false);
-    	button5.setImageResource(R.drawable.nav_button_review_disabled);
+    	navButtonPrev.setEnabled(false);
+    	navButtonPrev.setImageResource(R.drawable.nav_button_back_disabled);
+    	navButtonNext.setEnabled(false);
+    	navButtonNext.setImageResource(R.drawable.nav_button_next_disabled);
+    	navButtonLast.setEnabled(false);
+    	navButtonLast.setImageResource(R.drawable.nav_button_back_to_last_disabled);
+    	navButtonRestart.setEnabled(false);
+    	navButtonRestart.setImageResource(R.drawable.nav_button_restart_disabled);
+    	navButtonHistory.setEnabled(false);
+    	navButtonHistory.setImageResource(R.drawable.nav_button_review_disabled);
     }
     
     public void enableAllNavButtons() {
-    	button1.setEnabled(true);
-    	button1.setImageResource(R.drawable.nav_button_back);
-    	button2.setEnabled(true);
-    	button2.setImageResource(R.drawable.nav_button_next);
-    	button3.setEnabled(true);
-    	button3.setImageResource(R.drawable.nav_button_back_to_last);
-    	button4.setEnabled(true);
-    	button4.setImageResource(R.drawable.nav_button_restart);
-    	button5.setEnabled(true);
-    	button5.setImageResource(R.drawable.nav_button_review);
+    	navButtonPrev.setEnabled(true);
+    	navButtonPrev.setImageResource(R.drawable.nav_button_back);
+    	navButtonNext.setEnabled(true);
+    	navButtonNext.setImageResource(R.drawable.nav_button_next);
+    	navButtonLast.setEnabled(true);
+    	navButtonLast.setImageResource(R.drawable.nav_button_back_to_last);
+    	navButtonRestart.setEnabled(true);
+    	navButtonRestart.setImageResource(R.drawable.nav_button_restart);
+    	navButtonHistory.setEnabled(true);
+    	navButtonHistory.setImageResource(R.drawable.nav_button_review);
     }
     
     
@@ -237,38 +245,38 @@ public class MainView extends Activity {
     	Log.d("updateNavButtons","position: " + position + ", farthest: " + farthestPositionReached);
     	
     	if (position > 0) {
-    		button1.setEnabled(true);
-    		button1.setImageResource(R.drawable.nav_button_back);
-    		button4.setEnabled(true);
-        	button4.setImageResource(R.drawable.nav_button_restart);
-        	button5.setEnabled(true);
-        	button5.setImageResource(R.drawable.nav_button_review);
+    		navButtonPrev.setEnabled(true);
+    		navButtonPrev.setImageResource(R.drawable.nav_button_back);
+    		navButtonRestart.setEnabled(true);
+        	navButtonRestart.setImageResource(R.drawable.nav_button_restart);
+        	navButtonHistory.setEnabled(true);
+        	navButtonHistory.setImageResource(R.drawable.nav_button_review);
     	}
     	
     	//this is wrong. what if user goes all the way back to beginning? still need active buttons
     	if (farthestPositionReached > 0) {
-    		button5.setEnabled(true);
-        	button5.setImageResource(R.drawable.nav_button_review);
+    		navButtonHistory.setEnabled(true);
+        	navButtonHistory.setImageResource(R.drawable.nav_button_review);
     	}
     	
     	
     	
     	if (position < farthestPositionReached) {
     		//activate the forward buttons
-    		button2.setEnabled(true);
-        	button2.setImageResource(R.drawable.nav_button_next);
-    		button3.setEnabled(true);
-        	button3.setImageResource(R.drawable.nav_button_back_to_last);
+    		navButtonNext.setEnabled(true);
+        	navButtonNext.setImageResource(R.drawable.nav_button_next);
+    		navButtonLast.setEnabled(true);
+        	navButtonLast.setImageResource(R.drawable.nav_button_back_to_last);
     	} else if (position == farthestPositionReached) {
-    		button2.setEnabled(false);
-        	button2.setImageResource(R.drawable.nav_button_next_disabled);
-        	button3.setEnabled(false);
-        	button3.setImageResource(R.drawable.nav_button_back_to_last_disabled);
+    		navButtonNext.setEnabled(false);
+        	navButtonNext.setImageResource(R.drawable.nav_button_next_disabled);
+        	navButtonLast.setEnabled(false);
+        	navButtonLast.setImageResource(R.drawable.nav_button_back_to_last_disabled);
     	}
     	
     	if (position == 0) {
-    		button1.setEnabled(false);
-        	button1.setImageResource(R.drawable.nav_button_back_disabled);
+    		navButtonPrev.setEnabled(false);
+        	navButtonPrev.setImageResource(R.drawable.nav_button_back_disabled);
         	
     	}
     }
@@ -473,15 +481,19 @@ public class MainView extends Activity {
     	
     	// If we are selecting an answer that has been answered before
     	if ( (position != farthestPositionReached) && !buttonIsSelected) {
+    		// derive step numbers (position is zero-indexed)
+    		String curStep = Integer.toString(position + 1);
+    		String nextStep = Integer.toString(position + 2);
+    		
     		// Display dialog to let user know [s]he's changing history
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setIcon(R.drawable.nav_button_restart);
             builder.setTitle("Change Decision Warning");
-            builder.setMessage("You are about to change your answer to Step X.  " +
-            		"Therefore any previous responses past Step X will be " +
+            builder.setMessage("You are about to change your answer to Step " + curStep + ".  " +
+            		"Therefore any previous responses past Step " + curStep + " will be " +
             		"discarded and you will be presented with new questions and " +
-            		"information at Step Y. Would you like to continue?");
+            		"information at Step " + nextStep + ". Would you like to continue?");
             		          		
             builder.setInverseBackgroundForced(true);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

@@ -111,10 +111,9 @@
    	   	    <ImageButton
     	        android:id="@+id/doneButton"
     	        android:layout_centerHorizontal="true"
-    	        android:layout_alignParentBottom="true"
+    	        android:layout_above="@+id/stepNumberLabel"
     	        android:layout_width="91dp"
     	        android:layout_height="130dp"
-				android:layout_above="@+id/answerButton0"
 				android:src="@drawable/done_icon"
 				android:onClick="restartDone"
                 android:contentDescription="@string/contentDescription_done_button" />
@@ -137,8 +136,16 @@
     	        android:layout_marginLeft="90dp"
 				android:layout_marginRight="90dp"
 				android:layout_marginBottom="6dp"
-    	        android:layout_alignParentBottom="true"
+    	        android:layout_above="@+id/stepNumberLabel"
     	        android:background="@drawable/button_style" />
+    		
+    		<TextView
+    		    android:id="@+id/stepNumberLabel"
+    		    android:layout_width="wrap_content"
+    		    android:layout_centerHorizontal="true"
+    		    android:layout_alignParentBottom="true"
+    		    android:text="Step 0"
+    		    style="@style/graySmall" />
     	
     </RelativeLayout>
     
@@ -150,8 +157,8 @@
 		android:background="@drawable/navigation_bar_gradient_selector">
 
             <ImageButton
-                    android:id="@+id/tabBarButton1"
-                    android:layout_toLeftOf="@+id/tabBarButton2"
+                    android:id="@+id/navButtonPrev"
+                    android:layout_toLeftOf="@+id/navButtonNext"
                     android:layout_width="70dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="6dp"
@@ -162,8 +169,8 @@
                     android:contentDescription="@string/contentDescription_previous_button"
                     />
             <ImageButton
-                    android:id="@+id/tabBarButton2"
-                    android:layout_toLeftOf="@+id/tabBarButton3"
+                    android:id="@+id/navButtonNext"
+                    android:layout_toLeftOf="@+id/navButtonLast"
                     android:layout_width="70dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="6dp"
@@ -174,7 +181,7 @@
                     android:contentDescription="@string/contentDescription_next_button"
                     />
             <ImageButton
-                    android:id="@+id/tabBarButton3"
+                    android:id="@+id/navButtonLast"
                     android:layout_centerHorizontal="true"
                     android:layout_width="70dp"
                     android:layout_height="60dp"
@@ -186,8 +193,8 @@
                     android:contentDescription="@string/contentDescription_farthest_button"
                     />
             <ImageButton
-                    android:id="@+id/tabBarButton4"
-                    android:layout_toRightOf="@+id/tabBarButton3"
+                    android:id="@+id/navButtonRestart"
+                    android:layout_toRightOf="@+id/navButtonLast"
                     android:layout_width="70dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="6dp"
@@ -197,8 +204,8 @@
                     android:onClick="restart"
                     />
             <ImageButton
-                    android:id="@+id/tabBarButton5"
-                    android:layout_toRightOf="@+id/tabBarButton4"
+                    android:id="@+id/navButtonHistory"
+                    android:layout_toRightOf="@+id/navButtonRestart"
                     android:layout_width="70dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="6dp"
