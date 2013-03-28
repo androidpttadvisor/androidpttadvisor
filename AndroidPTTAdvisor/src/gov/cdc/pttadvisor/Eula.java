@@ -25,14 +25,15 @@ import android.view.View;
  *
  */
 public class Eula {
-	private Activity mActivity;
+	//private Activity mActivity;
+	private MainView mActivity;
 	
 	/**
 	 * Create the Eula object, with the app's context.
 	 * @param context
 	 */
 	public Eula(Activity context) {
-		mActivity = context;
+		mActivity = (MainView) context;
 	}
 	
 	/**
@@ -94,6 +95,9 @@ public class Eula {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putBoolean(eulaKey, true);
                     editor.commit();
+                    
+                    // they accepted, so kick off the initialization of the MainView
+                    mActivity.initialize();
                     dialogInterface.dismiss();
                 }
             });
@@ -118,9 +122,16 @@ public class Eula {
             }
 
             dialog.show();
-        } 
+        } else {
+        	// the EULA has already been shown before, so just go ahead and initialize the MainView()
+            mActivity.initialize();
+        }
     }
 	
+    /**
+     * A wrapper to tell whether or not the EULA has already been accepted in the past
+     * @return true if the EULA has been accepted before
+     */
     public boolean hasBeenAccepted() {
         PackageInfo versionInfo = getPackageInfo();
         final String eulaKey = EULA_PREFIX + versionInfo.versionCode;

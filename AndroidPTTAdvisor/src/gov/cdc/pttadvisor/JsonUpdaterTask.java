@@ -19,10 +19,10 @@ import android.content.Context;
 public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 
 	private String UPDATEURL = "https://raw.github.com/androidpttadvisor/androidpttadvisor/master/AndroidPTTAdvisor/assets/DTNode.json";
-	private Context context;
+	private MainView context;
 	
 	public JsonUpdaterTask (Context context) {
-		this.context = context;
+		this.context = (MainView) context;
 	}
 	
 	@Override
@@ -119,6 +119,7 @@ public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
                     replaceLocalJson("jsonFromWeb.json", "DTNode.json");
                     Toast toast = Toast.makeText(context, "Updated Algorithm", Toast.LENGTH_SHORT);
                     toast.show();
+                    context.initialize();
                 }
             })
             .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener() {

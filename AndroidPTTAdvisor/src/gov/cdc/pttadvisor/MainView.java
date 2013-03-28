@@ -40,6 +40,7 @@ public class MainView extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
         
         /**
          * Display the EULA.  Eula.show() will only show the EULA if
@@ -49,54 +50,51 @@ public class MainView extends Activity {
          */
         new Eula(this).show(false);
         
-        new JsonUpdaterTask(this).execute();
-        // TODO: Answer me this: Are we creating an entirely new controller here? Or wait, is this our only controller?
+        // At this point, the EULA decides if we call initialize() or quit.
+        
+    }
+    
+    /**
+     * Called to start/restart the MainView.  It (re)creates the local variables,
+     * sets up the button functions, goes to node 0 and disables the nav buttons.
+     */
+    public void initialize() {
+    	
+    	// launch a JSON updater task in the background
+    	new JsonUpdaterTask(this).execute();
+
+    	// initialize a new PTT Controller-- the interface class for the various nodes
         controller = new PTTController(this.getApplicationContext());
         
         //Make a new member variable for the history. We'll use this to update it. Or maybe not needed.
         mHistory = controller.history;
-        
-        // Hide the title bar
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        setContentView(R.layout.main);
-                
-        PTTNode currentNode = controller.currentNode;
-        
-        //Get image path and put image into node header image
-        ImageView headerImageView = new ImageView(this);
-        headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
-        String imageString = "drawable/" + currentNode.getHeaderImage();
-        //Log.d("IMAGESTRING", imageString);
-        int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
-        Drawable image = getResources().getDrawable(imageResource);
-        headerImageView.setImageDrawable(image);
-        
-        
-        //Get question text and put it on the screen
-        TextView tv = new TextView(this);
-    	tv = (TextView)findViewById(R.id.questionTextView);
-    	// set the TextView as scrollable, just in case it's too big to fit
-    	tv.setMovementMethod(new ScrollingMovementMethod()); 
-    	tv.setText(currentNode.getQuestion());
     	
-        // update the "Step X" line at the bottom of the screen
-        TextView stepNumberLabel = (TextView) findViewById(R.id.stepNumberLabel);
-        stepNumberLabel.setText("Step " + (position + 1));
-    	
+        // setup the buttons' functions
+        initializeButtons();
+  
+        // since this is node0, nav buttons shouldn't do anything
+        disableAllNavButtons();
+        
     	//Get answers and put them on the buttons.
     	updateButtons();
+    	
+    	// go to Node 0
+    	navigateToAnotherNode(0);
+    }
 
-
+    /**
+     * Assign functions to the main UI buttons.
+     */
+    private void initializeButtons() {
+    	
+    	// grab the button resources
         navButtonPrev = (ImageButton)findViewById(R.id.navButtonPrev);
         navButtonNext = (ImageButton)findViewById(R.id.navButtonNext);
         navButtonLast = (ImageButton)findViewById(R.id.navButtonLast);
         navButtonRestart = (ImageButton)findViewById(R.id.navButtonRestart);
         navButtonHistory = (ImageButton)findViewById(R.id.navButtonHistory);
 
-
-
-
+        // "previous" button calls navigateBackToPreviousNode()
         navButtonPrev.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Log.d("NAV","navButtonPrev");
@@ -105,6 +103,7 @@ public class MainView extends Activity {
             }
         });
 
+        // "next" button calls navigateForwardToNode()
         navButtonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Log.d("NAV","navButtonNext");
@@ -112,6 +111,7 @@ public class MainView extends Activity {
             }
         });
 
+        // "last" button calls navigateToAnotherNode(nodeId)
         navButtonLast.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Log.d("NAV","navButtonLast");
@@ -127,9 +127,13 @@ public class MainView extends Activity {
             }
         });
 
-        
+        /**
+         *  "History", "Info", "Help" and "Footnotes" bring up new views, so we pass
+         *  them a reference to the current context.
+         */
         final Context context = this;
         
+        // "history" button creates a HistoryView
         navButtonHistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
@@ -137,14 +141,10 @@ public class MainView extends Activity {
                 controller.logHistoryItems();
                 Intent historyViewIntent = new Intent(context, HistoryView.class);
         		startActivityForResult(historyViewIntent, 1);
-                //startActivityForResult(historyViewIntent,1);
             }
         });
         
-        // TODO: maybe turn this into an intializeNavButtons() method??
-        disableAllNavButtons();
-        updateNavButtons();
-
+        // "footnotes" creates a FootnotesView
         Button footnotesButton = (Button) findViewById(R.id.footnotesButton);
         footnotesButton.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View view) {
@@ -153,9 +153,7 @@ public class MainView extends Activity {
         	}
         });
 
-        /**
-         * Assign an action to the infoButton to display the info page
-         */
+        // "info" creates a an InfoView
         ImageButton infoButton = (ImageButton) findViewById(R.id.infoButton);
         infoButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg0) {
@@ -164,9 +162,7 @@ public class MainView extends Activity {
         	}
         });
         
-        /**
-         * Assign an action to the helpButton to display the help page
-         */
+        // "help" creates a HelpView
         ImageButton helpButton = (ImageButton) findViewById(R.id.helpButton);
         helpButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg0) {
@@ -174,9 +170,7 @@ public class MainView extends Activity {
         		startActivity(intent);
         	}
         });
-        
     }
-
 
     public void navigateToAnotherNode(int nodeId) {
     	
@@ -187,8 +181,9 @@ public class MainView extends Activity {
     	
     	
         //Get question text and put it on the screen
-        TextView tv = (TextView)findViewById(R.id.questionTextView);
-        tv.setText(controller.currentNode.getQuestion());
+        TextView questionField = (TextView)findViewById(R.id.questionTextView);
+        questionField.setMovementMethod(new ScrollingMovementMethod());
+        questionField.setText(controller.currentNode.getQuestion());
         
         //Get image path and put image into node header image
         ImageView headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
