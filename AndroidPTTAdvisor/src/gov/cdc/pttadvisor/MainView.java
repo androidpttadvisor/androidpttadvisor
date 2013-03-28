@@ -1,7 +1,7 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 import java.util.ArrayList;
-import gov.cdc.R;
+import gov.cdc.pttadvisor.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -48,6 +48,7 @@ public class MainView extends Activity {
          * has been updated or they haven't already agreed to it.
          */
         new Eula(this).show(false);
+        
         new JsonUpdaterTask(this).execute();
         // TODO: Answer me this: Are we creating an entirely new controller here? Or wait, is this our only controller?
         controller = new PTTController(this.getApplicationContext());

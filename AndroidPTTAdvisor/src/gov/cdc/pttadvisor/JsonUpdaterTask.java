@@ -1,4 +1,4 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 import java.io.FileInputStream;
 import java.io.File;
@@ -152,16 +152,16 @@ public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast toast = Toast.makeText(context, "Would replace JSON and restart", Toast.LENGTH_SHORT);
+                    replaceLocalJson("jsonFromWeb.json", "DTNode.json");
+                    Toast toast = Toast.makeText(context, "Updated Algorithm", Toast.LENGTH_SHORT);
                     toast.show();
-                    //replaceLocalJson("jsonFromWeb.json", "DTNode.json");
                 }
             })
             .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                	Toast toast = Toast.makeText(context, "Would NOT replace JSON", Toast.LENGTH_SHORT);
+                	Toast toast = Toast.makeText(context, "Ignoring update", Toast.LENGTH_SHORT);
                     toast.show();
                 }
 

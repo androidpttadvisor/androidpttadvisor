@@ -1,10 +1,11 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 /**
  * This code is based off the example given here:
  * http://blog.donnfelker.com/2011/02/17/android-a-simple-eula-for-your-android-apps/
  */
 
+import gov.cdc.pttadvisor.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -120,4 +121,11 @@ public class Eula {
         } 
     }
 	
+    public boolean hasBeenAccepted() {
+        PackageInfo versionInfo = getPackageInfo();
+        final String eulaKey = EULA_PREFIX + versionInfo.versionCode;
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mActivity);
+        boolean hasBeenShown = prefs.getBoolean(eulaKey, false);
+        return hasBeenShown;
+    }
 }

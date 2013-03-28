@@ -1,8 +1,9 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 //Author: Paul Brown
 //Originally created on 2013-01-29
 
+import gov.cdc.pttadvisor.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;

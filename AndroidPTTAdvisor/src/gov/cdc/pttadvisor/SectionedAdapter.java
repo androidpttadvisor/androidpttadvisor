@@ -1,4 +1,4 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 import java.util.ArrayList;
 import java.util.List;

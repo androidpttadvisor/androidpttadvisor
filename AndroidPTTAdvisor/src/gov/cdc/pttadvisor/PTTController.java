@@ -1,4 +1,4 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 import java.util.ArrayList;
 import org.json.JSONArray;

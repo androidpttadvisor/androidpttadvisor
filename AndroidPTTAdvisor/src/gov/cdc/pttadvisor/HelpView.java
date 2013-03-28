@@ -1,6 +1,6 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
-import gov.cdc.R;
+import gov.cdc.pttadvisor.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

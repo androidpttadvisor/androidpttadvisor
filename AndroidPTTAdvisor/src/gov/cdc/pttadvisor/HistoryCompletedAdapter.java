@@ -1,12 +1,16 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 // Author: Paul Brown
 // Originally created on 2013-01-29
 // Serious amount of help from this blog post: http://www.androidhive.info/2012/02/android-custom-listview-with-image-and-text/
-// This List Adapter takes care of the node in the HistoryView that the user is currently at
+// This List Adapter takes care of the nodes in the HistoryView that have already been answered
+
+import gov.cdc.pttadvisor.R;
 
 import java.util.ArrayList;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,21 +19,16 @@ import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.app.Activity;
 
-public class HistoryCurrentAdapter extends BaseAdapter {
+public class HistoryCompletedAdapter extends BaseAdapter {
 	
 	public static ArrayList<PTTHistoryItem> mHistory;
 	private Activity activity;
 	private static LayoutInflater inflater=null;
-	public static PTTController controller;
 	
-	public HistoryCurrentAdapter(Activity a, int position) {
+	public HistoryCompletedAdapter(Activity a, ArrayList<PTTHistoryItem> h) {
 		activity = a;
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		
-		// TODO Auto-generated constructor stub
-		
-		// This feels so wrong. It very well might be wrong
-		controller = MainView.controller;
+		mHistory = h;
 		
 	}
 	
@@ -39,8 +38,7 @@ public class HistoryCurrentAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 1;
-		
+		return mHistory.size();
 	}
 
 	@Override
@@ -67,22 +65,29 @@ public class HistoryCurrentAdapter extends BaseAdapter {
 		
 		// Grab and assign references to the elements from the layout file (list_row.xml)
 		TextView questionAnswered = (TextView)view.findViewById(R.id.questionAnswered);
+		TextView answer = (TextView)view.findViewById(R.id.answer);
 		ImageView imageView = (ImageView)view.findViewById(R.id.list_image);
 		
-		// Grab the answer view and then make it go away, to avoid having a blank space at the bottom,
-		// because this question hasn't been answered yet
-		TextView answer = (TextView)view.findViewById(R.id.answer);
-		answer.setVisibility(View.GONE);
+		// Set the questionAnswered and answer fields to the question/answer from the history
+		questionAnswered.setText(Integer.toString(position) + ". " + mHistory.get(position).getNode().getQuestion());
+		answer.setText(mHistory.get(position).getAnswerChosen().answer);
 		
-		// Grab the current node so we can then get the question the user is currently at
-		PTTNode n = controller.currentNode;
-		questionAnswered.setText(n.getQuestion());
+		// Grab the number of answers for the particular question (to determine if its a question or info node)
+		int numberOfAnswersForQuestion = mHistory.get(position).getNode().getAnswers().size();
 		
-		// Grab the number of answers for the particular question (to determine if its a question, info, or recommendation node)
-		int numberOfAnswersForQuestion = n.getAnswers().size();
-		
-		// This element always stands alone, so it gets both top and bottom rounded
-		view.setBackgroundResource(R.drawable.history_row_selector_both);
+		// Determine which ends (top or bottom) shoudl be rounded, based on if anything comes before/after this node
+		if ( (position == 0) && (position == getCount() - 1) ) {
+			view.setBackgroundResource(R.drawable.history_row_selector_both);
+		}
+		else if (position == 0) {
+			view.setBackgroundResource(R.drawable.history_row_selector_rounded_top);
+		}
+		else if (position == getCount() - 1) {
+			view.setBackgroundResource(R.drawable.history_row_selector_rounded_bottom);
+		}
+		else {
+			view.setBackgroundResource(R.drawable.history_row_selector_middle);
+		}
 		
 		// Assign the appropriate icon based on what type of question it is
 		if ( (numberOfAnswersForQuestion == 1) || (numberOfAnswersForQuestion == 0) ) {

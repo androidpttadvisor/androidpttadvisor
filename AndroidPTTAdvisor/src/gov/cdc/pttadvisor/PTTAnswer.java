@@ -1,4 +1,4 @@
-package gov.cdc;
+package gov.cdc.pttadvisor;
 
 /**
  * Very basic object, representing an answer to a node's question.

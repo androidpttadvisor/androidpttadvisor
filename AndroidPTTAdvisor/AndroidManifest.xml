@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="gov.cdc"
+    package="gov.cdc.pttadvisor"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -11,7 +11,7 @@
         android:theme="@android:style/Theme.NoTitleBar"
         android:label="@string/app_name" >
         <activity
-            android:name="gov.cdc.MainView"
+            android:name="gov.cdc.pttadvisor.MainView"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,22 +20,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="gov.cdc.RestartDialog"
+            android:name="gov.cdc.pttadvisor.RestartDialog"
             android:label="restartdialog" />
         <activity
-            android:name="gov.cdc.InfoView"
+            android:name="gov.cdc.pttadvisor.InfoView"
             android:label="@string/title_activity_info_view" />
         <activity
-            android:name="gov.cdc.HistoryView"
+            android:name="gov.cdc.pttadvisor.HistoryView"
             android:label="History" />
         <activity
-            android:name="gov.cdc.HelpView"
-            android:label="@string/title_activity_help_view" >
-        </activity>
-        <activity
-            android:name="gov.cdc.FootnotesView"
-            android:label="@string/title_activity_footnotes_view" >
-        </activity>
+            android:name="gov.cdc.pttadvisor.HelpView"
+            android:label="@string/title_activity_help_view" />
+		<activity
+            android:name="gov.cdc.pttadvisor.FootnotesView"
+            android:label="@string/title_activity_footnotes_view" />
     </application>
 
 </manifest>
