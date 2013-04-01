@@ -19,15 +19,27 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.method.ScrollingMovementMethod;
 
+
+/**
+ * This is the class that controls the main view of the app.  It handles the buttons, text,
+ * and images for the current node.  It maintains a PTTController object to handle the nodes
+ * and history.
+ */
 public class MainView extends Activity {
 
+	/* The node in the path that we're currently displaying */
     int position = 0;
+    
+    /* The number of nodes/steps we've taken so far */
     int farthestPositionReached = 0;
+    
+    /* The node controller */
     public static PTTController controller;
     
-    //Make a public static variable for the controller.history
+    /* A local pointer to the PTT controller's history */
     public static ArrayList<PTTHistoryItem> mHistory;
     
+    /* UI buttons */
     private ImageButton navButtonPrev; 
     private ImageButton navButtonNext; 
     private ImageButton navButtonLast; 
@@ -36,10 +48,15 @@ public class MainView extends Activity {
     private Button footnotesButton;
     
     
+    /**
+     * The onCreate() method of an activity.  Called when this activity is first made.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
         super.onCreate(savedInstanceState);
+        
+        /* apply the res/layout/main.xml view to the activity */
         setContentView(R.layout.main);
         
         /**
@@ -50,7 +67,7 @@ public class MainView extends Activity {
          */
         new Eula(this).show(false);
         
-        // At this point, the EULA decides if we call initialize() or quit.
+        /* At this point, the EULA decides if we call initialize() or quit. */
         
     }
     
@@ -60,25 +77,22 @@ public class MainView extends Activity {
      */
     public void initialize() {
     	
-    	// launch a JSON updater task in the background
+    	/* launch a JSON updater task in the background */
     	new JsonUpdaterTask(this).execute();
 
-    	// initialize a new PTT Controller-- the interface class for the various nodes
+    	/* initialize a new PTT Controller-- the interface class for the various nodes */
         controller = new PTTController(this.getApplicationContext());
         
-        //Make a new member variable for the history. We'll use this to update it. Or maybe not needed.
+        /* Make a new member variable for the history. We'll use this to update it. Or maybe not needed. */
         mHistory = controller.history;
     	
-        // setup the buttons' functions
+        /* setup the buttons' functions */
         initializeButtons();
   
-        // since this is node0, nav buttons shouldn't do anything
+        /* since this is node0, nav buttons shouldn't do anything */
         disableAllNavButtons();
-        
-    	//Get answers and put them on the buttons.
-    	updateButtons();
     	
-    	// go to Node 0
+    	/* go to Node 0 */
     	navigateToAnotherNode(0);
     }
 
@@ -87,14 +101,14 @@ public class MainView extends Activity {
      */
     private void initializeButtons() {
     	
-    	// grab the button resources
+    	/* grab the button resources */
         navButtonPrev = (ImageButton)findViewById(R.id.navButtonPrev);
         navButtonNext = (ImageButton)findViewById(R.id.navButtonNext);
         navButtonLast = (ImageButton)findViewById(R.id.navButtonLast);
         navButtonRestart = (ImageButton)findViewById(R.id.navButtonRestart);
         navButtonHistory = (ImageButton)findViewById(R.id.navButtonHistory);
 
-        // "previous" button calls navigateBackToPreviousNode()
+        /* "previous" button calls navigateBackToPreviousNode() */
         navButtonPrev.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Log.d("NAV","navButtonPrev");
@@ -103,7 +117,7 @@ public class MainView extends Activity {
             }
         });
 
-        // "next" button calls navigateForwardToNode()
+        /* "next" button calls navigateForwardToNode() */
         navButtonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Log.d("NAV","navButtonNext");
@@ -111,11 +125,10 @@ public class MainView extends Activity {
             }
         });
 
-        // "last" button calls navigateToAnotherNode(nodeId)
+        /* "last" button calls navigateToAnotherNode(nodeId) */
         navButtonLast.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Log.d("NAV","navButtonLast");
-            	//I'm putting the logic all right here. I don't see (yet) any reason to put it in function
             	
             	int farthestNodeId = mHistory.get(mHistory.size()-1).getAnswerChosen().getNodeId();
             	Log.d("farthestNodeId",Integer.toString(farthestNodeId));
@@ -133,7 +146,7 @@ public class MainView extends Activity {
          */
         final Context context = this;
         
-        // "history" button creates a HistoryView
+        /* "history" button creates a HistoryView */
         navButtonHistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
@@ -144,7 +157,7 @@ public class MainView extends Activity {
             }
         });
         
-        // "footnotes" creates a FootnotesView
+        /* "footnotes" creates a FootnotesView */
         Button footnotesButton = (Button) findViewById(R.id.footnotesButton);
         footnotesButton.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View view) {
@@ -172,43 +185,45 @@ public class MainView extends Activity {
         });
     }
 
+    /**
+     * Updates the view (text, images, and buttons) for a new node.
+     * @param nodeId The node we're navigating to
+     */
     public void navigateToAnotherNode(int nodeId) {
     	
+    	/* If we've gone farther than we have before, we update the farthestPositionReached */
     	if (position > farthestPositionReached) {
     		farthestPositionReached = position;
     	}
     	
-    	
-    	
-        //Get question text and put it on the screen
+        /* Get question text and put it on the screen */
         TextView questionField = (TextView)findViewById(R.id.questionTextView);
         questionField.setMovementMethod(new ScrollingMovementMethod());
         questionField.setText(controller.currentNode.getQuestion());
         
-        //Get image path and put image into node header image
+        /* Get image path and put image into node header image */
         ImageView headerImageView = (ImageView)findViewById(R.id.nodeHeaderImage);
-        
         String imageString = "drawable/" + controller.currentNode.getHeaderImage();
-        //Log.d("IMAGESTRING", imageString);
         int imageResource = getResources().getIdentifier(imageString,null,getPackageName());
         Drawable image = getResources().getDrawable(imageResource);
         headerImageView.setImageDrawable(image);
         
-        // update the "Step X" line at the bottom of the screen
+        /* update the "Step X" line at the bottom of the screen */
         TextView stepNumberLabel = (TextView) findViewById(R.id.stepNumberLabel);
         stepNumberLabel.setText("Step " + (position + 1));
 
+        /* update the buttons */
         updateButtons();
-        //enableAllNavButtons();
         updateNavButtons();
-        
-        
+
         Log.d("navToNutherNode,CurrNodeId",Integer.toString(controller.currentNode.getId()));
         
     }
 
     
-
+    /**
+     * Just set all the nav buttons as disabled.  This happens at node 0.
+     */
     public void disableAllNavButtons() {
     	navButtonPrev.setEnabled(false);
     	navButtonPrev.setImageResource(R.drawable.nav_button_back_disabled);
@@ -222,6 +237,9 @@ public class MainView extends Activity {
     	navButtonHistory.setImageResource(R.drawable.nav_button_review_disabled);
     }
     
+    /**
+     * Conversely, set all the nav buttons to enabled.
+     */
     public void enableAllNavButtons() {
     	navButtonPrev.setEnabled(true);
     	navButtonPrev.setImageResource(R.drawable.nav_button_back);
