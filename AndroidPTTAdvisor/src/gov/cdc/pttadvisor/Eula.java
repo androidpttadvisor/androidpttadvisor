@@ -26,14 +26,14 @@ import android.view.View;
  */
 public class Eula {
 	//private Activity mActivity;
-	private MainView mActivity;
+	private Activity mActivity;
 	
 	/**
 	 * Create the Eula object, with the app's context.
 	 * @param context
 	 */
 	public Eula(Activity context) {
-		mActivity = (MainView) context;
+		mActivity = context;
 	}
 	
 	/**
@@ -97,7 +97,8 @@ public class Eula {
                     editor.commit();
                     
                     // they accepted, so kick off the initialization of the MainView
-                    mActivity.initialize();
+                    MainView mainView = (MainView) mActivity;
+                    mainView.initialize();
                     dialogInterface.dismiss();
                 }
             });
@@ -124,7 +125,8 @@ public class Eula {
             dialog.show();
         } else {
         	// the EULA has already been shown before, so just go ahead and initialize the MainView()
-            mActivity.initialize();
+        	MainView mainView = (MainView) mActivity;
+            mainView.initialize();
         }
     }
 	
