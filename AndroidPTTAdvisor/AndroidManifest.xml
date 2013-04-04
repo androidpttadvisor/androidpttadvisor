@@ -12,6 +12,8 @@
         android:label="@string/app_name" >
         <activity
             android:name="gov.cdc.pttadvisor.MainView"
+			android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,19 +23,29 @@
         </activity>
         <activity
             android:name="gov.cdc.pttadvisor.RestartDialog"
-            android:label="restartdialog" />
+            android:label="restartdialog" 
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name="gov.cdc.pttadvisor.InfoView"
-            android:label="@string/title_activity_info_view" />
+            android:label="@string/title_activity_info_view" 
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name="gov.cdc.pttadvisor.HistoryView"
-            android:label="History" />
+            android:label="History" 
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name="gov.cdc.pttadvisor.HelpView"
-            android:label="@string/title_activity_help_view" />
+            android:label="@string/title_activity_help_view"
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" />
 		<activity
             android:name="gov.cdc.pttadvisor.FootnotesView"
-            android:label="@string/title_activity_footnotes_view" />
+            android:label="@string/title_activity_footnotes_view"
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" />
     </application>
 
 </manifest>
