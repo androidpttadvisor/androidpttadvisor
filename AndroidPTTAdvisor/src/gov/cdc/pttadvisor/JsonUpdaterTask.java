@@ -13,12 +13,15 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.util.Log;
+import android.util.SparseArray;
 import android.widget.Toast;
 import android.content.Context;
 
 public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 
 	private String UPDATEURL = "https://raw.github.com/androidpttadvisor/androidpttadvisor/master/AndroidPTTAdvisor/assets/DTNode.json";
+	// for demo purposes; to be removed later.
+	//private String UPDATEURL = "http://gibson.somethingsimple.org/grail.json";
 	private MainView context;
 	
 	public JsonUpdaterTask (Context context) {
@@ -28,7 +31,6 @@ public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 	@Override
 	protected String doInBackground(Void... params) {
 		String webJsonString = null;
-		String localJsonString = null;
 		try {
 			/**
 			 * Pull the remote JSON and save a copy locally
@@ -80,6 +82,11 @@ public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 		return outString;
 	}
 
+	/**
+	 * Replace a file in local app storage-- intended to replace the old JSON with the new one from the web
+	 * @param source new file
+	 * @param target the file we're replacing with the new one
+	 */
 	private void replaceLocalJson(String source, String target) {
 		File sourceFile = context.getFileStreamPath(source);
 		File targetFile = new File(sourceFile.getParent(), target);
@@ -96,19 +103,22 @@ public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 	@Override
 	protected void onPostExecute(String webJsonString) {
 		Log.d("JSON Updater", "onPostExecute() got called");
+		
+		/* read in the existing local version of DTNode.json as a string */
 		String localJsonString = fileToString("DTNode.json");
-        if (this.context == null) {
-        	Log.d("JSON Updater", "Context is null!  Aborting!");
-        	return;
-        } else {
-        	Log.d("JSON Updater", "Context is NOT null!");
-        }
-        if (webJsonString != null && webJsonString.equals(localJsonString)) {
+        
+		/**
+		 * Attempt to parse the webJsonString as pttnodes.  If the size of pttnodes is 1+,
+		 * then the parsing was successful and we assume the data is good.
+		 */
+		SparseArray<PTTNode> pttnodes = new JsonHandler(context).parseJson(webJsonString);
+		if (pttnodes.size() == 0) {
+			Log.d("JSON Updater", "JSON from web seems invalid-- disregarding.");
+			return;
+		} else if (webJsonString != null && webJsonString.equals(localJsonString)) {
         	Log.d("JSON Updater", "Web version matches local version!");
         } else {
         	Log.d("JSON Updater", "Web version does not match local version!");
-        	Log.d("JSON Updater", "Replacing local version with version from web!");
-        	Toast.makeText(context, "About to make a dialog", Toast.LENGTH_SHORT);
         	AlertDialog.Builder builder = new AlertDialog.Builder(this.context)
             .setTitle("Update Available")
             .setMessage("There is an updated algorithm available.  Would you like to install it and restart PTT Advisor?")

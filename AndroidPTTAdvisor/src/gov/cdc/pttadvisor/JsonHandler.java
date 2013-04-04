@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.widget.Toast;
 import java.io.IOException;
 
 import org.json.JSONArray;
@@ -32,13 +31,7 @@ public class JsonHandler {
 		
 		/* if the JSON file is not already in the app's local storage, copy it over there from /assets/ */
 		if (!jsonInStorage()) {
-			if (moveJsonToStorage()) {
-				Toast toast = Toast.makeText(context, "JSON moved to local storage", Toast.LENGTH_SHORT);
-				toast.show();
-			} else {
-				Toast toast = Toast.makeText(context, "Couldn't move JSON to local storage!", Toast.LENGTH_SHORT);
-				toast.show();
-			}
+			moveJsonToStorage();
 		}
 		Log.d("JSON HANDLER", "about to run JsonUpdater...");
 		//new JsonUpdaterTask(context).execute();
@@ -148,7 +141,20 @@ public class JsonHandler {
 	 */
 	public SparseArray<PTTNode> getNodesFromJson() {
 		String jsonString = getJsonString();
-    	SparseArray<PTTNode> pttnodes = new SparseArray<PTTNode>();
+		return parseJson(jsonString);
+	}
+	
+	/**
+	 * Given a JSON string, try to parse it into a SparseArray of PTTNodes.
+	 * @param jsonString Ideally a JSON-formatting string with PTTNode info in it.
+	 * @return a SparseArray of PTTNodes.  This array is empty if parsing fails.
+	 */
+	public SparseArray<PTTNode> parseJson(String jsonString) {
+		SparseArray<PTTNode> pttnodes = new SparseArray<PTTNode>();
+		
+		if (jsonString == null)
+			return pttnodes;
+		
     	try {
     		JSONObject jsonObj = new JSONObject(jsonString);
     		JSONArray nodes = jsonObj.getJSONArray("nodes");
@@ -197,5 +203,4 @@ public class JsonHandler {
     	Log.d("JSON", "Finished parsing");
     	return pttnodes;
 	}
-	
 }

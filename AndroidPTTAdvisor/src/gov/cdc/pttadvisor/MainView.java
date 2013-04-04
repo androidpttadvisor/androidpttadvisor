@@ -252,8 +252,7 @@ public class MainView extends Activity {
     	navButtonHistory.setEnabled(true);
     	navButtonHistory.setImageResource(R.drawable.nav_button_review);
     }
-    
-    
+
     public void updateNavButtons() {
     	Log.d("updateNavButtons","position: " + position + ", farthest: " + farthestPositionReached);
     	
