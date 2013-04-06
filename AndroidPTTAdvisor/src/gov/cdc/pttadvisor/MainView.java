@@ -46,6 +46,8 @@ public class MainView extends Activity {
     private ImageButton navButtonRestart; 
     private ImageButton navButtonHistory;
     private Button footnotesButton;
+    private ImageButton doneButton;
+    
     
     
     /**
@@ -107,6 +109,7 @@ public class MainView extends Activity {
         navButtonLast = (ImageButton)findViewById(R.id.navButtonLast);
         navButtonRestart = (ImageButton)findViewById(R.id.navButtonRestart);
         navButtonHistory = (ImageButton)findViewById(R.id.navButtonHistory);
+        doneButton = (ImageButton)findViewById(R.id.doneButton);
 
         /* "previous" button calls navigateBackToPreviousNode() */
         navButtonPrev.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +142,25 @@ public class MainView extends Activity {
             	
             }
         });
+        
+        /*
+         * "restart button calls restart(false). the false is to tell the restart method that the user is hitting the restart button and not the done button
+         */
+        navButtonRestart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            	restart(false);
+            }
+        });
+        
+        /*
+         * done button calls restart(true). true indicated that the user is hitting the done button at the end of the algorithm
+         */
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            	restart(true);
+            }
+        });
+        
 
         /**
          *  "History", "Info", "Help" and "Footnotes" bring up new views, so we pass
@@ -328,61 +350,47 @@ public class MainView extends Activity {
     }
     
 
-    public void restart(View view) {
+    /*
+     * restart is called when the user hits either the restart nav button at the bottom of the screen or
+     * the done button at the end of the question/answer algorithm. The isFinished argument determines
+     * which button the user tapped to call the method, and assigns appropriate strings to the dialog.
+     */
+    public void restart(boolean isFinished) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.nav_button_restart);
-        builder.setTitle("Restart Patient Evaluation");
-        builder.setMessage("Are you sure you want to restart the patient evaluation?");
-        builder.setInverseBackgroundForced(true);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getBaseContext(),
-                        "Restarting", Toast.LENGTH_SHORT).show();
-                position=0;
-                farthestPositionReached = 0;
-                controller.setCurrentNode(0);
-                mHistory.clear();
-                navigateToAnotherNode(0);
-                disableAllNavButtons();
-
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-    
-    
-    public void restartDone(View view) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle("Patient Evaluation Complete");
-        builder.setMessage("Would you like to begin a new patient evaluation?");
-        builder.setInverseBackgroundForced(true);
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                position=0;
-                farthestPositionReached = 0;
-                controller.setCurrentNode(0);
-                mHistory.clear();
-                navigateToAnotherNode(0);
-                disableAllNavButtons();
-
-            }
-        });
+        String positiveButtonText;
         
+        // Determine if the user hit the restart button at the bottom of the screen or the done button at the end of the questions
+        if (isFinished) {
+        	builder.setTitle("Patient Evaluation Complete");
+            builder.setMessage("Would you like to begin a new patient evaluation?");
+            positiveButtonText = "Yes";
+        }
+        else {
+        	builder.setTitle("Restart Patient Evaluation");
+            builder.setMessage("Are you sure you want to restart the patient evaluation?");
+            positiveButtonText = "OK";
+        }
+        
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton(positiveButtonText, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                position=0;
+                farthestPositionReached = 0;
+                controller.setCurrentNode(0);
+                mHistory.clear();
+                navigateToAnotherNode(0);
+                disableAllNavButtons();
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         AlertDialog alert = builder.create();
         alert.show();
     }
@@ -394,11 +402,11 @@ public class MainView extends Activity {
      */
     private void updateButtons() {
         ArrayList<PTTAnswer> answers = controller.currentNode.getAnswers();
-        ImageButton doneButton = (ImageButton)findViewById(R.id.doneButton);
     	Button b0 = (Button)findViewById(R.id.answerButton0);
     	Button b1 = (Button)findViewById(R.id.answerButton1);
-    	//Log.d("DEBUG", "About to make buttons");
-    	//Log.d("DEBUG", "Answers size is " + answers.size());
+    	
+    	// When setting a View's visibility to INVISIBLE, it still occupies its space on the screen
+    	// When setting it to GONE, it does not occupy any space
     	switch (answers.size()) {
     	case 0:
     		doneButton.setVisibility(View.VISIBLE);
@@ -417,38 +425,28 @@ public class MainView extends Activity {
     	}
     	
     	
-    	
+    	// If there is more than zero answers, then we go ahead and get the answer for the first button.
     	if (answers.size() > 0) {
     		String s = answers.get(0).answer;
     		
     		b0.setText(s);
 			final int answer0NodeId = answers.get(0).nodeId;
-			//Log.d("Making button", "b0, '" + s + "', points to node " + answer0Node + ".  Current node is " + controller.currentNode.getId());
 			b0.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
                     PTTNode n = controller.getCurrentNode();
                     didSelectAnswer(n,answer0NodeId,0);
-                    //controller.storeHistoryItem(n, n.getAnswers().get(0));
-                    //controller.setCurrentNode(answer0NodeId);
-                    //position++;
-                    //navigateToAnotherNode(answer0NodeId);
                    }
             });
     	} 
+    	// If there are 2 answers, then we get the answer for the second button (we already have the first button's answer)
     	if (answers.size() == 2) {
             String s1 = answers.get(1).answer;
-            
             b1.setText(s1);
             final int answer1NodeId = answers.get(1).nodeId;
-            //Log.d("Making button", "b1, " + s1 + ", points to node " + answer1Node + ".  Current node is " + controller.currentNode.getId());
             b1.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     PTTNode n = controller.getCurrentNode();
                     didSelectAnswer(n,answer1NodeId,1);
-                    //controller.storeHistoryItem(n, n.getAnswers().get(1));
-                    //controller.setCurrentNode(answer1NodeId);
-                    //position++;
-                    //navigateToAnotherNode(answer1NodeId);
                 }
             });
     	}
@@ -465,7 +463,8 @@ public class MainView extends Activity {
     }
     
     /*
-     * This method will handle all answer actions. This is to help modularize the answer selection process, especially when previously-answered nodes are answered
+     * This method will handle all answer actions.
+     * This is to help modularize the answer selection process, especially when previously-answered nodes are answered
      */
     public void didSelectAnswer(PTTNode currentNode, int answerNodeId, int answerSelected) {
     	
@@ -500,7 +499,6 @@ public class MainView extends Activity {
     		// Display dialog to let user know [s]he's changing history
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
-            builder.setIcon(R.drawable.nav_button_restart);
             builder.setTitle("Change Decision Warning");
             builder.setMessage("You are about to change your answer to Step " + curStep + ".  " +
             		"Therefore any previous responses past Step " + curStep + " will be " +

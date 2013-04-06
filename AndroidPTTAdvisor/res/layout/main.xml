@@ -115,7 +115,6 @@
     	        android:layout_width="91dp"
     	        android:layout_height="130dp"
 				android:src="@drawable/done_icon"
-				android:onClick="restartDone"
                 android:contentDescription="@string/contentDescription_done_button" />
     	
    	   	    
@@ -201,7 +200,6 @@
                     android:layout_marginBottom="6dp"
                     android:src="@drawable/nav_button_restart"
                     android:contentDescription="@string/contentDescription_restart_button"
-                    android:onClick="restart"
                     />
             <ImageButton
                     android:id="@+id/navButtonHistory"
