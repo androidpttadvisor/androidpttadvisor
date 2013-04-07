@@ -9,15 +9,20 @@
     <string name="contentDescription_farthest_button">contentDescription_farthest_button</string>
     <string name="contentDescription_restart_button">contentDescription_restart_button</string>
     <string name="contentDescription_summary_button">contentDescription_summary_button</string>
+    <string name="contentDescription_help_button">Help Button</string>
+    <string name="contentDescription_info_button">Info Button</string>
+    <string name="contentDescription_headerImage">Header Image</string>
+    <string name="contentDescription_info_icon">Info Icon</string>
+    <string name="read_eula_button">Read EULA</string>
+    <string name="done">Done</string>
     <string name="helpButtonText">\?</string>
     <string name="infoButtonText">i</string>
     <string name="footnotesButtonText">Footnotes</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_history_view">HistoryView</string>
+    <string name="title_activity_history_view">Evaluation Review</string>
     <string name="title_activity_help_view">Help</string>
-    <string name="title_activity_info_view">About</string>
-    <string name="title_activity_footnotes_view">FootnotesView</string>
+    <string name="title_activity_info_view">Info</string>
+    <string name="title_activity_footnotes_view">Footnotes</string>
     <string name="infoText">This prototype of PTT Advisor for Android contains a collection of diagnostic algorithms to guide evaluation of patients with prolonged Partial Thromboplastin Time (PTT).\n
 \n
 Algorithm Authors:\n
@@ -28,5 +33,6 @@ Marisa B. Marques, MD\n
 Department of Pathology, University of Alabama at Birmingham, Alabama\n
 Oxana Tcherniantchouk, MD\n
 Department of Pathology, Cedars-Sinai Hospital, Los Angeles California</string>
+    <string name="title_MainView">PTT Advisor</string>
 
 </resources>

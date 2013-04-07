@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+        <RelativeLayout
+        android:id="@+id/infoTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/title_bar_gradient_selector"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/title_activity_info_view"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="30sp" 
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/upper_right_button_style"
+            android:text="Done"
+            style="@style/whiteSmall" />
+		</RelativeLayout>
+
+	<RelativeLayout
+	    android:id="@+id/infoHeader"
+		android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/infoTitleBar"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="18dp"
+        android:background="#FFFFFF" >
+
+    	<ImageView
+    	    android:id="@+id/infoIcon"
+    	    android:contentDescription="@string/contentDescription_info_icon"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentLeft="true"
+    	    android:src="@drawable/about_icon" />
+
+    	<TextView
+    	    android:id="@+id/infoVersionNum"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_below="@+id/infoHeaderText"
+    	    android:layout_centerHorizontal="true"
+    	    android:text="Version Number goes here" />
+
+    	<TextView
+    	    android:id="@+id/infoHeaderText"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentTop="true"
+    	    android:layout_centerHorizontal="true"
+    	    style="@style/greenBig"
+    	    android:text="About PTT Advisor" />
+	</RelativeLayout>
+	
+	<RelativeLayout
+    	android:layout_width="match_parent"
+    	android:orientation="vertical"
+    	android:layout_height="wrap_content"
+    	android:id="@+id/infoContent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+    	android:layout_below="@+id/infoHeader" >
+
+	    <TextView
+	        android:id="@+id/infoContentText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        style="@style/blackMedium"
+	        android:text="@string/infoText" />
+	    
+	</RelativeLayout>
+	<Button
+        android:id="@+id/eulaButton"
+		android:layout_width="200dp"
+		android:layout_height="60dp"
+		android:layout_marginBottom="26dp"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:background="@drawable/upper_right_button_style"
+		android:text="@string/read_eula_button"
+		style="@style/whiteSmall" />
+
+</RelativeLayout>

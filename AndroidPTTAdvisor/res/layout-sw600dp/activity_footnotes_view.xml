@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff">
+
+        <RelativeLayout
+        android:id="@+id/footnotesTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/title_bar_gradient_selector"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_activity_footnotes_view"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/upper_right_button_style"
+            android:text="@string/done"
+            style="@style/whiteSmall" />
+		</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/footnotesTitleBar"
+        android:background="#FFFFFF" >
+
+	    <ImageView
+	        android:id="@+id/footnotesHeaderImage"
+	        android:contentDescription="@string/contentDescription_headerImage"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="26dp"
+	        android:layout_marginRight="26dp"
+	        android:layout_marginTop="10dp"
+	        android:gravity="center_vertical"
+	        android:layout_centerHorizontal="true"
+	        android:src="@drawable/footnotes_header" />
+
+    	<ListView
+        	android:id="@android:id/list"
+			android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+        	android:layout_below="@+id/footnotesHeaderImage"
+			android:layout_centerHorizontal="true"
+        	android:layout_marginLeft="15dp"
+	    	android:layout_marginRight="15dp"
+	    	android:layout_marginBottom="15dp"
+	    	android:layout_marginTop="0dp"
+	    	android:cacheColorHint="#dfdfdf"
+        	android:background="#dfdfdf" >
+    	</ListView>
+	</RelativeLayout>
+
+</RelativeLayout>

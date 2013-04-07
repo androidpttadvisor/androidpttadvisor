@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/history_background" >
+	
+    
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/title_bar_gradient_selector"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_activity_history_view"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/done_button"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/upper_right_button_style"
+            style="@style/whiteSmall" />
+
+        
+
+		</RelativeLayout>
+		
+   
+
+    <ListView
+        android:id="@+id/my_list_view"
+        android:layout_below="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="#ffffff"
+        android:paddingTop="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:scrollingCache="false"
+        android:textSize="20sp" >
+
+    </ListView>
+
+</RelativeLayout>

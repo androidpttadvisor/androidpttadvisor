@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent" >
+	
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/title_bar_gradient_selector"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        
+        <ImageButton
+            android:id="@+id/infoButton"
+            android:contentDescription="@string/contentDescription_info_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:textSize="12sp"
+            android:text="@string/infoButtonText"
+            android:src="@drawable/info_icon_18x18"
+            android:background="@null" />
+        
+        
+        
+        <ImageButton
+            android:id="@+id/helpButton"
+            android:contentDescription="@string/contentDescription_help_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/infoButton"
+            android:text="@string/helpButtonText"
+            android:textSize="12sp"
+            android:src="@drawable/help_icon_18x18"
+            android:background="@null" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/app_name"
+            android:shadowColor="#7F000000"
+        	android:shadowDx="2"
+        	android:shadowDy="2"
+        	android:shadowRadius="0.01"
+            android:gravity="center|top"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/footnotesButton"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/footnotesButtonText"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/upper_right_button_style"
+            style="@style/whiteSmall" />
+
+
+    </RelativeLayout>
+        
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/titleBar"
+        android:background="#fff">
+
+  		<ImageView
+    		    android:id="@+id/nodeHeaderImage"
+    		    android:contentDescription="@string/contentDescription_headerImage"
+    		    android:layout_width="wrap_content"
+    		    android:layout_height="wrap_content"
+    	        android:layout_marginTop="18dp"
+    	        android:layout_marginBottom="12dp"
+    	        android:layout_marginLeft="50dp" />
+
+   	   	<TextView
+    	        android:id="@+id/questionTextView"
+    	        android:layout_below="@+id/nodeHeaderImage"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:layout_marginLeft="50dp"
+    	        android:layout_marginRight="50dp"
+    	        android:layout_marginBottom="30dp"
+    	        style="@style/blackLarge"
+    	        android:maxLines="8"
+   	            android:singleLine="false"
+    	        android:scrollbars="vertical" />
+		</RelativeLayout>
+		
+   	   	<RelativeLayout
+   	   	    android:layout_width="match_parent"
+   	   	    android:layout_height="wrap_content"
+ 	   	    android:layout_alignParentBottom="true"
+ 	   	    android:layout_marginBottom="80dp">	    
+ 	   	    
+   	   	    <ImageButton
+    	        android:id="@+id/doneButton"
+    	        android:layout_centerHorizontal="true"
+    	        android:layout_above="@+id/stepNumberLabel"
+    	        android:layout_width="91dp"
+    	        android:layout_height="130dp"
+    	        android:layout_marginBottom="20dp"
+				android:src="@drawable/done_icon"
+                android:contentDescription="@string/contentDescription_done_button" />
+    	
+   	   	    
+    		<Button
+    	        android:id="@+id/answerButton0"
+    	        android:layout_width="300dp"
+    	        android:layout_height="60dp"
+    	        android:layout_centerHorizontal="true"
+				android:layout_marginBottom="15dp"
+				android:layout_above="@+id/answerButton1"
+				android:background="@drawable/button_style"
+				style="@style/blackMediumButton" />
+    	
+    		<Button
+    	        android:id="@+id/answerButton1"
+    	        android:layout_width="300dp"
+    	        android:layout_height="60dp"
+    	        android:layout_centerHorizontal="true"
+				android:layout_marginBottom="10dp"
+    	        android:layout_above="@+id/stepNumberLabel"
+    	        android:background="@drawable/button_style" 
+    	        style="@style/blackMediumButton" />
+    		
+    		<TextView
+    		    android:id="@+id/stepNumberLabel"
+    		    android:layout_width="wrap_content"
+    		    android:layout_centerHorizontal="true"
+    		    android:layout_alignParentBottom="true"
+    		    style="@style/graySmall" />
+    	
+    </RelativeLayout>
+    
+    <RelativeLayout
+		android:id="@+id/InnerRelativeLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:background="@drawable/navigation_bar_gradient_selector">
+
+            <ImageButton
+                    android:id="@+id/navButtonPrev"
+                    android:layout_toLeftOf="@+id/navButtonNext"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:src="@drawable/nav_button_back"
+                    android:contentDescription="@string/contentDescription_previous_button"
+                    />
+            <ImageButton
+                    android:id="@+id/navButtonNext"
+                    android:layout_toLeftOf="@+id/navButtonLast"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:src="@drawable/nav_button_next"
+                    android:contentDescription="@string/contentDescription_next_button"
+                    />
+            <ImageButton
+                    android:id="@+id/navButtonLast"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:src="@drawable/nav_button_back_to_last"
+                    android:contentDescription="@string/contentDescription_farthest_button"
+                    />
+            <ImageButton
+                    android:id="@+id/navButtonRestart"
+                    android:layout_toRightOf="@+id/navButtonLast"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:src="@drawable/nav_button_restart"
+                    android:contentDescription="@string/contentDescription_restart_button"
+                    />
+            <ImageButton
+                    android:id="@+id/navButtonHistory"
+                    android:layout_toRightOf="@+id/navButtonRestart"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:src="@drawable/nav_button_review"
+                    android:contentDescription="@string/contentDescription_summary_button"
+                    />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
