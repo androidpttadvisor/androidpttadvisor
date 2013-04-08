@@ -20,14 +20,14 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Evaluation Review"
+            android:text="@string/title_activity_history_view"
             android:shadowColor="#7F000000"
         	android:shadowDx="2"
         	android:shadowDy="2"
         	android:shadowRadius="0.01"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/doneButton"
@@ -35,13 +35,12 @@
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:text="Done"
+            android:text="@string/done_button"
             android:layout_marginRight="10dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/upper_right_button_style"
-            style="@style/whiteSmall"
-            android:textSize="12dp" />
+            style="@style/whiteSmall" />
 
         
 
@@ -61,7 +60,7 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:scrollingCache="false"
-        android:textSize="20dp" >
+        android:textSize="20sp" >
 
     </ListView>
 

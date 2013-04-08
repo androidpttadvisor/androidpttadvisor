@@ -20,14 +20,14 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Info"
+            android:text="@string/title_activity_info_view"
             android:shadowColor="#7F000000"
         	android:shadowDx="2"
         	android:shadowDy="2"
         	android:shadowRadius="0.01"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/doneButton"
@@ -39,7 +39,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/upper_right_button_style"
-            android:text="Done"
+            android:text="@string/done_button"
             style="@style/whiteSmall" />
 		</RelativeLayout>
 
@@ -56,6 +56,7 @@
 
     	<ImageView
     	    android:id="@+id/infoIcon"
+    	    android:contentDescription="@string/contentDescription_info_icon"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:layout_alignParentLeft="true"
@@ -66,8 +67,7 @@
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:layout_below="@+id/infoHeaderText"
-    	    android:layout_centerHorizontal="true"
-    	    android:text="Version Number goes here" />
+    	    android:layout_centerHorizontal="true" />
 
     	<TextView
     	    android:id="@+id/infoHeaderText"
@@ -76,7 +76,7 @@
     	    android:layout_alignParentTop="true"
     	    android:layout_centerHorizontal="true"
     	    style="@style/greenBig"
-    	    android:text="About PTT Advisor" />
+    	    android:text="@string/aboutTitle" />
 	</RelativeLayout>
 	
 	<RelativeLayout
@@ -90,13 +90,13 @@
     	android:layout_below="@+id/infoHeader" >
 
 	    <TextView
-	        android:id="@+id/infoContentText"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentTop="true"
-	        style="@style/blackSmall"
-	        android:text="@string/infoText" />
+    	    android:id="@+id/infoContentText"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentLeft="true"
+        	android:layout_alignParentTop="true"
+        	style="@style/blackSmall"
+        	android:text="@string/infoText" />
 	    
 	</RelativeLayout>
 	<Button
@@ -107,7 +107,7 @@
 		android:layout_alignParentBottom="true"
 		android:layout_centerHorizontal="true"
 		android:background="@drawable/upper_right_button_style"
-		android:text="Read EULA"
+		android:text="@string/read_eula_button"
 		style="@style/whiteSmall" />
 
 </RelativeLayout>

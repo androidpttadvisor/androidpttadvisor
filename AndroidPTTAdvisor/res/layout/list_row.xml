@@ -16,6 +16,7 @@
  
         <ImageView
             android:id="@+id/list_image"
+            android:contentDescription="@string/contentDescription_question_icon"
             android:layout_width="30dip"
             android:layout_height="30dip"
             android:paddingRight="6dp"
@@ -33,7 +34,7 @@
         android:layout_toRightOf="@+id/thumbnail"
         android:textColor="#040404"
         android:typeface="sans"
-        android:textSize="16dip"
+        android:textSize="16sp"
         android:textStyle="bold"/>
  
     
@@ -43,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/questionAnswered"
         android:textColor="#1b6d78"
-        android:textSize="16dip"
+        android:textSize="16sp"
         android:layout_marginTop="1dip"
         android:textStyle="bold"
         android:layout_toRightOf="@+id/thumbnail" />

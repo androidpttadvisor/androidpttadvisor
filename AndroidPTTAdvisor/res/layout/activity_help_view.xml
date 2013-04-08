@@ -6,13 +6,13 @@
     android:background="#ffffff">
 
         <RelativeLayout
-        android:id="@+id/helpViewTitleBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/title_bar_gradient_selector"
-        android:gravity="center_vertical"
-        android:orientation="vertical" >
+        	android:id="@+id/helpViewTitleBar"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentTop="true"
+        	android:background="@drawable/title_bar_gradient_selector"
+        	android:gravity="center_vertical"
+        	android:orientation="vertical" >
 
         <TextView
             android:id="@+id/titleTextView"
@@ -20,14 +20,14 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Help"
+            android:text="@string/title_activity_help_view"
             android:shadowColor="#7F000000"
         	android:shadowDx="2"
         	android:shadowDy="2"
         	android:shadowRadius="0.01"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/doneButton"
@@ -39,29 +39,28 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/upper_right_button_style"
-            android:text="Done"
+            android:text="@string/done_button"
             style="@style/whiteSmall" />
-        
-        
-       
+
 		</RelativeLayout>
 		
 	<ImageView
-       	 	android:id="@+id/helpImage"
-        	android:layout_width="wrap_content"
-       		android:layout_height="wrap_content"
-       		android:layout_below="@+id/helpViewTitleBar"
-        	android:layout_marginLeft="26dp"
-        	android:layout_marginRight="26dp"
-        	android:gravity="center_vertical"
-        	android:layout_centerHorizontal="true"
-        	android:src="@drawable/help_toolbar_small2" />
+  	 	android:id="@+id/helpImage"
+		android:contentDescription="@string/contentDescription_help_header"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/helpViewTitleBar"
+		android:layout_marginLeft="26dp"
+		android:layout_marginRight="26dp"
+		android:gravity="center_vertical"
+		android:layout_centerHorizontal="true"
+		android:src="@drawable/help_toolbar_small2" />
 		 	
 	<WebView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:id="@+id/helpView"
-    android:layout_below="@+id/helpImage"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent" 
+    	android:id="@+id/helpView"
+    	android:layout_below="@+id/helpImage"
 	/>
 
 </RelativeLayout>

@@ -33,8 +33,6 @@ public class JsonHandler {
 		if (!jsonInStorage()) {
 			moveJsonToStorage();
 		}
-		Log.d("JSON HANDLER", "about to run JsonUpdater...");
-		//new JsonUpdaterTask(context).execute();
 	}
 	
 	/**
@@ -140,8 +138,13 @@ public class JsonHandler {
 	 * @return SparseArray of PTT nodes for PTT Controller's Decision Tree
 	 */
 	public SparseArray<PTTNode> getNodesFromJson() {
+		long startTime = System.nanoTime();
 		String jsonString = getJsonString();
-		return parseJson(jsonString);
+		SparseArray<PTTNode> pttnodes = parseJson(jsonString);
+		long stopTime = System.nanoTime();
+		long duration = stopTime - startTime;
+		Log.d("JsonHandler", "Read and parsed JSON in " + Long.toString(duration / 1000000) + "ms");
+		return pttnodes;
 	}
 	
 	/**
@@ -150,6 +153,8 @@ public class JsonHandler {
 	 * @return a SparseArray of PTTNodes.  This array is empty if parsing fails.
 	 */
 	public SparseArray<PTTNode> parseJson(String jsonString) {
+		long startTime = System.nanoTime();
+		
 		SparseArray<PTTNode> pttnodes = new SparseArray<PTTNode>();
 		
 		if (jsonString == null)
@@ -200,7 +205,10 @@ public class JsonHandler {
     	} catch (JSONException e) {
     		Log.d("JSON error: ", e.getMessage());
     	}
-    	Log.d("JSON", "Finished parsing");
+    	long endTime = System.nanoTime();
+    	long duration = endTime - startTime;
+    	
+    	Log.d("JsonHandler", "Parsed JSON string in " + Long.toString(duration / 1000000) + "ms");
     	return pttnodes;
 	}
 }

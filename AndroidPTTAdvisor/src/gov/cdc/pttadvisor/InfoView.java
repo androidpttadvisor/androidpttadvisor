@@ -1,6 +1,7 @@
 package gov.cdc.pttadvisor;
 
 import gov.cdc.pttadvisor.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,12 +26,12 @@ public class InfoView extends Activity {
 		mActivity = this;
 		
 		// Registering the "finish" action to the "Done" button
-				final Button doneButton = (Button)findViewById(R.id.doneButton);
-		        doneButton.setOnClickListener(new View.OnClickListener() {
-		            public void onClick(View view) {
-		            	finish();
-		            }
-		        });
+		final Button doneButton = (Button)findViewById(R.id.doneButton);
+		doneButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				finish();
+	            }
+	        });
 		
 		String version = "Version " + getVersionNumber();
 		TextView tv = (TextView)findViewById(R.id.infoVersionNum);
@@ -57,4 +58,5 @@ public class InfoView extends Activity {
         }
         return pi.versionName;
     }
+
 }

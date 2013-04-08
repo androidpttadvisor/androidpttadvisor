@@ -82,7 +82,7 @@
 
   		<ImageView
     		    android:id="@+id/nodeHeaderImage"
-    		    android:contentDescription="@string/contentDescription_headerImage"
+    		    android:contentDescription="@string/contentDescription_header_image"
     		    android:layout_width="wrap_content"
     		    android:layout_height="wrap_content"
     	        android:layout_marginTop="18dp"

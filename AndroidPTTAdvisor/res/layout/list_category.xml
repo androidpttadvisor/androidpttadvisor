@@ -15,13 +15,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Current Step"
+            android:text="@string/current_step"
             android:shadowColor="#7F000000"
         	android:shadowDx="2"
         	android:shadowDy="2"
         	android:shadowRadius="0.01"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
  
     
  

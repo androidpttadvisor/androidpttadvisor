@@ -16,12 +16,13 @@
         
         <ImageButton
             android:id="@+id/infoButton"
+            android:contentDescription="@string/contentDescription_info_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="12dp"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:text="@string/infoButtonText"
             android:src="@drawable/info_icon_18x18"
             android:background="@null" />
@@ -30,12 +31,13 @@
         
         <ImageButton
             android:id="@+id/helpButton"
+            android:contentDescription="@string/contentDescription_help_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="12dp"
             android:layout_toRightOf="@+id/infoButton"
             android:text="@string/helpButtonText"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:src="@drawable/help_icon_18x18"
             android:background="@null" />
 
@@ -45,14 +47,14 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="PTT Advisor"
+            android:text="@string/app_name"
             android:shadowColor="#7F000000"
         	android:shadowDx="2"
         	android:shadowDy="2"
         	android:shadowRadius="0.01"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/footnotesButton"
@@ -66,7 +68,7 @@
             android:layout_marginBottom="12dp"
             android:background="@drawable/upper_right_button_style"
             style="@style/whiteSmall"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
 
     </RelativeLayout>
@@ -80,6 +82,7 @@
 
   		<ImageView
     		    android:id="@+id/nodeHeaderImage"
+    		    android:contentDescription="@string/contentDescription_header_image"
     		    android:layout_width="wrap_content"
     		    android:layout_height="wrap_content"
     		    android:layout_marginLeft="26dp"
@@ -143,7 +146,6 @@
     		    android:layout_width="wrap_content"
     		    android:layout_centerHorizontal="true"
     		    android:layout_alignParentBottom="true"
-    		    android:text="Step 0"
     		    style="@style/graySmall" />
     	
     </RelativeLayout>
