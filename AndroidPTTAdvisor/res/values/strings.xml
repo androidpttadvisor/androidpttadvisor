@@ -15,6 +15,7 @@
     <string name="contentDescription_info_icon">Info Icon</string>
     <string name="read_eula_button">Read EULA</string>
     <string name="done">Done</string>
+    <string name="done_button">Done</string>
     <string name="helpButtonText">\?</string>
     <string name="infoButtonText">i</string>
     <string name="footnotesButtonText">Footnotes</string>
