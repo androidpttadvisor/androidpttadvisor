@@ -27,7 +27,7 @@
         	android:shadowRadius="0.01"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/doneButton"
@@ -39,7 +39,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/upper_right_button_style"
-            android:text="Done"
+            android:text="@string/done_button"
             style="@style/whiteSmall" />
         
         
@@ -50,18 +50,20 @@
        	 	android:id="@+id/helpImage"
         	android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
+       		android:layout_marginTop="18dp"
+       		android:layout_marginBottom="12dp"
        		android:layout_below="@+id/helpViewTitleBar"
-        	android:layout_marginLeft="26dp"
-        	android:layout_marginRight="26dp"
-        	android:gravity="center_vertical"
         	android:layout_centerHorizontal="true"
         	android:src="@drawable/help_toolbar_small2" />
 		 	
-	<WebView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:id="@+id/helpView"
-    android:layout_below="@+id/helpImage"
+	<TextView
+	    android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_marginLeft="50dp"
+    	android:layout_marginRight="50dp" 
+    	android:id="@+id/helpView"
+    	android:layout_below="@+id/helpImage"
+    	style="@style/blackMedium"
 	/>
 
 </RelativeLayout>
