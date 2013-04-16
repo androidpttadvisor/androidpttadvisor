@@ -51,9 +51,9 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/helpViewTitleBar"
 			android:layout_marginTop="8dp"
-			android:layout_marginBottom="12dp"
+			android:layout_marginBottom="15dp"
 			android:layout_centerHorizontal="true"
-			android:src="@drawable/help_toolbar_small2" />
+			android:src="@drawable/help_toolbar_small" />
 		 	
 		<TextView
     		android:layout_width="match_parent"
