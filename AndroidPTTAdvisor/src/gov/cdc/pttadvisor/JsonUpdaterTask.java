@@ -19,9 +19,11 @@ import android.content.Context;
 
 public class JsonUpdaterTask extends AsyncTask <Void, Void, String> {
 
-	//private String UPDATEURL = "https://raw.github.com/androidpttadvisor/androidpttadvisor/master/AndroidPTTAdvisor/assets/DTNode.json";
-	// for demo purposes; to be removed later.
-	private String UPDATEURL = "http://gibson.somethingsimple.org/ptt.json";
+	/** 
+	 * Currently pointed to github repo for JSON.  This should ultimately point to a "production" location,
+	 * probably somewhere at cdc.gov. 
+	 */
+	private String UPDATEURL = "https://raw.github.com/androidpttadvisor/androidpttadvisor/master/AndroidPTTAdvisor/assets/DTNode.json";
 	private MainView context;
 	
 	public JsonUpdaterTask (Context context) {

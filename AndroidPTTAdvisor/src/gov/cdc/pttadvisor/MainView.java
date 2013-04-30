@@ -79,7 +79,7 @@ public class MainView extends Activity {
     public void initialize() {
     	
     	/* launch a JSON updater task in the background */
-    	new JsonUpdaterTask(this).execute();
+    	//new JsonUpdaterTask(this).execute();
 
     	/* initialize a new PTT Controller-- the interface class for the various nodes */
         controller = new PTTController(this.getApplicationContext());
